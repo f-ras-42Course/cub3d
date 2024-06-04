@@ -6,11 +6,11 @@
 #    By: cvan-sch <cvan-sch@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/07/14 13:28:13 by fras              #+#    #+#              #
-#    Updated: 2024/06/04 11:12:19 by cvan-sch         ###   ########.fr        #
+#    Updated: 2024/06/04 11:28:16 by cvan-sch         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-NAME = cube3d
+NAME = cub3d
 CC = cc
 CFLAGS = -Werror -Wextra -Wall
 MLX42_FLAGS = -ldl -lglfw -pthread -lm
