@@ -1,12 +1,12 @@
 # **************************************************************************** #
 #                                                                              #
-#                                                         ::::::::             #
-#    Makefile                                           :+:    :+:             #
-#                                                      +:+                     #
-#    By: fras <fras@student.codam.nl>                 +#+                      #
-#                                                    +#+                       #
-#    Created: 2023/07/14 13:28:13 by fras          #+#    #+#                  #
-#    Updated: 2024/05/29 13:42:39 by fras          ########   odam.nl          #
+#                                                         :::      ::::::::    #
+#    Makefile                                           :+:      :+:    :+:    #
+#                                                     +:+ +:+         +:+      #
+#    By: cvan-sch <cvan-sch@student.42.fr>          +#+  +:+       +#+         #
+#                                                 +#+#+#+#+#+   +#+            #
+#    Created: 2023/07/14 13:28:13 by fras              #+#    #+#              #
+#    Updated: 2024/06/04 11:05:58 by cvan-sch         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -20,6 +20,7 @@ OBJ_DIR = obj
 SOURCES = $(shell find $(SRC_DIR) -type f -name "*.c")
 OBJECTS = $(patsubst $(SRC_DIR)/%,$(OBJ_DIR)/%,$(SOURCES:%.c=%.o))
 RM = rm -f
+adf
 
 # Libraries
 LIB_DIR = lib
