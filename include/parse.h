@@ -2,6 +2,11 @@
 #ifndef PARSE_H
 # define PARSE_H
 
+# include <fcntl.h>
+# include "structures.h"
+
+int	parse_map(t_data *all, char *map_name);
+
 /*
 one struct with all data or multiple structs
 - player data

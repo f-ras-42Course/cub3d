@@ -5,4 +5,9 @@
 # include <stdlib.h>
 # include <unistd.h>
 
+#include "parse.h"
+#include "structures.h"
+#include "get_next_line.h"
+#include "utils.h"
+
 #endif

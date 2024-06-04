@@ -1,8 +1,10 @@
 
-# include "cub3d.h"
+#include "cub3d.h"
 
-int	main(void)
+int	main(int ac, char **argv)
 {
-	printf("ez game\n");
+	t_data	data;
+	(void)ac;
+	parse_map(&data, argv[1]);
 	return (0);
 }
