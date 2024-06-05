@@ -19,6 +19,10 @@ typedef struct s_ray
 typedef struct s_map
 {
 	int			**map;
+	char		*north_texture;
+	char		*south_texture;
+	char		*east_texture;
+	char		*west_texture;
 	int			index[2];
 }				t_map;
 
@@ -28,14 +32,14 @@ typedef struct s_fps
 	double		old_time;
 }				t_fps;
 
-typedef struct s_data
+typedef struct s_all
 {
 	t_player	player;
 	t_ray		ray;
 	t_map		map;
 	t_fps		fps;
 	int			error_code;
-}				t_data;
+}				t_all;
 
 
 #endif
