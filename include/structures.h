@@ -1,6 +1,8 @@
 #ifndef STRUCTURES_H
 # define STRUCTURES_H
 
+# include "MLX42/MLX42.h"
+
 typedef struct s_player
 {
 	int			position[2];
@@ -28,14 +30,19 @@ typedef struct s_fps
 	double		old_time;
 }				t_fps;
 
-typedef struct s_data
+typedef struct s_gfx_data
+{
+	mlx_t	*mlx;
+}	t_gfx_data;
+
+typedef struct s_all
 {
 	t_player	player;
 	t_ray		ray;
 	t_map		map;
 	t_fps		fps;
+	t_gfx_data	graphics;
 	int			error_code;
-}				t_data;
-
+}				t_all;
 
 #endif

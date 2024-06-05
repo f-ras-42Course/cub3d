@@ -4,10 +4,10 @@
 /*might turn into void function since we can use exit*/
 /*if not too complicated let's try to restrain from using exit and return from main instead.
 also let's use bool for boolean returns*/
-bool	parse_map(t_data *all, char *map_name)
+bool	parse_map(t_all *data, char *map_name)
 {
-	(void)all;
+	(void)data;
 	if (!map_name)
-		return (error(NO_MAP, all), false);
+		return (error(NO_MAP, data), false);
 	return (true);
 }
