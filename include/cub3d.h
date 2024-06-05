@@ -10,5 +10,6 @@
 # include "get_next_line.h"
 # include "utils.h"
 # include "definitions.h"
+# include "graphics.h"
 
 #endif

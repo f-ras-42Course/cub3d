@@ -9,8 +9,8 @@ int	main(int argc, char **argv)
 	(void)argc;
 /* 	if (!parse_map(&data, argv[1]))
 		return (data.error_code); */
-	data.graphics.mlx = mlx_init(SCREEN_WIDTH, SCREEN_HEIGHT, "Cub3d", true);
-	if (!data.graphics.mlx)
+	if (!init_graphics(&data))
 		return (data.error_code);
+	run_graphics(&data);
 	return (SUCCES);
 }

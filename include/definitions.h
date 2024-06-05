@@ -5,8 +5,8 @@
 #  define DEBUG 0
 # endif
 
-# define SCREEN_WIDTH	800
-# define SCREEN_HEIGHT	600
+# define SCREEN_WIDTH	1440
+# define SCREEN_HEIGHT	900
 
 typedef enum e_error_codes
 {
@@ -14,6 +14,7 @@ typedef enum e_error_codes
 	// PARSE
 	NO_MAP,
 	// GFX
+	MLX_CRASH,
 }	t_error_codes;
 
 #endif
