@@ -12,8 +12,8 @@ typedef struct	s_ray
 {
 	int			side_dist[2];
 	int			delta_dist[2];
-	int			hit;
-	int			side;
+	bool		hit;
+	bool		side;
 }				t_ray;
 
 typedef struct	s_map
@@ -34,6 +34,7 @@ typedef struct	s_data
 	t_ray		ray;
 	t_map		map;
 	t_fps		fps;
+	int			error_code;
 }				t_data;
 
 

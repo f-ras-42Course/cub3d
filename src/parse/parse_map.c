@@ -8,6 +8,6 @@ bool	parse_map(t_data *all, char *map_name)
 {
 	(void)all;
 	if (!map_name)
-		return (false);
+		return (error(NO_MAP, all), false);
 	return (true);
 }
