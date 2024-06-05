@@ -4,7 +4,9 @@
 typedef enum
 {
 	SUCCES,
+	// PARSE
 	NO_MAP,
+	// GFX
 };
 
 #endif
