@@ -3,9 +3,10 @@
 # define PARSE_H
 
 # include <fcntl.h>
+# include <stdbool.h>
 # include "structures.h"
 
-int	parse_map(t_data *all, char *map_name);
+bool	parse_map(t_data *all, char *map_name);
 
 /*
 one struct with all data or multiple structs

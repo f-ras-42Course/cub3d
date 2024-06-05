@@ -2,10 +2,12 @@
 #include "cub3d.h"
 
 /*might turn into void function since we can use exit*/
-int	parse_map(t_data *all, char *map_name)
+/*if not too complicated let's try to restrain from using exit and return from main instead.
+also let's use bool for boolean returns*/
+bool	parse_map(t_data *all, char *map_name)
 {
 	(void)all;
 	if (!map_name)
-		error("no map supplied", 1);
-	return (0);
+		return (false);
+	return (true);
 }
