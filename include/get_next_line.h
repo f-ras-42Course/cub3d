@@ -1,21 +1,8 @@
-/* ************************************************************************** */
-/*                                                                            */
-/*                                                        :::      ::::::::   */
-/*   get_next_line.h                                    :+:      :+:    :+:   */
-/*                                                    +:+ +:+         +:+     */
-/*   By: cvan-sch <cvan-sch@student.42.fr>          +#+  +:+       +#+        */
-/*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/11/20 19:34:15 by cvan-sch          #+#    #+#             */
-/*   Updated: 2024/06/05 10:50:45 by cvan-sch         ###   ########.fr       */
-/*                                                                            */
-/* ************************************************************************** */
 
 #ifndef GET_NEXT_LINE_H
 # define GET_NEXT_LINE_H
 
-# ifndef BUFFER_SIZE
-#  define BUFFER_SIZE 42
-# endif
+# define BUFFER_SIZE 42
 
 char	*get_next_line(int fd);
 int		str_len_of_line(char *s, int check);
