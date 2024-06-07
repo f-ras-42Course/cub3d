@@ -12,6 +12,7 @@ typedef enum e_error_codes
 {
 	SUCCES,
 	// PARSE
+	NO_DOT_CUB,
 	NO_MAP,
 	// GFX
 	MLX_CRASH,

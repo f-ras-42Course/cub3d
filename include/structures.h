@@ -21,6 +21,10 @@ typedef struct s_ray
 typedef struct s_map
 {
 	int			**map;
+	char		*north_texture;
+	char		*south_texture;
+	char		*east_texture;
+	char		*west_texture;
 	int			index[2];
 }				t_map;
 

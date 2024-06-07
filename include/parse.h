@@ -6,7 +6,7 @@
 # include <stdbool.h>
 # include "structures.h"
 
-bool	parse_map(t_all *data, char *map_name);
+bool	parse_map(t_all *data, int argc, char *map_name);
 
 /*
 one struct with all data or multiple structs
