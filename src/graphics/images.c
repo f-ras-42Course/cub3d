@@ -3,6 +3,9 @@
 
 bool	init_image(t_gfx_data *graphics)
 {
+	const int	minimap_pos_x = (SCREEN_WIDTH - (SCREEN_WIDTH / 8));
+	const int	minimap_pos_y = (SCREEN_HEIGHT / 42);
+
 	if (!init_background(graphics))
 		return (false);
 	draw_floor(graphics->background);
@@ -11,9 +14,8 @@ bool	init_image(t_gfx_data *graphics)
 		return (false);
 	if (mlx_image_to_window(graphics->mlx, graphics->background, 0, 0) == -1)
 		return (false);
-	if (mlx_image_to_window(graphics->mlx, graphics->minimap, \
-		(SCREEN_WIDTH  - (SCREEN_WIDTH / 8)), \
-		((SCREEN_HEIGHT / 42))) == -1)
+	if (mlx_image_to_window(graphics->mlx, graphics->minimap, minimap_pos_x, \
+			minimap_pos_y) == -1)
 		return (false);
 	return (true);
 }
