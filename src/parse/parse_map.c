@@ -6,7 +6,7 @@
 also let's use bool for boolean returns*/
 bool	parse_map(t_all *data,  int argc, char *map_name)
 {
-	char	*line;
+	//char	*line;
 
 	if (argc == 1)
 		return (error(NO_MAP, data), true);
