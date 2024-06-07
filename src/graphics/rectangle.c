@@ -19,13 +19,13 @@ void	draw_rect(mlx_image_t *image, \
 	int			x;
 	int			y;
 
-	x = measures[POS_X];
-	y = measures[POS_Y];
+	x = measures[DRAW_POS_X];
+	y = measures[DRAW_POS_Y];
 
-	while (y < (measures[RECT_HEIGHT] + measures[POS_Y]))
+	while (y < (measures[RECT_HEIGHT] + measures[DRAW_POS_Y]))
 	{
 		mlx_put_pixel(image, x++, y, color);
-		if (x >= (measures[RECT_WIDTH] + measures[POS_X]))
+		if (x >= (measures[RECT_WIDTH] + measures[DRAW_POS_X]))
 		{
 			x = 0;
 			y++;

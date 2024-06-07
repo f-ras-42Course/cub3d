@@ -22,8 +22,8 @@ enum e_rectangle_measures
 {
 	RECT_WIDTH,
 	RECT_HEIGHT,
-	POS_X,
-	POS_Y
+	DRAW_POS_X,
+	DRAW_POS_Y
 };
 
 #endif

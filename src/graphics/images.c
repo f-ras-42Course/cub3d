@@ -1,6 +1,6 @@
 
 #include "graphics.h"
-/*(SCREEN_WIDTH  - (SCREEN_WIDTH / 9)), 500*/
+
 bool	init_image(t_gfx_data *graphics)
 {
 	if (!init_background(graphics))
@@ -23,8 +23,8 @@ bool	init_background(t_gfx_data *graphics)
 	const int	measures[4] = {
 	[RECT_WIDTH] = SCREEN_WIDTH,
 	[RECT_HEIGHT] = SCREEN_HEIGHT,
-	[POS_X] = 0,
-	[POS_Y] = 0
+	[DRAW_POS_X] = 0,
+	[DRAW_POS_Y] = 0
 	};
 
 	graphics->background = rect_image_draw(graphics->mlx, \
@@ -39,8 +39,8 @@ void	draw_floor(mlx_image_t *image)
 	const int	measures[4] = {
 	[RECT_WIDTH] = SCREEN_WIDTH,
 	[RECT_HEIGHT] = SCREEN_HEIGHT / 2,
-	[POS_X] = 0,
-	[POS_Y] = SCREEN_HEIGHT / 2
+	[DRAW_POS_X] = 0,
+	[DRAW_POS_Y] = SCREEN_HEIGHT / 2
 	};
 
 	draw_rect(image, measures, 0xADA587ff);
@@ -51,8 +51,8 @@ void	draw_sky(mlx_image_t *image)
 	const int	measures[4] = {
 	[RECT_WIDTH] = SCREEN_WIDTH,
 	[RECT_HEIGHT] = SCREEN_HEIGHT / 2,
-	[POS_X] = 0,
-	[POS_Y] = 0
+	[DRAW_POS_X] = 0,
+	[DRAW_POS_Y] = 0
 	};
 
 	draw_rect(image, measures, 0X87CEEBff);
@@ -64,8 +64,8 @@ bool	init_minimap(t_gfx_data *graphics)
 	const int	measures[4] = {
 	[RECT_WIDTH] = SCREEN_WIDTH / 9,
 	[RECT_HEIGHT] = SCREEN_HEIGHT / 8,
-	[POS_X] = 0,
-	[POS_Y] = 0
+	[DRAW_POS_X] = 0,
+	[DRAW_POS_Y] = 0
 	};
 
 	graphics->minimap = rect_image_draw(graphics->mlx, \
