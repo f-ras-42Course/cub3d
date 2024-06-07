@@ -36,7 +36,7 @@ void	draw_floor(mlx_image_t *image)
 	[RECT_WIDTH] = SCREEN_WIDTH,
 	[RECT_HEIGHT] = SCREEN_HEIGHT / 2,
 	[POS_X] = 0,
-	[POS_Y] = 0
+	[POS_Y] = SCREEN_HEIGHT / 2
 	};
 
 	draw_rect(image, measures, 0xADA587ff);
