@@ -40,11 +40,3 @@ mlx_image_t	*rect_image(mlx_t *mlx, int width, int height)
 	rectangle = mlx_new_image(mlx, width, height);
 	return (rectangle);
 }
-
-/* 
-	-- test functions for draw rect --
-
-	 printf("ended (x = %d, y = %d)\n", x, y);
-		printf("x = %d, y = %d\n", x, y);
-	printf("start: x = %d, y = %d\n", x, y); 
-*/
