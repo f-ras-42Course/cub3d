@@ -5,8 +5,8 @@
 #  define DEBUG 0
 # endif
 
-# define SCREEN_WIDTH	1440
-# define SCREEN_HEIGHT	900
+# define SCREEN_WIDTH	1920
+# define SCREEN_HEIGHT	1080
 
 typedef enum e_error_codes
 {

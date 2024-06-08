@@ -4,8 +4,8 @@
 bool	init_minimap(t_gfx_data *graphics)
 {
 	const int	measures[4] = {
-	[RECT_WIDTH] = SCREEN_WIDTH / 9,
-	[RECT_HEIGHT] = SCREEN_HEIGHT / 8,
+	[RECT_WIDTH] = (SCREEN_WIDTH / 8),
+	[RECT_HEIGHT] = (SCREEN_HEIGHT / 6),
 	[DRAW_POS_X] = 0,
 	[DRAW_POS_Y] = 0
 	};
