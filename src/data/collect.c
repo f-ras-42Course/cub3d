@@ -12,7 +12,6 @@ void	set_start_position_player(t_all *data)
 	int	x;
 	int	y;
 
-	(void)data;
 	x = 0;
 	y = -1;
 	while (y < MAP_HEIGHT && !player_found(g_temp_test_map[x][y]))
@@ -24,6 +23,7 @@ void	set_start_position_player(t_all *data)
 			x++;
 		}
 	}
+	set_position(x, y, data->player.position);
 }
 
 bool	player_found(char c)

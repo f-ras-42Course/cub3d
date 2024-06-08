@@ -6,8 +6,13 @@
 # include "structures.h"
 # include "utils.h"
 
+
+// -- Collect
 void	set_data(t_all *data);
 void	set_start_position_player(t_all *data);
 bool	player_found(char c);
+
+// -- Utils
+void	set_position(int x, int y, int where[2]);
 
 #endif

@@ -27,4 +27,11 @@ enum e_rectangle_measures
 	DRAW_POS_Y
 };
 
+enum	e_xyz
+{
+	X,
+	Y,
+	Z
+};
+
 #endif
