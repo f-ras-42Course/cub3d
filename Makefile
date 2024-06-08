@@ -66,6 +66,10 @@ fclean: clean
 
 re: fclean all
 
+ree: clean
+	$(RM) $(NAME)
+	$(MAKE)
+
 # Optimize
 optim:
 	$(MAKE) OPTIM=1
