@@ -19,11 +19,12 @@ bool		init_image(t_gfx_data *graphics);
 bool		set_all_images_to_window(t_gfx_data *graphics);
 
 // - Layers
-
 bool		init_background(t_gfx_data *graphics);
 void		draw_floor(mlx_image_t *image);
 void		draw_sky(mlx_image_t *image);
+// Minimap
 bool		init_minimap(t_gfx_data *graphics);
+void		draw_minimap_frame(mlx_image_t *minimap);
 
 // - Rectangle
 

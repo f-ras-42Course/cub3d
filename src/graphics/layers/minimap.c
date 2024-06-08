@@ -27,10 +27,32 @@ bool	init_minimap(t_gfx_data *graphics)
 						minimap_width, minimap_height);
 	if (!graphics->minimap)
 		return (false);
+	draw_minimap_frame(graphics->minimap);
 	// draw_minimap_walls(graphics);
 	return (true);
 }
 
+void	draw_minimap_frame(mlx_image_t *minimap)
+{
+	const int	minimap_width = (SCREEN_WIDTH / 8);
+	const int	minimap_height = (SCREEN_HEIGHT / 6);
+	const int	minimap_frame_thickness = 5;
+	int	x;
+	int	y;
+
+	x = 0;
+	y = 0;
+	while (y < minimap_height)
+	{
+		while ((x < minimap_width && y < minimap_frame_thickness) \
+				|| x < minimap_frame_thickness)
+		{
+			mlx_put_pixel(minimap, x++, y, 0xff0000ff);
+		}
+		x = 0;
+		y++;
+	}
+}
 
 // void	draw_minimap_walls(t_gfx_data *graphics)
 // {
