@@ -10,7 +10,7 @@ bool	init_minimap(t_gfx_data *graphics)
 						g_minimap_width, g_minimap_height);
 	if (!graphics->minimap)
 		return (false);
-	draw_minimap_frame(graphics->minimap, raster_only);
+	draw_minimap_frame(graphics->minimap, raster_plus_frame);
 	// draw_minimap_player(graphics->minimap);
 	// draw_minimap_walls(graphics);
 	return (true);
@@ -74,18 +74,19 @@ void	draw_minimap_frame(mlx_image_t *minimap, t_minimap_options option)
 
 
 // -- Player looks
-// x x x x x x x x x x x x x x x
-// x x x x x x x x x x x x x x x
-// x x x x x x x x x x x x x x x
-// x x x x x x x o x x x x x x x
-// x x x x x x o o o x x x x x x
-// x x x x x o o o o o x x x x x
-// x x x x x o o o o o x x x x x
-// x x x x x o o O o o x x x x x
-// x x x x x o o o o o x x x x x
-// x x x x x o o o o o x x x x x
-// x x x x x x x x x x x x x x x
-// x x x x x x x x x x x x x x x
-// x x x x x x x x x x x x x x x
-// x x x x x x x x x x x x x x x
-// x x x x x x x x x x x x x x x
+// x x x x x x x x x x x x x x x x
+// x x x x x x x x x x x x x x x x
+// x x x x x x x x x x x x x x x x
+// x x x x x x x x x x x x x x x x
+// x x x x x x x x o x x x x x x x
+// x x x x x x x o o o x x x x x x
+// x x x x x x o o o o o x x x x x
+// x x x x x x o o o o o x x x x x
+// x x x x x x o o O o o x x x x x
+// x x x x x x o o o o o x x x x x
+// x x x x x x o o o o o x x x x x
+// x x x x x x x x x x x x x x x x
+// x x x x x x x x x x x x x x x x
+// x x x x x x x x x x x x x x x x
+// x x x x x x x x x x x x x x x x
+// x x x x x x x x x x x x x x x x
