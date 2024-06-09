@@ -1,3 +1,4 @@
+
 #ifndef DEFINITIONS_H
 # define DEFINITIONS_H
 
@@ -8,9 +9,9 @@
 # define SCREEN_WIDTH	1920
 # define SCREEN_HEIGHT	1080
 
-/* Currently: 240 */
+/* Currently: 241 */
 extern const int	g_minimap_width;
-/* Currently: 180 */
+/* Currently: 177 */
 extern const int	g_minimap_height;
 /* Currently: 5 */
 extern const int	g_minimap_frame_thickness;
@@ -40,5 +41,12 @@ enum	e_xyz
 	Y,
 	Z
 };
+
+typedef enum e_minimap_options
+{
+	raster_only,
+	raster_plus_frame,
+	frame_only
+}	t_minimap_options;
 
 #endif
