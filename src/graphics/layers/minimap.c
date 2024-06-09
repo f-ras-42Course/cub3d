@@ -32,6 +32,8 @@ void	draw_minimap_frame(mlx_image_t *minimap)
 				|| x > (g_minimap_width - g_minimap_frame_thickness) \
 				|| y > (g_minimap_height - g_minimap_frame_thickness)))
 				mlx_put_pixel(minimap, x, y, 0xff0000ff);
+			if (x % 10 == 0 || y % 10 == 0)
+				mlx_put_pixel(minimap, x, y, 0x0000ffff);
 			x++;
 		}
 		x = 0;
@@ -41,8 +43,14 @@ void	draw_minimap_frame(mlx_image_t *minimap)
 
 // void	draw_minimap_player(mlx_image_t *minimap)
 // {
-// 	const int	minimap_width = (SCREEN_WIDTH / 8);
-// 	const int	minimap_height = (SCREEN_HEIGHT / 6);
+// 	const int	measures[4] = {
+// 	[RECT_WIDTH] = 3,
+// 	[RECT_HEIGHT] = 3,
+// 	[DRAW_POS_X] = 0,
+// 	[DRAW_POS_Y] = SCREEN_HEIGHT / 2
+// 	};
+
+// 	draw_rect(minimap)
 // }
 
 // void	draw_minimap_walls(t_gfx_data *graphics)
