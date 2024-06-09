@@ -35,7 +35,7 @@ endif
 all: $(NAME)
 
 $(NAME): $(MLX42) $(OBJECTS)
-	$(CC) $(CFLAGS) $(MLX42_FLAGS) $(INCLUDE) -o $@ $(OBJECTS) $(MLX42)
+	$(CC) $(OBJECTS) $(MLX42) $(MLX42_FLAGS) $(CFLAGS) -o $@
 	@$(MAKE) message EXECUTABLE=$@
 
 $(OBJ_DIR)/%.o: $(SRC_DIR)/%.c
@@ -65,6 +65,10 @@ fclean: clean
 	$(RM) $(NAME)
 
 re: fclean all
+
+ree: clean
+	$(RM) $(NAME)
+	$(MAKE)
 
 # Optimize
 optim:
