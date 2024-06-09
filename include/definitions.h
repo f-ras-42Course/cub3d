@@ -8,6 +8,10 @@
 # define SCREEN_WIDTH	1920
 # define SCREEN_HEIGHT	1080
 
+extern const int	g_minimap_width;
+extern const int	g_minimap_height;
+extern const int	g_minimap_frame_thickness;
+
 typedef enum e_error_codes
 {
 	SUCCES,
