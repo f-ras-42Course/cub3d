@@ -44,10 +44,14 @@ void	draw_minimap_frame(mlx_image_t *minimap)
 	y = 0;
 	while (y < minimap_height)
 	{
-		while ((x < minimap_width && y < minimap_frame_thickness) \
-				|| x < minimap_frame_thickness)
+		while (x < minimap_width)
 		{
-			mlx_put_pixel(minimap, x++, y, 0xff0000ff);
+			if ((y < minimap_frame_thickness \
+				|| x < minimap_frame_thickness \
+				|| x > (minimap_width - minimap_frame_thickness) \
+				|| y > (minimap_height - minimap_frame_thickness)))
+				mlx_put_pixel(minimap, x, y, 0xff0000ff);
+			x++;
 		}
 		x = 0;
 		y++;
