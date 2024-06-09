@@ -20,4 +20,6 @@ void	error(int error_code, t_all *data)
 		write(2, "Error: ", 7);
 		ft_putendl_fd((char *)g_error_msg[error_code], STDERR_FILENO);
 	}
+	if (error_code == MLX_CRASH)
+		mlx_terminate(data->graphics.mlx);
 }
