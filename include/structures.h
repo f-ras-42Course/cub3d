@@ -20,7 +20,7 @@ typedef struct s_ray
 
 typedef struct s_map
 {
-	int			**map;
+	char		**map;
 	char		*north_texture;
 	char		*south_texture;
 	char		*east_texture;
