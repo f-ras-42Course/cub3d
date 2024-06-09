@@ -10,7 +10,7 @@
 // 	[DRAW_POS_Y] = 0
 // 	};
 
-// 	graphics->minimap = rect_image_draw(graphics->mlx, \
+// 	graphics->minimap = rect_image_draw(graphics->mlx,
 // 							measures, 0xFF0000ff);
 // 	if (!graphics->minimap)
 // 		return (false);
