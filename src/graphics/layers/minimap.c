@@ -17,7 +17,7 @@ bool	init_minimap(t_gfx_data *graphics)
 	if (!graphics->minimap)
 		return (false);
 	draw_minimap_frame(graphics->minimap, raster_only);
-	fill_minimap_unit(graphics->minimap, 0, 1);
+	fill_minimap_unit(graphics->minimap, 14, 10);
 	// draw_minimap_player(graphics->minimap);
 	// draw_minimap_walls(graphics);
 	return (true);
@@ -86,7 +86,7 @@ void	fill_minimap_unit(mlx_image_t *minimap, int minimap_pos_x, int minimap_pos_
 	[DRAW_POS_Y] = minimap_pos_y * g_minimap_unit_size
 	};
 
-	draw_rect(minimap, measures, 0xffff00ff);
+	draw_rect(minimap, measures, 0xff0000ff);
 }
 
 
