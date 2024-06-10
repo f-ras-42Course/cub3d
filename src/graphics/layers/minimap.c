@@ -2,6 +2,12 @@
 #include "graphics.h"
 
 /* Temporary varriant on the final minimap*/
+
+int get_rgba(int r, int g, int b, int a)
+{
+    return (r << 24 | g << 16 | b << 8 | a);
+}
+
 bool	init_minimap(t_gfx_data *graphics)
 {
 
@@ -10,11 +16,39 @@ bool	init_minimap(t_gfx_data *graphics)
 						g_minimap_width, g_minimap_height);
 	if (!graphics->minimap)
 		return (false);
-	draw_minimap_frame(graphics->minimap, raster_plus_frame);
+	draw_minimap_frame(graphics->minimap, raster_only);
+	// fill_minimap_box(0, 0);
 	// draw_minimap_player(graphics->minimap);
 	// draw_minimap_walls(graphics);
 	return (true);
 }
+
+// void	draw_minimap_test_frame(mlx_image_t *minimap, \
+// 			t_minimap_options option)
+// {
+// 	int		x;
+// 	int		y;
+// 	int		color;
+
+// 	x = 0;
+// 	y = 0;
+// 	color = 0xff0000ff;
+// 	while (y < g_minimap_height)
+// 	{
+// 		while (x < g_minimap_width)
+// 		{
+// 			if (option == fill_end_of_map)
+// 			{
+// 				mlx_put_pixel(minimap, x, y, color += 10);
+// 				if (x % g_minimap_unit_size == 0 || y % g_minimap_unit_size == 0)
+// 					mlx_put_pixel(minimap, x, y, color += 10);
+// 			x++;
+// 			}
+// 		}
+// 		x = 0;
+// 		y++;
+// 	}
+// }
 
 void	draw_minimap_frame(mlx_image_t *minimap, t_minimap_options option)
 {
@@ -34,14 +68,27 @@ void	draw_minimap_frame(mlx_image_t *minimap, t_minimap_options option)
 				|| y > g_minimap_height - g_minimap_frame_thickness)))
 				mlx_put_pixel(minimap, x, y, 0xff0000ff);
 			else if ((option == raster_only || option == raster_plus_frame) \
-					&& (x % 16 == 0 || y % 16 == 0))
-				mlx_put_pixel(minimap, x, y, 0x0000ffff);
+					&& (x % g_minimap_unit_size == 0 || y % g_minimap_unit_size == 0))
+					mlx_put_pixel(minimap, x, y, 0x0000ffff);
 			x++;
 		}
 		x = 0;
 		y++;
 	}
 }
+
+// void	fill_minimap_unit(mlx_image_t *minimap, int minimap_pos_x, int minimap_pos_y)
+// {
+// 	const int	rect_measures[4] = {
+// 	[RECT_WIDTH] = g_minimap_unit_size,
+// 	[RECT_HEIGHT] = g_minimap_unit_size,
+// 	[DRAW_POS_X] = 0,
+// 	[DRAW_POS_Y] = SCREEN_HEIGHT / 2
+// 	};
+
+// 	draw_rect(minimap, 0, 0)
+// }
+
 
 // void	draw_minimap_player(mlx_image_t *minimap)
 // {
@@ -51,6 +98,7 @@ void	draw_minimap_frame(mlx_image_t *minimap, t_minimap_options option)
 // 	[DRAW_POS_X] = 0,
 // 	[DRAW_POS_Y] = SCREEN_HEIGHT / 2
 // 	};
+// }
 
 // 	draw_rect(minimap)
 // }
@@ -74,19 +122,18 @@ void	draw_minimap_frame(mlx_image_t *minimap, t_minimap_options option)
 
 
 // -- Player looks
-// x x x x x x x x x x x x x x x x
-// x x x x x x x x x x x x x x x x
-// x x x x x x x x x x x x x x x x
-// x x x x x x x x x x x x x x x x
-// x x x x x x x x o x x x x x x x
-// x x x x x x x o o o x x x x x x
-// x x x x x x o o o o o x x x x x
-// x x x x x x o o o o o x x x x x
-// x x x x x x o o O o o x x x x x
-// x x x x x x o o o o o x x x x x
-// x x x x x x o o o o o x x x x x
-// x x x x x x x x x x x x x x x x
-// x x x x x x x x x x x x x x x x
-// x x x x x x x x x x x x x x x x
-// x x x x x x x x x x x x x x x x
-// x x x x x x x x x x x x x x x x
+// x x x x x x x x x x x x x x x
+// x x x x x x x x x x x x x x x
+// x x x x x x x x x x x x x x x
+// x x x x x x x x x x x x x x x
+// x x x x x x x o x x x x x x x
+// x x x x x x o o o x x x x x x
+// x x x x x o o o o o x x x x x
+// x x x x x o o o o o x x x x x
+// x x x x x o o O o o x x x x x
+// x x x x x o o o o o x x x x x
+// x x x x x o o o o o x x x x x
+// x x x x x x x x x x x x x x x
+// x x x x x x x x x x x x x x x
+// x x x x x x x x x x x x x x x
+// x x x x x x x x x x x x x x x

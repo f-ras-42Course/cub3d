@@ -6,15 +6,45 @@
 #  define DEBUG 0
 # endif
 
+/* supporting resolutions */
+
+// 3200 x 1800 (8K)
+// # define SCREEN_WIDTH	7680
+// # define SCREEN_HEIGHT	4320
+
+// 3200 x 1800 (4K)
+// # define SCREEN_WIDTH	3840
+// # define SCREEN_HEIGHT	2160
+
+// 3200 x 1800 (WQXGA+)
+// # define SCREEN_WIDTH	3200
+// # define SCREEN_HEIGHT	1800
+
+// 2560 x 1440 (Quad HD)
+// # define SCREEN_WIDTH	2560
+// # define SCREEN_HEIGHT	1440
+
+// 1920 x 1080 (Full HD)
 # define SCREEN_WIDTH	1920
 # define SCREEN_HEIGHT	1080
 
-/* Currently: 241 */
+// 1280 x 720 (HD)
+// # define SCREEN_WIDTH	1280
+// # define SCREEN_HEIGHT	720
+
+// 640 x 360 (ninth HD)
+// # define SCREEN_WIDTH	640
+// # define SCREEN_HEIGHT	360
+
+/* Currently: 255 */
 extern const int	g_minimap_width;
-/* Currently: 177 */
+/* Currently: 165 */
 extern const int	g_minimap_height;
 /* Currently: 5 */
 extern const int	g_minimap_frame_thickness;
+/* Currently: 15*/
+extern const int	g_minimap_unit_size;
+
 
 typedef enum e_error_codes
 {
@@ -46,7 +76,8 @@ typedef enum e_minimap_options
 {
 	raster_only,
 	raster_plus_frame,
-	frame_only
+	frame_only,
+	fill_end_of_map
 }	t_minimap_options;
 
 #endif
