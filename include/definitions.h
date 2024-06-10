@@ -20,6 +20,9 @@ typedef enum e_error_codes
 {
 	SUCCES,
 	// PARSE
+	NOT_ALL_ELEMENTS,
+	RGB,
+	NO_SUCH_FILE,
 	NO_DOT_CUB,
 	NO_MAP,
 	// GFX

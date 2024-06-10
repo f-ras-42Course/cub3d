@@ -25,6 +25,8 @@ typedef struct s_map
 	char		*south_texture;
 	char		*east_texture;
 	char		*west_texture;
+	int			floor[3];
+	int			ceiling[3];
 	int			index[2];
 }				t_map;
 
