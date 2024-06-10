@@ -16,39 +16,11 @@ bool	init_minimap(t_gfx_data *graphics)
 						g_minimap_width, g_minimap_height);
 	if (!graphics->minimap)
 		return (false);
-	draw_minimap_frame(graphics->minimap, raster_only);
-	fill_minimap_unit(graphics->minimap, 14, 10);
+	draw_minimap_frame(graphics->minimap, frame_only);
+	draw_minimap_walls(graphics);
 	// draw_minimap_player(graphics->minimap);
-	// draw_minimap_walls(graphics);
 	return (true);
 }
-
-// void	draw_minimap_test_frame(mlx_image_t *minimap, \
-// 			t_minimap_options option)
-// {
-// 	int		x;
-// 	int		y;
-// 	int		color;
-
-// 	x = 0;
-// 	y = 0;
-// 	color = 0xff0000ff;
-// 	while (y < g_minimap_height)
-// 	{
-// 		while (x < g_minimap_width)
-// 		{
-// 			if (option == fill_end_of_map)
-// 			{
-// 				mlx_put_pixel(minimap, x, y, color += 10);
-// 				if (x % g_minimap_unit_size == 0 || y % g_minimap_unit_size == 0)
-// 					mlx_put_pixel(minimap, x, y, color += 10);
-// 			x++;
-// 			}
-// 		}
-// 		x = 0;
-// 		y++;
-// 	}
-// }
 
 void	draw_minimap_frame(mlx_image_t *minimap, t_minimap_options option)
 {
@@ -77,6 +49,26 @@ void	draw_minimap_frame(mlx_image_t *minimap, t_minimap_options option)
 	}
 }
 
+void	draw_minimap_walls(t_gfx_data *graphics)
+{
+	int x;
+	int y;
+
+	x = 0;
+	y = 0;
+	while (y < MAP_HEIGHT)
+	{
+		while (x < MAP_WIDTH)
+		{
+			if (g_temp_test_map[y][x] == '1')
+				fill_minimap_unit(graphics->minimap, x, y);
+			x++;
+		}
+		x = 0;
+		y++;
+	}
+};
+
 void	fill_minimap_unit(mlx_image_t *minimap, int minimap_pos_x, int minimap_pos_y)
 {
 	const int	measures[4] = {
@@ -103,14 +95,6 @@ void	fill_minimap_unit(mlx_image_t *minimap, int minimap_pos_x, int minimap_pos_
 // 	draw_rect(minimap)
 // }
 
-// void	draw_minimap_walls(t_gfx_data *graphics)
-// {
-// 	const int	measures[4] = {
-// 	[RECT_WIDTH] = 5,
-// 	[RECT_HEIGHT] = 5,
-// 	[DRAW_POS_X] = 0,
-// 	[DRAW_POS_Y] = 0
-// 	};
 
 // }
 
@@ -137,3 +121,31 @@ void	fill_minimap_unit(mlx_image_t *minimap, int minimap_pos_x, int minimap_pos_
 // x x x x x x x x x x x x x x x
 // x x x x x x x x x x x x x x x
 // x x x x x x x x x x x x x x x
+
+
+// void	draw_minimap_test_frame(mlx_image_t *minimap, \
+// 			t_minimap_options option)
+// {
+// 	int		x;
+// 	int		y;
+// 	int		color;
+
+// 	x = 0;
+// 	y = 0;
+// 	color = 0xff0000ff;
+// 	while (y < g_minimap_height)
+// 	{
+// 		while (x < g_minimap_width)
+// 		{
+// 			if (option == fill_end_of_map)
+// 			{
+// 				mlx_put_pixel(minimap, x, y, color += 10);
+// 				if (x % g_minimap_unit_size == 0 || y % g_minimap_unit_size == 0)
+// 					mlx_put_pixel(minimap, x, y, color += 10);
+// 			x++;
+// 			}
+// 		}
+// 		x = 0;
+// 		y++;
+// 	}
+// }
