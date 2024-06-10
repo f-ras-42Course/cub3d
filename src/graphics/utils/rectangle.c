@@ -26,7 +26,7 @@ void	draw_rect(mlx_image_t *image, \
 		mlx_put_pixel(image, x++, y, color);
 		if (x >= (measures[RECT_WIDTH] + measures[DRAW_POS_X]))
 		{
-			x = 0;
+			x = measures[DRAW_POS_X];
 			y++;
 		}
 	}
