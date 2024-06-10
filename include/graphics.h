@@ -26,7 +26,8 @@ void		draw_sky(mlx_image_t *image);
 bool		init_minimap(t_gfx_data *graphics);
 void		draw_minimap_frame(mlx_image_t *minimap, t_minimap_options option);
 void		draw_minimap_walls(t_gfx_data *graphics);
-void		draw_minimap_player(t_gfx_data *graphics);
+void		draw_player_on_minimap(t_gfx_data *graphics);
+void		draw_player(mlx_image_t *minimap);
 void		draw_minimap_test_frame(mlx_image_t *minimap, \
 			t_minimap_options option);
 void		fill_minimap_unit(mlx_image_t *minimap, int minimap_pos_x, \
