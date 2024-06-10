@@ -16,8 +16,7 @@ bool	init_minimap(t_gfx_data *graphics)
 						g_minimap_width, g_minimap_height);
 	if (!graphics->minimap)
 		return (false);
-	// draw_minimap_frame(graphics->minimap, frame_only);
-	// draw_minimap_player(graphics->minimap);
+	draw_minimap_player(graphics);
 	draw_minimap_walls(graphics);
 	return (true);
 }
@@ -83,15 +82,18 @@ void	fill_minimap_unit(mlx_image_t *minimap, int minimap_pos_x, \
 }
 
 
-// void	draw_minimap_player(mlx_image_t *minimap)
-// {
-// 	const int	measures[4] = {
-// 	[RECT_WIDTH] = 3,
-// 	[RECT_HEIGHT] = 3,
-// 	[DRAW_POS_X] = 0,
-// 	[DRAW_POS_Y] = SCREEN_HEIGHT / 2
-// 	};
-// }
+void	draw_minimap_player(t_gfx_data *graphics)
+{
+	const int	measures[4] = {
+	[RECT_WIDTH] = g_minimap_unit_size,
+	[RECT_HEIGHT] = g_minimap_unit_size,
+	[DRAW_POS_X] = graphics->data->player.position[X],
+	[DRAW_POS_Y] = graphics->data->player.position[Y]
+	};
+
+	// draw_rect(graphics->minimap, measures, 0xffff00ff);
+	fill_minimap_unit(graphics->minimap, measures[DRAW_POS_X], measures[DRAW_POS_Y], 0xffff00ff);
+}
 
 // 	draw_rect(minimap)
 // }

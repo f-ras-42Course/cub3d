@@ -36,9 +36,10 @@ typedef struct s_fps
 
 typedef struct s_gfx_data
 {
-	mlx_t		*mlx;
-	mlx_image_t	*background;
-	mlx_image_t	*minimap;
+	mlx_t			*mlx;
+	mlx_image_t		*background;
+	mlx_image_t		*minimap;
+	struct s_all	*data;
 }	t_gfx_data;
 
 typedef struct s_all
