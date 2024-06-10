@@ -4,7 +4,7 @@
 // # define MAP_WIDTH	24
 // # define MAP_HEIGHT	24
 
-// const char	g_temp_test_map[MAP_WIDTH][MAP_HEIGHT] = { 
+// const char	g_temp_test_map[MAP_HEIGHT][MAP_WIDTH] = { 
 // {'1', '1', '1', '1', '1', '1', '1', '1', '1', '1', '1', '1', '1', '1', '1', '1', '1', '1', '1', '1', '1', '1', '1', '1'},
 // {'1', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '1'},
 // {'1', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '1'},
@@ -34,7 +34,7 @@
 // # define MAP_WIDTH	5
 // # define MAP_HEIGHT	5
 
-// const char	g_temp_test_map[MAP_WIDTH][MAP_HEIGHT] = { 
+// const char	g_temp_test_map[MAP_HEIGHT][MAP_WIDTH] = { 
 // {'1', '1', '1', '1', '1'},
 // {'1', '0', '0', '0', '1'},
 // {'1', '0', 'E', '0', '1'},
