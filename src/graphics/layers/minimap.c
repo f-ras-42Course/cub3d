@@ -120,13 +120,13 @@ void	draw_player_on_minimap(t_gfx_data *graphics)
 
 	measures[RECT_WIDTH] = round(g_minimap_unit_size * .2);
 	measures[RECT_HEIGHT] = round(g_minimap_unit_size * .066666);
-	measures[DRAW_POS_X] = round((g_minimap_width * .5) - (g_minimap_unit_size * .10000));
-	measures[DRAW_POS_Y] = round((g_minimap_height * .5) - (g_minimap_unit_size * .25000));
+	measures[DRAW_POS_X] = round((g_minimap_width * .5) - (g_minimap_unit_size * .1));
+	measures[DRAW_POS_Y] = round((g_minimap_height * .5) - (g_minimap_unit_size * .225));
 	draw_rect(graphics->minimap, measures, 0xff0000ff);
 	measures[RECT_WIDTH] = round(g_minimap_unit_size * .066666);
 	measures[RECT_HEIGHT] = round(g_minimap_unit_size * .066666);
-	measures[DRAW_POS_X] = round((g_minimap_width * .5) - (g_minimap_unit_size * .05));
-	measures[DRAW_POS_Y] = round((g_minimap_height * .5) - (g_minimap_unit_size * .28570));
+	measures[DRAW_POS_X] = round((g_minimap_width * .5) - (g_minimap_unit_size * .0333));
+	measures[DRAW_POS_Y] = round((g_minimap_height * .5) - (g_minimap_unit_size * .2875));
 	draw_rect(graphics->minimap, measures, 0xffff00ff);
 	// #include <stdio.h>
 	// printf("%d, %d\n", measures[RECT_WIDTH], measures[RECT_HEIGHT]);
