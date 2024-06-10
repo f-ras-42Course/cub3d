@@ -16,7 +16,7 @@ bool	init_minimap(t_gfx_data *graphics)
 						g_minimap_width, g_minimap_height);
 	if (!graphics->minimap)
 		return (false);
-	draw_minimap_player(graphics);
+	draw_player_on_minimap(graphics);
 	draw_minimap_walls(graphics);
 	return (true);
 }
@@ -82,17 +82,30 @@ void	fill_minimap_unit(mlx_image_t *minimap, int minimap_pos_x, \
 }
 
 
-void	draw_minimap_player(t_gfx_data *graphics)
+void	draw_player_on_minimap(t_gfx_data *graphics)
 {
-	const int	measures[4] = {
-	[RECT_WIDTH] = g_minimap_unit_size,
-	[RECT_HEIGHT] = g_minimap_unit_size,
-	[DRAW_POS_X] = graphics->data->player.position[X],
-	[DRAW_POS_Y] = graphics->data->player.position[Y]
-	};
+	int	measures[4];
+	
+	measures[RECT_WIDTH] = round(g_minimap_unit_size / 3);
+	measures[RECT_HEIGHT] = round(g_minimap_unit_size / 3);
+	measures[DRAW_POS_X] = round((g_minimap_width / 2) - (g_minimap_unit_size / 6));
+	measures[DRAW_POS_Y] = round((g_minimap_height / 2) - (g_minimap_unit_size / 6));
+	draw_rect(graphics->minimap, measures, 0xff0000ff);
 
-	// draw_rect(graphics->minimap, measures, 0xffff00ff);
-	fill_minimap_unit(graphics->minimap, measures[DRAW_POS_X], measures[DRAW_POS_Y], 0xffff00ff);
+	measures[RECT_WIDTH] = round(g_minimap_unit_size / 5);
+	measures[RECT_HEIGHT] = round(g_minimap_unit_size / 15);
+	measures[DRAW_POS_X] = round((g_minimap_width / 2) - (g_minimap_unit_size / 8));
+	measures[DRAW_POS_Y] = round((g_minimap_height / 2) - (g_minimap_unit_size / 4));
+	draw_rect(graphics->minimap, measures, 0xff0000ff);
+	measures[RECT_WIDTH] = round(g_minimap_unit_size / 15);
+	measures[RECT_HEIGHT] = round(g_minimap_unit_size / 15);
+	measures[DRAW_POS_X] = round((g_minimap_width / 2) - (g_minimap_unit_size / 16));
+	measures[DRAW_POS_Y] = round((g_minimap_height / 2) - (g_minimap_unit_size / 3.5));
+	draw_rect(graphics->minimap, measures, 0xff0000ff);
+	#include <stdio.h>
+	printf("%d, %d\n", measures[RECT_WIDTH], measures[RECT_HEIGHT]);
+	// draw_rect(graphics->minimap, measures, 0xff0000ff);
+	// fill_minimap_unit(graphics->minimap, measures[DRAW_POS_X], measures[DRAW_POS_Y], 0xffff00ff);
 }
 
 // 	draw_rect(minimap)
@@ -106,6 +119,38 @@ void	draw_minimap_player(t_gfx_data *graphics)
 
 // }
 
+
+// -- Player looks
+// x x x x x x x x x x x x x x x x x x x x x x x x x x x x x x
+// x x x x x x x x x x x x x x x x x x x x x x x x x x x x x x
+// x x x x x x x x x x x x x x x x x x x x x x x x x x x x x x
+// x x x x x x x x x x x x x x x x x x x x x x x x x x x x x x
+// x x x x x x x x x x x x x x x x x x x x x x x x x x x x x x
+// x x x x x x x x x x x x x x x x x x x x x x x x x x x x x x
+// x x x x x x x x x x x x x x x x x x x x x x x x x x x x x x
+// x x x x x x x x x x x x x x x x x x x x x x x x x x x x x x
+// x x x x x x x o o o o o o o o o o o o o o o x x x x x x x x
+// x x x x x x x o o o o o o o o o o o o o o o x x x x x x x x
+// x x x x x x x o o o o o o o o o o o o o o o x x x x x x x x
+// x x x x x x x o o o o o o o o o o o o o o o x x x x x x x x
+// x x x x x x x o o o o o o o o o o o o o o o x x x x x x x x
+// x x x x x x x o o o o o o o o o o o o o o o x x x x x x x x
+// x x x x x x x o o o o o o O O O o o o o o o x x x x x x x x
+// x x x x x x x o o o o o o O O O o o o o o o x x x x x x x x
+// x x x x x x x o o o o o o O O O o o o o o o x x x x x x x x
+// x x x x x x x o o o o o o o o o o o o o o o x x x x x x x x
+// x x x x x x x o o o o o o o o o o o o o o o x x x x x x x x
+// x x x x x x x o o o o o o o o o o o o o o o x x x x x x x x
+// x x x x x x x o o o o o o o o o o o o o o o x x x x x x x x
+// x x x x x x x o o o o o o o o o o o o o o o x x x x x x x x
+// x x x x x x x o o o o o o o o o o o o o o o x x x x x x x x
+// x x x x x x x x x x x x x x x x x x x x x x x x x x x x x x
+// x x x x x x x x x x x x x x x x x x x x x x x x x x x x x x
+// x x x x x x x x x x x x x x x x x x x x x x x x x x x x x x
+// x x x x x x x x x x x x x x x x x x x x x x x x x x x x x x
+// x x x x x x x x x x x x x x x x x x x x x x x x x x x x x x
+// x x x x x x x x x x x x x x x x x x x x x x x x x x x x x x
+// x x x x x x x x x x x x x x x x x x x x x x x x x x x x x x
 
 
 // -- Player looks
@@ -124,6 +169,14 @@ void	draw_minimap_player(t_gfx_data *graphics)
 // x x x x x x x x x x x x x x x
 // x x x x x x x x x x x x x x x
 // x x x x x x x x x x x x x x x
+
+
+// -- Player looks 640x360
+// x x x x x
+// x x x o x
+// x x o o x
+// x x o o x
+// x x x x x
 
 
 // void	draw_minimap_test_frame(mlx_image_t *minimap, \

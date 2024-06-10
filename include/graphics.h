@@ -6,6 +6,7 @@
 # include "structures.h"
 # include "utils.h"
 # include "test_map.h"
+# include <math.h>
 
 // #include <stdio.h>
 
