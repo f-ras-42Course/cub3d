@@ -16,9 +16,9 @@ bool	init_minimap(t_gfx_data *graphics)
 						g_minimap_width, g_minimap_height);
 	if (!graphics->minimap)
 		return (false);
-	draw_minimap_frame(graphics->minimap, frame_only);
-	draw_minimap_walls(graphics);
+	// draw_minimap_frame(graphics->minimap, frame_only);
 	// draw_minimap_player(graphics->minimap);
+	draw_minimap_walls(graphics);
 	return (true);
 }
 
@@ -61,7 +61,7 @@ void	draw_minimap_walls(t_gfx_data *graphics)
 		while (x < MAP_WIDTH)
 		{
 			if (g_temp_test_map[y][x] == '1')
-				fill_minimap_unit(graphics->minimap, x, y);
+				fill_minimap_unit(graphics->minimap, x, y, 0x0000ffff);
 			x++;
 		}
 		x = 0;
@@ -69,7 +69,8 @@ void	draw_minimap_walls(t_gfx_data *graphics)
 	}
 };
 
-void	fill_minimap_unit(mlx_image_t *minimap, int minimap_pos_x, int minimap_pos_y)
+void	fill_minimap_unit(mlx_image_t *minimap, int minimap_pos_x, \
+			int minimap_pos_y, int color)
 {
 	const int	measures[4] = {
 	[RECT_WIDTH] = g_minimap_unit_size,
@@ -78,7 +79,7 @@ void	fill_minimap_unit(mlx_image_t *minimap, int minimap_pos_x, int minimap_pos_
 	[DRAW_POS_Y] = minimap_pos_y * g_minimap_unit_size
 	};
 
-	draw_rect(minimap, measures, 0xff0000ff);
+	draw_rect(minimap, measures, color);
 }
 
 
