@@ -30,14 +30,16 @@
 // # define SCREEN_WIDTH	640
 // # define SCREEN_HEIGHT	360
 
-/* Currently: 255 */
+/* Full HD: 225	| 4K: 450 */
 extern const int	g_minimap_width;
-/* Currently: 165 */
+/* Full HD: 165	| 4K: 330 */
 extern const int	g_minimap_height;
-/* Currently: 5 */
+/* Full HD: 5	| 4K: 10 */
 extern const int	g_minimap_frame_thickness;
-/* Currently: 15*/
+/* Full HD: 15 	| 4K: 30*/
 extern const int	g_minimap_unit_size;
+
+
 
 
 typedef enum e_error_codes
