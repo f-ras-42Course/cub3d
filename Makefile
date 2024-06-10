@@ -1,7 +1,7 @@
 
 NAME = cub3d
 CC = cc
-CFLAGS = -Werror -Wextra -Wall
+CFLAGS = -Werror -Wextra -Wall -Wno-unused-parameter
 MLX42_FLAGS = -ldl -lglfw -pthread -lm
 INCLUDE = -I include -I $(MLX42_DIR)/include
 SRC_DIR = src
