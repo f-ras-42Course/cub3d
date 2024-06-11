@@ -11,6 +11,9 @@ void	init_map_data(t_map *data)
 	data->floor[X] = -1;
 	data->floor[Y] = -1;
 	data->floor[Z] = -1;
+	data->ceiling[X] = -1;
+	data->ceiling[Y] = -1;
+	data->ceiling[Z] = -1;
 	data->index[0] = 0;
 	data->index[1] = 0;
 }
@@ -60,11 +63,16 @@ bool	fill_value(int *value, char **line, t_all *data)
 	return (false);
 }
 
+bool	fill_rgb(int *rgb, char *line, t_all *data, int *id)
+{
+	*id += (rgb[X] == -1) * 1;
+	return (fill_value(&rgb[X], &line, data) || \
+			fill_value(&rgb[Y], &line, data) || \
+			fill_value(&rgb[Z], &line, data));
+}
+
 bool	validate_identifier(t_all *data, t_map *map, char *line, int *id)
 {
-	printf("identifying: %s", line);
-	while (*line && *line == ' ')
-		line++;
 	if (!ft_strncmp(line, "NO ", 3))
 		return (fill_map_data(&map->north_texture, line + 3, id));
 	else if (!ft_strncmp(line, "SO ", 3))
@@ -74,22 +82,13 @@ bool	validate_identifier(t_all *data, t_map *map, char *line, int *id)
 	else if (!ft_strncmp(line, "EA ", 3))
 		return (fill_map_data(&map->east_texture, line + 3, id));
 	else if (!ft_strncmp(line, "F ", 2))
-	{
-		
-		return (fill_value(&map->floor[X], &line, data) || \
-				fill_value(&map->floor[Y], &line, data) || \
-				fill_value(&map->floor[Z], &line, data));
-	}
+		return (fill_rgb(map->floor, line + 2, data, id));
 	else if (!ft_strncmp(line, "C ", 2))
-	{
-		return (fill_value(&map->ceiling[X], &line, data) || \
-				fill_value(&map->ceiling[Y], &line, data) || \
-				fill_value(&map->ceiling[Z], &line, data));
-	}
+		return (fill_rgb(map->ceiling, line + 2, data, id));
 	return (false);
 }
 
-char	*get_elements_before_map(t_all *data, int fd)
+char	*get_elements(t_all *data, int fd)
 {
 	char	*line;
 	int		id_count;
@@ -101,7 +100,7 @@ char	*get_elements_before_map(t_all *data, int fd)
 		if (validate_identifier(data, &data->map, line, &id_count))
 			return (free(line), NULL);
 		free(line);
-		get_next_line(fd);
+		line = get_next_line(fd);
 	}
 	if (id_count != 6)
 		error(NOT_ALL_ELEMENTS, data);
@@ -116,7 +115,7 @@ char	*get_identifiers(t_all *data, char *name)
 	if (fd == -1)
 		return (NULL);
 	init_map_data(&data->map);
-	return (get_elements_before_map(data, fd));
+	return (get_elements(data, fd));
 }
 
 /*might turn into void function since we can use exit*/
@@ -125,11 +124,16 @@ also let's use bool for boolean returns*/
 bool	parse_map(t_all *data,  int argc, char *map_name)
 {
 	char	*first_map_line;
+	int		fd;
 
 	if (argc == 1)
 		return (error(NO_MAP, data), true);
 	else if (ft_strcmp(".cub", ft_strnstr(map_name, ".cub", ft_strlen(map_name))))
 		return (error(NO_DOT_CUB, data), true);
+	init_map_data(&data->map);
+	fd = open_file(data, map_name);
+	if (fd == -1)
+		return (true);
 	first_map_line = get_identifiers(data, map_name);
 	printf("[%s]\nNO: %s\nSO: %s\nEA: %s\nWE: %s\nF %d,%d,%d\nC %d,%d,%d\n", first_map_line, \
 	data->map.north_texture,data->map.south_texture, data->map.west_texture,data->map.east_texture, \

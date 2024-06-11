@@ -4,7 +4,7 @@
 static const char	*g_error_msg[] = {
 	"Succes",
 	// PARSE
-	"not all elements are given correctly, please check and try again",
+	"not all elements are present, try again",
 	"provide correct rgb colors for floor/ceiling (255,255,255)",
 	"the file given as argument does not exist",
 	"make sure the map ends with '.cub'",

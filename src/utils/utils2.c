@@ -67,7 +67,7 @@ int	ft_atoi(const char *s)
 		s++;
 	}
 	while (ft_isdigit(*s))
-		result += 10 * (*s - '0');
+		result = result * 10 + (*(s++) - '0');
 	result *= sign;
 	if (result > INT_MAX || result < INT_MIN)
 		return (0);
