@@ -9,6 +9,7 @@ bool	init_minimap(t_gfx_data *graphics)
 						g_minimap_width, g_minimap_height);
 	if (!graphics->minimap)
 		return (false);
+	draw_minimap_frame(graphics->minimap, raster_only);
 	draw_player_on_minimap(graphics);
 	draw_walls_on_minimap(graphics);
 	// draw_minimap_test_frame(graphics->minimap, \
@@ -45,21 +46,32 @@ void	draw_minimap_frame(mlx_image_t *minimap, t_minimap_options option)
 
 void	draw_walls_on_minimap(t_gfx_data *graphics)
 {
+	int	x_from_player = graphics->data->player.position[X] - MINIMAP_GRID_WIDTH / 2;
+	int	y_from_player = graphics->data->player.position[Y] - MINIMAP_GRID_HEIGHT / 2;
 	int x;
 	int y;
 
 	x = 0;
 	y = 0;
-	while (y < MAP_HEIGHT)
+	while (y <  MINIMAP_GRID_HEIGHT)
 	{
-		while (x < MAP_WIDTH)
+		while (x < MINIMAP_GRID_WIDTH)
 		{
-			if (g_temp_test_map[y][x] == '1')
+			#include <stdio.h>
+			printf("x%d, xp%d, y%d, yp%d\n", x, x_from_player, y, y_from_player);
+			if (x_from_player < 0 || y_from_player < 0 \
+				|| g_temp_test_map[y_from_player][x_from_player] == ' ')
+				draw_end_of_map(graphics->minimap, x, y);
+				// fill_minimap_unit(graphics->minimap, x, y, 0xff0000ff);
+			else if (g_temp_test_map[y_from_player][x_from_player] == '1')
 				fill_minimap_unit(graphics->minimap, x, y, 0x0000ffff);
 			x++;
+			x_from_player++;
 		}
+		x_from_player = graphics->data->player.position[X] - MINIMAP_GRID_WIDTH / 2;
 		x = 0;
 		y++;
+		y_from_player++;
 	}
 };
 
@@ -76,6 +88,26 @@ void	fill_minimap_unit(mlx_image_t *minimap, int minimap_pos_x, \
 	draw_rect(minimap, measures, color);
 }
 
+void	draw_end_of_map(mlx_image_t *minimap, int raster_x, int raster_y)
+{
+	static int		color;
+	int x;
+	int y;
+
+	raster_x *= g_minimap_unit_size;
+	raster_y *= g_minimap_unit_size;
+	x = raster_x;
+	y = raster_y;
+	while (y < (g_minimap_unit_size + raster_y))
+	{
+		mlx_put_pixel(minimap, x++, y, color += 18000000);
+		if (x >= (g_minimap_unit_size + raster_x))
+		{
+			x = raster_x;
+			y++;
+		}
+	}
+}
 
 // void	draw_player_on_minimap(t_gfx_data *graphics)
 // {
@@ -195,31 +227,3 @@ void	draw_player_on_minimap(t_gfx_data *graphics)
 // x x o o x
 // x x o o x
 // x x x x x
-
-
-void	draw_minimap_test_frame(mlx_image_t *minimap, \
-			t_minimap_options option)
-{
-	int		x;
-	int		y;
-	int		color;
-
-	x = 0;
-	y = 0;
-	color = 0xff0000ff;
-	while (y < g_minimap_height)
-	{
-		while (x < g_minimap_width)
-		{
-			if (option == fill_end_of_map)
-			{
-				mlx_put_pixel(minimap, x, y, color += 10);
-				if (x % g_minimap_unit_size == 0 || y % g_minimap_unit_size == 0)
-					mlx_put_pixel(minimap, x, y, color += 10);
-			x++;
-			}
-		}
-		x = 0;
-		y++;
-	}
-}

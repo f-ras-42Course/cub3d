@@ -30,6 +30,9 @@
 // # define SCREEN_WIDTH	640
 // # define SCREEN_HEIGHT	360
 
+# define MINIMAP_GRID_WIDTH		15
+# define MINIMAP_GRID_HEIGHT	11
+
 /* Full HD: 225	| 4K: 450 */
 extern const int	g_minimap_width;
 /* Full HD: 165	| 4K: 330 */
