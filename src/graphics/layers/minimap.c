@@ -12,12 +12,14 @@ bool	init_minimap(t_gfx_data *graphics)
 {
 
 
-	graphics->minimap = rect_image(graphics->mlx, \
+	graphics->minimap = mlx_new_image(graphics->mlx, \
 						g_minimap_width, g_minimap_height);
 	if (!graphics->minimap)
 		return (false);
 	draw_player_on_minimap(graphics);
 	draw_minimap_walls(graphics);
+	// draw_minimap_test_frame(graphics->minimap, \
+	// 		fill_end_of_map);
 	return (true);
 }
 
@@ -97,11 +99,11 @@ void	fill_minimap_unit(mlx_image_t *minimap, int minimap_pos_x, \
 // 	measures[DRAW_POS_X] = round((g_minimap_width / 2) - (g_minimap_unit_size / 8));
 // 	measures[DRAW_POS_Y] = round((g_minimap_height / 2) - (g_minimap_unit_size / 4));
 // 	draw_rect(graphics->minimap, measures, 0xff0000ff);
-// 	// measures[RECT_WIDTH] = round(g_minimap_unit_size / 15);
-// 	// measures[RECT_HEIGHT] = round(g_minimap_unit_size / 15);
-// 	// measures[DRAW_POS_X] = round((g_minimap_width / 2) - (g_minimap_unit_size / 16));
-// 	// measures[DRAW_POS_Y] = round((g_minimap_height / 2) - (g_minimap_unit_size / 3.5));
-// 	// draw_rect(graphics->minimap, measures, 0xff0000ff);
+// 	measures[RECT_WIDTH] = round(g_minimap_unit_size / 15);
+// 	measures[RECT_HEIGHT] = round(g_minimap_unit_size / 15);
+// 	measures[DRAW_POS_X] = round((g_minimap_width / 2) - (g_minimap_unit_size / 16));
+// 	measures[DRAW_POS_Y] = round((g_minimap_height / 2) - (g_minimap_unit_size / 3.5));
+// 	draw_rect(graphics->minimap, measures, 0xffff00ff);
 // 	// #include <stdio.h>
 // 	// printf("%d, %d\n", measures[RECT_WIDTH], measures[RECT_HEIGHT]);
 // 	// draw_rect(graphics->minimap, measures, 0xff0000ff);
@@ -205,29 +207,29 @@ void	draw_player_on_minimap(t_gfx_data *graphics)
 // x x x x x
 
 
-// void	draw_minimap_test_frame(mlx_image_t *minimap, \
-// 			t_minimap_options option)
-// {
-// 	int		x;
-// 	int		y;
-// 	int		color;
+void	draw_minimap_test_frame(mlx_image_t *minimap, \
+			t_minimap_options option)
+{
+	int		x;
+	int		y;
+	int		color;
 
-// 	x = 0;
-// 	y = 0;
-// 	color = 0xff0000ff;
-// 	while (y < g_minimap_height)
-// 	{
-// 		while (x < g_minimap_width)
-// 		{
-// 			if (option == fill_end_of_map)
-// 			{
-// 				mlx_put_pixel(minimap, x, y, color += 10);
-// 				if (x % g_minimap_unit_size == 0 || y % g_minimap_unit_size == 0)
-// 					mlx_put_pixel(minimap, x, y, color += 10);
-// 			x++;
-// 			}
-// 		}
-// 		x = 0;
-// 		y++;
-// 	}
-// }
+	x = 0;
+	y = 0;
+	color = 0xff0000ff;
+	while (y < g_minimap_height)
+	{
+		while (x < g_minimap_width)
+		{
+			if (option == fill_end_of_map)
+			{
+				mlx_put_pixel(minimap, x, y, color += 10);
+				if (x % g_minimap_unit_size == 0 || y % g_minimap_unit_size == 0)
+					mlx_put_pixel(minimap, x, y, color += 10);
+			x++;
+			}
+		}
+		x = 0;
+		y++;
+	}
+}

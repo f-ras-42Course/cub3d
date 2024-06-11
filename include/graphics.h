@@ -41,6 +41,5 @@ mlx_image_t	*rect_image_draw(mlx_t *mlx, \
 			const int measures[4], unsigned int color);
 void		draw_rect(mlx_image_t *image, \
 			const int measures[4], unsigned int color);
-mlx_image_t	*rect_image(mlx_t *mlx, int width, int height);
 
 #endif

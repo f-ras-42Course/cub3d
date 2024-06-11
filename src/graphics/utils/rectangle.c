@@ -31,11 +31,3 @@ void	draw_rect(mlx_image_t *image, \
 		}
 	}
 }
-
-mlx_image_t	*rect_image(mlx_t *mlx, int width, int height)
-{
-	mlx_image_t	*rectangle;
-
-	rectangle = mlx_new_image(mlx, width, height);
-	return (rectangle);
-}
