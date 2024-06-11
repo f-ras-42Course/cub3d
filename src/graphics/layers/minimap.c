@@ -10,7 +10,7 @@ bool	init_minimap(t_gfx_data *graphics)
 	if (!graphics->minimap)
 		return (false);
 	draw_player_on_minimap(graphics);
-	draw_minimap_walls(graphics);
+	draw_walls_on_minimap(graphics);
 	// draw_minimap_test_frame(graphics->minimap, \
 	// 		fill_end_of_map);
 	return (true);
@@ -43,7 +43,7 @@ void	draw_minimap_frame(mlx_image_t *minimap, t_minimap_options option)
 	}
 }
 
-void	draw_minimap_walls(t_gfx_data *graphics)
+void	draw_walls_on_minimap(t_gfx_data *graphics)
 {
 	int x;
 	int y;
