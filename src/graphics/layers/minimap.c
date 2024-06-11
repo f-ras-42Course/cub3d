@@ -56,15 +56,18 @@ void	draw_walls_on_minimap(t_gfx_data *graphics)
 	while (y <  MINIMAP_GRID_HEIGHT)
 	{
 		while (x < MINIMAP_GRID_WIDTH)
-		{
-			#include <stdio.h>
-			printf("x%d, xp%d, y%d, yp%d\n", x, x_from_player, y, y_from_player);
+		{;
 			if (x_from_player < 0 || y_from_player < 0 \
+				|| x_from_player > MAP_WIDTH - 1 \
+				|| y_from_player > MAP_HEIGHT - 1 \
 				|| g_temp_test_map[y_from_player][x_from_player] == ' ')
+			{
 				draw_end_of_map(graphics->minimap, x, y);
-				// fill_minimap_unit(graphics->minimap, x, y, 0xff0000ff);
+			}
 			else if (g_temp_test_map[y_from_player][x_from_player] == '1')
+			{
 				fill_minimap_unit(graphics->minimap, x, y, 0x0000ffff);
+			}
 			x++;
 			x_from_player++;
 		}
