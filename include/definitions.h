@@ -33,14 +33,7 @@
 # define MINIMAP_GRID_WIDTH		15
 # define MINIMAP_GRID_HEIGHT	11
 
-/* Full HD: 225	| 4K: 450 */
-extern const int	g_minimap_width;
-/* Full HD: 165	| 4K: 330 */
-extern const int	g_minimap_height;
-/* Full HD: 5	| 4K: 10 */
-extern const int	g_minimap_frame_thickness;
-/* Full HD: 15 	| 4K: 30*/
-extern const int	g_minimap_unit_size;
+
 
 
 
@@ -64,12 +57,12 @@ enum e_rectangle_measures
 	DRAW_POS_Y
 };
 
-enum	e_xyz
+typedef enum	e_xyz
 {
 	X,
 	Y,
 	Z
-};
+}	t_xyz;
 
 typedef enum e_minimap_options
 {

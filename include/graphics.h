@@ -25,13 +25,15 @@ void		draw_floor(mlx_image_t *image);
 void		draw_sky(mlx_image_t *image);
 // Minimap
 bool		init_minimap(t_gfx_data *graphics);
-void		draw_minimap_frame(mlx_image_t *minimap, t_minimap_options option);
-void		draw_walls_on_minimap(t_gfx_data *graphics);
-void		draw_player_on_minimap(t_gfx_data *graphics);
-void		draw_player(mlx_image_t *minimap);
-void		draw_end_of_map(mlx_image_t *minimap, int x, int y);
-void		fill_minimap_unit(mlx_image_t *minimap, int minimap_pos_x, \
+void		init_minimap_values(t_minimap *minimap);
+void		draw_minimap_frame(t_minimap minimap, t_minimap_options option);
+void		draw_walls_on_minimap(t_minimap *minimap);
+void		draw_player_on_minimap(t_minimap *minimap);
+void		draw_end_of_map(t_minimap *minimap, int x, int y);
+void		fill_minimap_unit(t_minimap *minimap, int minimap_pos_x, \
 			int minimap_pos_y, int color);
+bool		is_minimap_unit_out_of_map_scope(const t_minimap *minimap);
+bool		wall_found(const t_minimap *minimap);
 
 
 // - Rectangle
@@ -39,6 +41,6 @@ void		fill_minimap_unit(mlx_image_t *minimap, int minimap_pos_x, \
 mlx_image_t	*rect_image_draw(mlx_t *mlx, \
 			const int measures[4], unsigned int color);
 void		draw_rect(mlx_image_t *image, \
-			const int measures[4], unsigned int color);
+				const int measures[4], unsigned int color);
 
 #endif

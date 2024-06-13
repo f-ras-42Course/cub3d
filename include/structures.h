@@ -34,11 +34,33 @@ typedef struct s_fps
 	double		old_time;
 }				t_fps;
 
+
+/*	Full HD: 225	| 4K: 450
+	int	minimap_width;
+	Full HD: 165	| 4K: 330
+	int	minimap_height;
+	Full HD: 5	| 4K: 10
+	int	minimap_frame_thickness;
+	Full HD: 15 	| 4K: 30
+	int	minimap_unit_size;
+*/
+typedef struct s_minimap
+{
+	mlx_image_t	*image;
+	int			width;
+	int			height;
+	int			frame_thickness;
+	int			unit_size;
+	int			end_of_map_locator_x;
+	int			end_of_map_locator_y;
+	t_player	*player;
+}	t_minimap;
+
 typedef struct s_gfx_data
 {
 	mlx_t			*mlx;
 	mlx_image_t		*background;
-	mlx_image_t		*minimap;
+	t_minimap		minimap;
 	struct s_all	*data;
 }	t_gfx_data;
 
