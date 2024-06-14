@@ -5,15 +5,15 @@
 
 typedef struct s_player
 {
-	int			position[2];
-	int			direction[2];
-	int			plane[2];
+	double		position[2];
+	double		direction[2];
+	double		plane[2];
 }				t_player;
 
 typedef struct s_ray
 {
-	int			side_dist[2];
-	int			delta_dist[2];
+	double		side_dist[2];
+	double		delta_dist[2];
 	bool		hit;
 	bool		side;
 }				t_ray;
