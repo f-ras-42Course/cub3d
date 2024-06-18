@@ -1,3 +1,4 @@
+
 #include "cub3d.h"
 
 t_str	*validate_characters_in_map(char *line, t_all *data)
@@ -20,7 +21,7 @@ t_str	*validate_characters_in_map(char *line, t_all *data)
 		}
 		else if (!isinset(line[i], " 01"))
 			return (error(INVALID_CHARACTER, data), NULL);
-		i++;;
+		i++;
 	}
 	line[i] -= line[i];
 	new = strnew(line);
@@ -29,6 +30,8 @@ t_str	*validate_characters_in_map(char *line, t_all *data)
 	return (new);
 }
 
+/*will read all lines that have potential map elements.
+it will find invalid characters and check if 1 or more players are found*/
 bool	get_size_and_individual_lines(char *line, int fd, \
 			t_all *data, t_str **head)
 {
@@ -41,7 +44,7 @@ bool	get_size_and_individual_lines(char *line, int fd, \
 			return (free(line), true);
 		straddback(head, current);
 		if (current->len > data->map.size[X])
-			data->map.size[X] =  current->len;
+			data->map.size[X] = current->len;
 		data->map.size[Y]++;
 		line = get_next_line(fd);
 	}
@@ -53,6 +56,8 @@ bool	get_size_and_individual_lines(char *line, int fd, \
 	return (false);
 }
 
+/*this function is responsible for allocating and copying the map.
+it will also fill empty spaces in the map with the caracter SPACE*/
 bool	allocate_map_and_copy(t_str *current, t_map *map)
 {
 	size_t	y;
@@ -67,9 +72,8 @@ bool	allocate_map_and_copy(t_str *current, t_map *map)
 		map->map[y] = malloc((map->size[X] + 1) * sizeof(char));
 		if (!map->map[y])
 		{
-			perror("Error: ");
 			free_double_pointer(map->map);
-			return (true);
+			return (perror("Error: "), true);
 		}
 		x = ft_strlcpy(map->map[y], current->str, map->size[X] + 1);
 		while (x < map->size[X])
@@ -81,6 +85,7 @@ bool	allocate_map_and_copy(t_str *current, t_map *map)
 	return (false);
 }
 
+/*opens file and does some custom error checking*/
 bool	get_map(t_all *data, int fd, char *line)
 {
 	t_str	*head;

@@ -4,6 +4,7 @@
 static const char	*g_error_msg[] = {
 	"Succes",
 	// PARSE
+	"invalid map",
 	"map too small",
 	"no player found",
 	"found invalid character while parsing map",

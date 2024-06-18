@@ -20,6 +20,7 @@ typedef enum e_error_codes
 {
 	SUCCES,
 	// PARSE
+	INVALID_MAP,
 	MAP_TOO_SMALL,
 	NO_PLAYER,
 	INVALID_CHARACTER,
