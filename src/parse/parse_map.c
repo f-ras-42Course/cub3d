@@ -1,121 +1,122 @@
 
 #include "cub3d.h"
 
-void	init_map_data(t_map *data)
+void	init_map_data(t_map *map, t_player *player)
 {
-	data->map = NULL;
-	data->north_texture = NULL;
-	data->south_texture = NULL;
-	data->east_texture = NULL;
-	data->west_texture = NULL;
-	data->floor[X] = -1;
-	data->floor[Y] = -1;
-	data->floor[Z] = -1;
-	data->ceiling[X] = -1;
-	data->ceiling[Y] = -1;
-	data->ceiling[Z] = -1;
-	data->index[0] = 0;
-	data->index[1] = 0;
+	map->map = NULL;
+	map->size[X] = 0;
+	map->size[Y] = 0;
+	map->north_texture = NULL;
+	map->south_texture = NULL;
+	map->east_texture = NULL;
+	map->west_texture = NULL;
+	map->ceiling_color = -1;
+	map->floor_color = -1;
+	map->index[0] = 0;
+	map->index[1] = 0;
+	player->position[X] = -1;
+	player->position[Y] = -1;
 }
 
-int	open_file(t_all *data, char *map)
+bool	open_file(t_all *data, char *map, int *fd)
 {
-	int	fd;
-
-	fd = open(map, O_RDONLY);
-	if (fd == -1 && errno == ENOENT)
-		error(NO_SUCH_FILE, data);
-	else if (fd == -1)
-		perror("Error: ");
-	return (fd);
-}
-
-bool	fill_map_data(char **path_to_texture, char *map_s, int *id)
-{
-	int		len;
-	char	*new_path;
-
-	len = 0;
-	while (ft_iswhitespace(*map_s))
-		map_s++;
-	while (map_s[len] && !ft_iswhitespace(map_s[len]))
-		len++;
-	new_path = ft_substr(map_s, 0, len);
-	if (!new_path)
+	*fd = open(map, O_RDONLY);
+	if (*fd == -1 && errno == ENOENT)
+		return (error(NO_SUCH_FILE, data), true);
+	else if (*fd == -1)
 		return (perror("Error: "), true);
-	if (*path_to_texture != NULL)
-		free(*path_to_texture);
-	else
-		*id += 1;
-	*path_to_texture = new_path;
 	return (false);
 }
 
-bool	fill_value(int *value, char **line, t_all *data)
+// bool	trivial(t_all *data, char current, char **map, int *c)
+
+// need a function that checks its right and below and diagonal neigbour
+// then it needs to validate the neighbours value and return thumbs up
+
+bool	isvalidneighbour(t_all *data, size_t x, size_t y, char *set)
 {
-	while (**line && !ft_isdigit(**line))
-		(*line)++;
-	if (!ft_isdigit(**line))
-		return (error(RGB, data), true);
-	*value = ft_atoi(*line);
-	while (**line && ft_isdigit(**line))
-		(*line)++;
-	return (false);
+	if (x == data->map.size[X] || y == data->map.size[Y])
+		return (true);
+	return (isinset(data->map.map[y][x], set));
 }
 
-bool	fill_rgb(int *rgb, char *line, t_all *data, int *id)
+bool	is_valid_cell(t_all *data, size_t x, size_t y)
 {
-	*id += (rgb[X] == -1) * 1;
-	return (fill_value(&rgb[X], &line, data) || \
-			fill_value(&rgb[Y], &line, data) || \
-			fill_value(&rgb[Z], &line, data));
-}
-
-bool	validate_identifier(t_all *data, t_map *map, char *line, int *id)
-{
-	if (!ft_strncmp(line, "NO ", 3))
-		return (fill_map_data(&map->north_texture, line + 3, id));
-	else if (!ft_strncmp(line, "SO ", 3))
-		return (fill_map_data(&map->south_texture, line + 3, id));
-	else if (!ft_strncmp(line, "WE ", 3))
-		return (fill_map_data(&map->west_texture, line + 3, id));
-	else if (!ft_strncmp(line, "EA ", 3))
-		return (fill_map_data(&map->east_texture, line + 3, id));
-	else if (!ft_strncmp(line, "F ", 2))
-		return (fill_rgb(map->floor, line + 2, data, id));
-	else if (!ft_strncmp(line, "C ", 2))
-		return (fill_rgb(map->ceiling, line + 2, data, id));
-	return (false);
-}
-
-char	*get_elements(t_all *data, int fd)
-{
-	char	*line;
-	int		id_count;
-
-	id_count = 0;
-	line = get_next_line(fd);
-	while (line && id_count < 6)
+	//y x = cell to check
+	//y + 1, x
+	//y, x + 1
+	// y + 1, x + 1 = cells that must confirm (y,x)
+	if (data->map.map[y][x] == ' ')
 	{
-		if (validate_identifier(data, &data->map, line, &id_count))
-			return (free(line), NULL);
-		free(line);
-		line = get_next_line(fd);
+		return (isvalidneighbour(data, x + 1, y, "1 ") && \
+				isvalidneighbour(data, x, y + 1, "1 ") && \
+				isvalidneighbour(data, x + 1, y + 1, "1 "));
 	}
-	if (id_count != 6)
-		error(NOT_ALL_ELEMENTS, data);
-	return (line);
+	else if (data->map.map[y][x] == '0')
+	{
+		if (!y || !x || y + 1 == data->map.size[Y] || \
+			X + 1 == data->map.size[X])
+		{
+			printf("activated\n");
+			return (false);
+		}
+		return (isvalidneighbour(data, x + 1, y, "10NESW") && \
+				isvalidneighbour(data, x, y + 1, "10NESW") && \
+				isvalidneighbour(data, x + 1, y + 1, "10NESW"));
+	}
+	else if (data->map.map[y][x] == '1')
+	{
+		return (true);
+		// can be adjacent to anything but needs to be adjacent to atleast 1 wall
+	}
+	if (!y || !x || y + 1 == data->map.size[Y] || \
+		X + 1 == data->map.size[X])
+		return (false);
+	return (isvalidneighbour(data, x + 1, y, "10") && \
+			isvalidneighbour(data, x, y + 1, "10") && \
+			isvalidneighbour(data, x + 1, y + 1, "10"));
 }
 
-char	*get_identifiers(t_all *data, char *name)
+bool	recursive_validation(t_all *data, size_t x, size_t y)
 {
-	int		fd;
+	if (!is_valid_cell(data, x, y))
+	{
+		printf("x[%ld]y[%ld]found invalid cell : x: %ld, y: %ld\ncell: [%c]\n",data->map.size[X], data->map.size[Y], x, y, data->map.map[y][x]);
+		return (true);
+	}
+	int	right = 0;
+	int down = 0;
+	int diagonal = 0;
+	if (x + 1 < data->map.size[X] && y + 1 < data->map.size[Y])
+		diagonal = recursive_validation(data, x + 1, y + 1);
+	if (!diagonal && x + 1 < data->map.size[X])
+		right = recursive_validation(data, x + 1, y);
+	if (!diagonal && !right && y + 1 < data->map.size[Y])
+		down = recursive_validation(data, x, y + 1);
+	return (diagonal && right && down);
+	// return (recursive_validation(data, x + 1, y) || 
+	// 		recursive_validation(data, x, y + 1) || 
+	// 		recursive_validation(data, x + 1, y + 1));
+}
 
-	fd = open_file(data, name);
-	if (fd == -1)
-		return (NULL);
-	init_map_data(&data->map);
-	return (get_elements(data, fd));
+bool	is_valid_map(t_all *data, size_t y)
+{
+	size_t	y;
+	size_t	x;
+
+	if (y == data->map.size[Y])
+		return (true); // we got to the end !
+	while (y < data->map.size[Y])
+	{
+
+	}
+		x = 0;
+		while (x < data->map.size[X])
+		{
+		
+			x++;
+		}
+		return (is_valid_map(data, y + 1));
 }
 
 /*might turn into void function since we can use exit*/
@@ -123,23 +124,25 @@ char	*get_identifiers(t_all *data, char *name)
 also let's use bool for boolean returns*/
 bool	parse_map(t_all *data,  int argc, char *map_name)
 {
-	char	*first_map_line;
 	int		fd;
+	char	*line;
 
 	if (argc == 1)
 		return (error(NO_MAP, data), true);
 	else if (ft_strcmp(".cub", ft_strnstr(map_name, ".cub", ft_strlen(map_name))))
 		return (error(NO_DOT_CUB, data), true);
-	init_map_data(&data->map);
-	fd = open_file(data, map_name);
-	if (fd == -1)
+	else if (open_file(data, map_name, &fd))
 		return (true);
-	first_map_line = get_identifiers(data, map_name);
-	printf("[%s]\nNO: %s\nSO: %s\nEA: %s\nWE: %s\nF %d,%d,%d\nC %d,%d,%d\n", first_map_line, \
-	data->map.north_texture,data->map.south_texture, data->map.west_texture,data->map.east_texture, \
-	data->map.floor[X], data->map.floor[Y], data->map.floor[Z], \
-	data->map.ceiling[X], data->map.ceiling[Y], data->map.ceiling[Z]);
-	// (void)first_map_line;
-	free(first_map_line);
+	init_map_data(&data->map, &data->player);
+	line = get_elements(data, fd);
+	if (!line || get_map(data, fd, line))
+		return (close(fd), true);
+	close(fd);
+	if (!is_valid_map(data, 0))
+		return (error(1, data),true);
 	return (false);
 }
+	// printf("[%s]\nNO: %s\nSO: %s\nEA: %s\nWE: %s\nF %d\nC %d\n", line, 
+	// data->map.north_texture,data->map.south_texture, data->map.west_texture,data->map.east_texture, 
+	// data->map.floor[X], data->map.floor[Y], data->map.floor[Z], 
+	// data->map.ceiling[X], data->map.ceiling[Y], data->map.ceiling[Z]);
