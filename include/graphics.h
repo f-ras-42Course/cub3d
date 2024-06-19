@@ -1,6 +1,10 @@
 #ifndef GRAPHICS_H
 # define GRAPHICS_H
 
+# ifndef M_PI
+#  define M_PI 3.14159265358979323846
+# endif
+
 # include "MLX42/MLX42.h"
 # include "definitions.h"
 # include "structures.h"
@@ -23,7 +27,8 @@ bool		set_all_images_to_window(t_gfx_data *graphics);
 bool		init_background(t_gfx_data *graphics);
 void		draw_floor(mlx_image_t *image);
 void		draw_sky(mlx_image_t *image);
-// Minimap
+
+// - Minimap
 bool		init_minimap(t_gfx_data *graphics);
 void		init_minimap_values(t_minimap *minimap);
 void		draw_minimap_frame(t_minimap minimap, t_minimap_options option);
@@ -42,5 +47,12 @@ mlx_image_t	*rect_image_draw(mlx_t *mlx, \
 			const int measures[4], unsigned int color);
 void		draw_rect(mlx_image_t *image, \
 				const int measures[4], unsigned int color);
+
+// - Circle
+
+void	draw_circle(mlx_image_t *image, \
+					const int measures[3], unsigned int color);
+void	draw_filled_circle(mlx_image_t *image, \
+					const int measures[3], unsigned int color);
 
 #endif

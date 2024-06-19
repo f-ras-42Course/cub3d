@@ -129,28 +129,40 @@ void	draw_end_of_map(t_minimap *minimap, int raster_x, int raster_y)
 // 	// fill_minimap_unit(graphics->minimap, measures[DRAW_POS_X], measures[DRAW_POS_Y], 0xffff00ff);
 // }
 
+// void	draw_player_on_minimap(t_minimap *minimap)
+// {
+// 	int	measures[4];
+	
+// 	measures[RECT_WIDTH] = round(minimap->unit_size * .3333333);
+// 	measures[RECT_HEIGHT] = round(minimap->unit_size * .3333333);
+// 	measures[DRAW_POS_X] = round((minimap->width * .5) - (minimap->unit_size * .16666));
+// 	measures[DRAW_POS_Y] = round((minimap->height * .5) - (minimap->unit_size * .16666));
+// 	draw_rect(minimap->image, measures, 0xff0000ff);
+
+// 	measures[RECT_WIDTH] = round(minimap->unit_size * .2);
+// 	measures[RECT_HEIGHT] = round(minimap->unit_size * .066666);
+// 	measures[DRAW_POS_X] = round((minimap->width * .5) - (minimap->unit_size * .1));
+// 	measures[DRAW_POS_Y] = round((minimap->height * .5) - (minimap->unit_size * .225));
+// 	draw_rect(minimap->image, measures, 0xff0000ff);
+
+// 	measures[RECT_WIDTH] = round(minimap->unit_size * .066666);
+// 	measures[RECT_HEIGHT] = round(minimap->unit_size * .066666);
+// 	measures[DRAW_POS_X] = round((minimap->width * .5) - (minimap->unit_size * .0333));
+// 	measures[DRAW_POS_Y] = round((minimap->height * .5) - (minimap->unit_size * .2875));
+// 	draw_rect(minimap->image, measures, 0xffff00ff);
+// }
+
 void	draw_player_on_minimap(t_minimap *minimap)
 {
-	int	measures[4];
-	
-	measures[RECT_WIDTH] = round(minimap->unit_size * .3333333);
-	measures[RECT_HEIGHT] = round(minimap->unit_size * .3333333);
-	measures[DRAW_POS_X] = round((minimap->width * .5) - (minimap->unit_size * .16666));
-	measures[DRAW_POS_Y] = round((minimap->height * .5) - (minimap->unit_size * .16666));
-	draw_rect(minimap->image, measures, 0xff0000ff);
+	const int measures[3] = {
+	[RADIUS] = round(minimap->unit_size * .25),
+	[DRAW_POS_CENTER_X] = round(minimap->width * .5),
+	[DRAW_POS_CENTER_Y] = round(minimap->height * .5)
+	};
 
-	measures[RECT_WIDTH] = round(minimap->unit_size * .2);
-	measures[RECT_HEIGHT] = round(minimap->unit_size * .066666);
-	measures[DRAW_POS_X] = round((minimap->width * .5) - (minimap->unit_size * .1));
-	measures[DRAW_POS_Y] = round((minimap->height * .5) - (minimap->unit_size * .225));
-	draw_rect(minimap->image, measures, 0xff0000ff);
-
-	measures[RECT_WIDTH] = round(minimap->unit_size * .066666);
-	measures[RECT_HEIGHT] = round(minimap->unit_size * .066666);
-	measures[DRAW_POS_X] = round((minimap->width * .5) - (minimap->unit_size * .0333));
-	measures[DRAW_POS_Y] = round((minimap->height * .5) - (minimap->unit_size * .2875));
-	draw_rect(minimap->image, measures, 0xffff00ff);
+	draw_filled_circle(minimap->image, measures, 0xff0000ff);
 }
+
 
 // 	draw_rect(minimap)
 // }

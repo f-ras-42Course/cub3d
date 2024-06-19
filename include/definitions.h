@@ -57,6 +57,13 @@ enum e_rectangle_measures
 	DRAW_POS_Y
 };
 
+enum e_circle_measures
+{
+	RADIUS,
+	DRAW_POS_CENTER_X,
+	DRAW_POS_CENTER_Y
+};
+
 typedef enum	e_xyz
 {
 	X,
