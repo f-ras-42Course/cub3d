@@ -4,8 +4,8 @@ int	main(int argc, char **argv)
 {
 	t_all	data;
 
-	if (parse_map(&data, argc, argv[1]))
-		return (data.error_code);
+	if (!parse_map(&data, argc, argv[1]))
+		return (printf("challah!\n") + data.error_code);
 	// set_data(&data);
 	// if (!init_graphics(&data))
 	// 	return (data.error_code);

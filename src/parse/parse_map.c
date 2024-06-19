@@ -7,15 +7,16 @@ bool	is_valid_cell(t_all *data, char **map, size_t x, size_t y)
 	bool	down_left_diagonal;
 
 	if (isinset(map[y][x], "0NSEW") && (x == 0 || y == 0 || \
-		x + 1 == data->map.size[X] || y + 1 == data->map.size[Y]))
+		x == data->map.size[X] - 1 || y == data->map.size[Y] - 1))
 		return (false);
-	down_left_diagonal = true;
-	if (x != 0)
+	if (x == 0)
+		down_left_diagonal = true;
+	else
 		down_left_diagonal = \
-			isvalidneighbour(data, x - 1, y + 1, get_set(map[y][x]));
-	return (isvalidneighbour(data, x + 1, y, get_set(map[y][x])) && \
-			isvalidneighbour(data, x, y + 1, get_set(map[y][x])) && \
-			isvalidneighbour(data, x + 1, y + 1, get_set(map[y][x])) && \
+			is_valid_neighbour(data, x - 1, y + 1, get_set(map[y][x]));
+	return (is_valid_neighbour(data, x + 1, y, get_set(map[y][x])) && \
+			is_valid_neighbour(data, x, y + 1, get_set(map[y][x])) && \
+			is_valid_neighbour(data, x + 1, y + 1, get_set(map[y][x])) && \
 			down_left_diagonal);
 }
 
@@ -33,7 +34,7 @@ bool	is_valid_map(t_all *data)
 		while (x < data->map.size[X])
 		{
 			if (!is_valid_cell(data, data->map.map, x, y))
-				return (false);
+				return (error(INVALID_MAP, data), false);
 			x++;
 		}
 		y++;
@@ -49,19 +50,13 @@ bool	parse_map(t_all *data, int argc, char *map_name)
 	int		fd;
 	char	*line;
 
-	if (argc == 1)
-		return (error(NO_MAP, data), true);
-	else if (ft_strcmp(".cub", \
-			ft_strnstr(map_name, ".cub", ft_strlen(map_name))))
-		return (error(NO_DOT_CUB, data), true);
-	else if (open_file(data, map_name, &fd))
-		return (true);
+	if (!is_valid_file(data, map_name, argc))
+		return (false);
+	else if (!open_file(data, map_name, &fd))
+		return (false);
 	init_map_data(&data->map, &data->player);
 	line = get_elements(data, fd);
-	if (!line || get_map(data, fd, line))
-		return (close(fd), true);
-	close(fd);
-	if (!is_valid_map(data))
-		return (error(INVALID_MAP, data), true);
-	return (false);
+	if (!line || !get_map(data, fd, line) || !is_valid_map(data))
+		return (false);
+	return (true);
 }

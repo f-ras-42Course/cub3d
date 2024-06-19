@@ -7,7 +7,7 @@ bool	isinset(char n, char *set)
 	return (*set == n);
 }
 
-t_str	*strnew(char *s)
+t_str	*str_new(char *s)
 {
 	t_str	*new;
 
@@ -20,7 +20,7 @@ t_str	*strnew(char *s)
 	return (new);
 }
 
-void	straddback(t_str **head, t_str *new)
+void	str_add_back(t_str **head, t_str *new)
 {
 	t_str	*tmp;
 

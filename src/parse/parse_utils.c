@@ -25,15 +25,25 @@ bool	open_file(t_all *data, char *map, int *fd)
 {
 	*fd = open(map, O_RDONLY);
 	if (*fd == -1 && errno == ENOENT)
-		return (error(NO_SUCH_FILE, data), true);
+		return (error(NO_SUCH_FILE, data), false);
 	else if (*fd == -1)
-		return (perror("Error: "), true);
-	return (false);
+		return (perror("Error: "), false);
+	return (true);
+}
+
+bool	is_valid_file(t_all *data, char *map_name, int argc)
+{
+	if (argc == 1)
+		return (error(NO_MAP, data), false);
+	else if (ft_strcmp(".cub", \
+			ft_strnstr(map_name, ".cub", ft_strlen(map_name))))
+		return (error(NO_DOT_CUB, data), false);
+	return (true);
 }
 
 /*checks if character in the map at coordinates
 x and y are present in the allowed set*/
-bool	isvalidneighbour(t_all *data, size_t x, size_t y, char *set)
+bool	is_valid_neighbour(t_all *data, size_t x, size_t y, char *set)
 {
 	if (x == data->map.size[X] || y == data->map.size[Y])
 		return (true);

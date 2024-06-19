@@ -24,10 +24,19 @@ t_str	*validate_characters_in_map(char *line, t_all *data)
 		i++;
 	}
 	line[i] -= line[i];
-	new = strnew(line);
+	new = str_new(line);
 	if (!new)
 		perror("Error: ");
 	return (new);
+}
+
+bool	is_valid_player_and_map_size(t_all *data)
+{
+	if (data->player.position[X] == -1)
+		return (error(NO_PLAYER, data), false);
+	else if (data->map.size[X] < 3 || data->map.size[Y] < 3)
+		return (error(MAP_TOO_SMALL, data), false);
+	return (true);
 }
 
 /*will read all lines that have potential map elements.
@@ -41,19 +50,19 @@ bool	get_size_and_individual_lines(char *line, int fd, \
 	{
 		current = validate_characters_in_map(line, data);
 		if (current == NULL)
-			return (free(line), true);
-		straddback(head, current);
+		{
+			close(fd);
+			return (free(line), false);
+		}
+		str_add_back(head, current);
 		if (current->len > data->map.size[X])
 			data->map.size[X] = current->len;
 		data->map.size[Y]++;
 		line = get_next_line(fd);
 	}
 	free(line);
-	if (data->player.position[X] == -1)
-		return (error(NO_PLAYER, data), true);
-	else if (data->map.size[X] < 3 || data->map.size[Y] < 3)
-		return (error(MAP_TOO_SMALL, data), true);
-	return (false);
+	close(fd);
+	return (is_valid_player_and_map_size(data));
 }
 
 /*this function is responsible for allocating and copying the map.
@@ -66,14 +75,14 @@ bool	allocate_map_and_copy(t_str *current, t_map *map)
 	y = 0;
 	map->map = malloc(map->size[Y] * sizeof(char *));
 	if (!map->map)
-		return (true);
+		return (false);
 	while (y < map->size[Y])
 	{
 		map->map[y] = malloc((map->size[X] + 1) * sizeof(char));
 		if (!map->map[y])
 		{
 			free_double_pointer(map->map);
-			return (perror("Error: "), true);
+			return (perror("Error: "), false);
 		}
 		x = ft_strlcpy(map->map[y], current->str, map->size[X] + 1);
 		while (x < map->size[X])
@@ -82,7 +91,7 @@ bool	allocate_map_and_copy(t_str *current, t_map *map)
 		current = current->next;
 		y++;
 	}
-	return (false);
+	return (true);
 }
 
 /*opens file and does some custom error checking*/
@@ -96,8 +105,8 @@ bool	get_map(t_all *data, int fd, char *line)
 		free(line);
 		line = get_next_line(fd);
 	}
-	if (get_size_and_individual_lines(line, fd, data, &head) || \
-		allocate_map_and_copy(head, &data->map))
+	if (!get_size_and_individual_lines(line, fd, data, &head) || \
+		!allocate_map_and_copy(head, &data->map))
 		return (free_str(head), true);
 	return (free_str(head), false);
 }
