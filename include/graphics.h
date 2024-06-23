@@ -41,6 +41,10 @@ bool		is_minimap_unit_out_of_map_scope(const t_minimap *minimap);
 bool		wall_found(const t_minimap *minimap);
 
 
+// - Big Map
+
+
+
 // - Rectangle
 
 mlx_image_t	*rect_image_draw(mlx_t *mlx, \

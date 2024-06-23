@@ -57,7 +57,7 @@ void	draw_walls_on_minimap(t_minimap *minimap)
 			if (is_minimap_unit_out_of_map_scope(minimap))
 				draw_end_of_map(minimap, x, y);
 			else if (wall_found(minimap))
-				fill_minimap_unit(minimap, x, y, 0x0000ffff);
+				fill_minimap_unit(minimap, x, y, 0xff00ffff);
 			x++;
 			(minimap->end_of_map_locator_x)++;
 		}
@@ -155,7 +155,7 @@ void	draw_end_of_map(t_minimap *minimap, int raster_x, int raster_y)
 void	draw_player_on_minimap(t_minimap *minimap)
 {
 	const int measures[3] = {
-	[RADIUS] = round(minimap->unit_size * .25),
+	[RADIUS] = round(minimap->unit_size * .2),
 	[DRAW_POS_CENTER_X] = round(minimap->width * .5),
 	[DRAW_POS_CENTER_Y] = round(minimap->height * .5)
 	};
