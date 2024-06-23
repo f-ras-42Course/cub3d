@@ -7,7 +7,8 @@ static const char	*g_error_msg[] = {
 	"make sure the map ends with '.cub'",
 	"no map supplied",
 	// GFX
-	"MLX crashed; go into debug mode for more info",
+	"MLX crashed (GFX); go into debug mode for more info",
+	"MLX crashed (HOOKS); go into debug mode for more info"
 };
 
 /*a function that exits with a custom exit_code and message
@@ -20,6 +21,6 @@ void	error(int error_code, t_all *data)
 		write(2, "Error: ", 7);
 		ft_putendl_fd((char *)g_error_msg[error_code], STDERR_FILENO);
 	}
-	if (error_code == MLX_CRASH)
+	if (error_code >= MLX_GFX_CRASH)
 		mlx_terminate(data->graphics.mlx);
 }

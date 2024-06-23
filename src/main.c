@@ -10,6 +10,8 @@ int	main(int argc, char **argv)
 	set_data(&data);
 	if (!init_graphics(&data))
 		return (data.error_code);
+	if (!load_hooks(&data))
+		return (data.error_code);
 	run_graphics(&data);
 	return (SUCCES);
 }

@@ -45,7 +45,8 @@ typedef enum e_error_codes
 	NO_DOT_CUB,
 	NO_MAP,
 	// GFX
-	MLX_CRASH,
+	MLX_GFX_CRASH,
+	MLX_HOOKS_CRASH
 }	t_error_codes;
 
 

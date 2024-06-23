@@ -60,6 +60,8 @@ void	draw_walls_on_minimap(t_minimap *minimap)
 				draw_end_of_map(minimap, x, y);
 			else if (wall_found(minimap))
 				fill_minimap_unit(minimap, x, y, 0xffaa00ff);
+			else
+				fill_minimap_unit(minimap, x, y, 0xffffff4f);
 			x++;
 			(minimap->end_of_map_locator_x)++;
 		}
