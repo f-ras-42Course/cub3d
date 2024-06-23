@@ -44,8 +44,8 @@
 // };
 
 
-// # define MAP_WIDTH	5
-// # define MAP_HEIGHT	5
+# define MAP_WIDTH	5
+# define MAP_HEIGHT	5
 
 // const char	g_temp_test_map[MAP_HEIGHT][MAP_WIDTH] = { 
 // {'1', '1', '1', '1', '1'},
@@ -56,8 +56,8 @@
 // };
 
 
-# define MAP_WIDTH	15
-# define MAP_HEIGHT	11
+// # define MAP_WIDTH	15
+// # define MAP_HEIGHT	11
 
 // const char	g_temp_test_map[MAP_HEIGHT][MAP_WIDTH] = {
 // {'1', '1', '1', '1', '1', '1', '1', '1', '1', '1', '1', '1', '1', '1', '1'},

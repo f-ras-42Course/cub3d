@@ -9,8 +9,8 @@ bool	init_minimap(t_gfx_data *graphics)
 	if (!graphics->minimap.image)
 		return (false);
 	draw_minimap_frame(graphics->minimap, raster_only);
-	draw_player_on_minimap(&(graphics->minimap));
 	draw_walls_on_minimap(&(graphics->minimap));
+	draw_player_on_minimap(&(graphics->minimap));
 	// draw_minimap_test_frame(graphics->minimap, \
 	// 		fill_end_of_map);
 	return (true);
@@ -21,8 +21,8 @@ void	draw_minimap_frame(t_minimap minimap, t_minimap_options option)
 	int	x;
 	int	y;
 
-	x = 0;
-	y = 0;
+	x = 1;
+	y = 1;
 	while (y < minimap.height)
 	{
 		while (x < minimap.width)
@@ -38,10 +38,12 @@ void	draw_minimap_frame(t_minimap minimap, t_minimap_options option)
 					mlx_put_pixel(minimap.image, x, y, 0x0000ffff);
 			x++;
 		}
-		x = 0;
+		x = 1;
 		y++;
 	}
 }
+
+#include <stdio.h>
 
 void	draw_walls_on_minimap(t_minimap *minimap)
 {
@@ -57,12 +59,12 @@ void	draw_walls_on_minimap(t_minimap *minimap)
 			if (is_minimap_unit_out_of_map_scope(minimap))
 				draw_end_of_map(minimap, x, y);
 			else if (wall_found(minimap))
-				fill_minimap_unit(minimap, x, y, 0xff00ffff);
+				fill_minimap_unit(minimap, x, y, 0xffaa00ff);
 			x++;
 			(minimap->end_of_map_locator_x)++;
 		}
 		minimap->end_of_map_locator_x = \
-			minimap->player->position[X] - MINIMAP_GRID_WIDTH / 2;
+			(int)minimap->player->position[X] - MINIMAP_GRID_WIDTH / 2;
 		x = 0;
 		y++;
 		(minimap->end_of_map_locator_y)++;
@@ -155,7 +157,7 @@ void	draw_end_of_map(t_minimap *minimap, int raster_x, int raster_y)
 void	draw_player_on_minimap(t_minimap *minimap)
 {
 	const int measures[3] = {
-	[RADIUS] = round(minimap->unit_size * .2),
+	[RADIUS] = round(minimap->unit_size * .3),
 	[DRAW_POS_CENTER_X] = round(minimap->width * .5),
 	[DRAW_POS_CENTER_Y] = round(minimap->height * .5)
 	};

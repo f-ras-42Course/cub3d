@@ -1,5 +1,7 @@
 #include "graphics.h"
 #include "definitions.h"
+#include <stdio.h>
+
 
 void		init_minimap_values(t_minimap *minimap)
 {
@@ -8,9 +10,11 @@ void		init_minimap_values(t_minimap *minimap)
 	minimap->height = (SCREEN_HEIGHT / 6) - minimap->unit_size;
 	minimap->frame_thickness = SCREEN_WIDTH * 0.002604167;
 	minimap->end_of_map_locator_x = \
-			minimap->player->position[X] - MINIMAP_GRID_WIDTH / 2;
+			(int)minimap->player->position[X] - MINIMAP_GRID_WIDTH / 2;
 	minimap->end_of_map_locator_y = \
-			minimap->player->position[Y] - MINIMAP_GRID_HEIGHT / 2;
+			(int)minimap->player->position[Y] - MINIMAP_GRID_HEIGHT / 2;
+	printf("minimap->player->position[X] = %f\n", minimap->player->position[X] / 1);
+	printf("EOM LOCxx = %d\n", minimap->end_of_map_locator_x);
 }
 
 bool	is_minimap_unit_out_of_map_scope(const t_minimap *minimap)
