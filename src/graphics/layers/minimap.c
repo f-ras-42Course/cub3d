@@ -19,8 +19,8 @@ void	draw_minimap_frame(t_minimap minimap, t_minimap_options option)
 	int	x;
 	int	y;
 
-	x = 1;
-	y = 1;
+	x = 0;
+	y = 0;
 	while (y < minimap.height)
 	{
 		while (x < minimap.width)
@@ -36,7 +36,7 @@ void	draw_minimap_frame(t_minimap minimap, t_minimap_options option)
 					mlx_put_pixel(minimap.image, x, y, 0x0000ffff);
 			x++;
 		}
-		x = 1;
+		x = 0;
 		y++;
 	}
 }
