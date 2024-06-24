@@ -11,8 +11,6 @@ bool	init_minimap(t_gfx_data *graphics)
 	draw_minimap_frame(graphics->minimap, raster_only);
 	draw_walls_on_minimap(&(graphics->minimap));
 	draw_player_on_minimap(&(graphics->minimap));
-	// draw_minimap_test_frame(graphics->minimap, \
-	// 		fill_end_of_map);
 	return (true);
 }
 
