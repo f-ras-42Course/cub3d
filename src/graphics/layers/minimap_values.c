@@ -22,9 +22,9 @@ bool	is_minimap_unit_out_of_map_scope(const t_minimap *minimap)
 							[minimap->end_of_map_locator_x] == ' ');
 }
 
-bool	wall_found(const t_minimap *minimap)
+bool	wall_found(int x, int y)
 {
-	return(g_temp_test_map[minimap->end_of_map_locator_y][minimap->end_of_map_locator_x] == '1');
+	return(g_temp_test_map[y][x] == '1');
 }
 
 void	reset_minimap_end_of_map_locator(t_minimap *minimap)

@@ -41,8 +41,6 @@ void	draw_minimap_frame(t_minimap minimap, t_minimap_options option)
 	}
 }
 
-#include <stdio.h>
-
 void	draw_walls_on_minimap(t_minimap *minimap)
 {
 	int x;
@@ -56,7 +54,8 @@ void	draw_walls_on_minimap(t_minimap *minimap)
 		{
 			if (is_minimap_unit_out_of_map_scope(minimap))
 				draw_end_of_map(minimap, x, y);
-			else if (wall_found(minimap))
+			else if (wall_found(minimap->end_of_map_locator_x, \
+						minimap->end_of_map_locator_y))
 				fill_minimap_unit(minimap, x, y, 0xffaa00ff);
 			else
 				fill_minimap_unit(minimap, x, y, 0xffffff4f);
@@ -164,19 +163,6 @@ void	draw_player_on_minimap(t_minimap *minimap)
 
 	draw_filled_circle(minimap->image, measures, 0xff0000ff);
 }
-
-
-// 	draw_rect(minimap)
-// }
-
-
-// }
-
-// void	draw_minimap_floors(void)
-// {
-
-// }
-
 
 // -- Player looks
 // x x x x x x x x x x x x x x x x x x x x x x x x x x x x x x

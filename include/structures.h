@@ -56,11 +56,23 @@ typedef struct s_minimap
 	t_player	*player;
 }	t_minimap;
 
+
+typedef struct s_bigmap
+{
+	mlx_image_t	*image;
+	int			width;
+	int			height;
+	int			unit_size;
+	t_player	*player;
+}	t_bigmap;
+
+
 typedef struct s_gfx_data
 {
 	mlx_t			*mlx;
 	mlx_image_t		*background;
 	t_minimap		minimap;
+	t_bigmap		bigmap;
 	struct s_all	*data;
 }	t_gfx_data;
 

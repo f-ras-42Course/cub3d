@@ -12,8 +12,8 @@
 // # define SCREEN_WIDTH	7680
 // # define SCREEN_HEIGHT	4320
 // 3200 x 1800 (4K)
-# define SCREEN_WIDTH	3840
-# define SCREEN_HEIGHT	2160
+// # define SCREEN_WIDTH	3840
+// # define SCREEN_HEIGHT	2160
 // 3200 x 1800 (WQXGA+)
 // # define SCREEN_WIDTH	3200
 // # define SCREEN_HEIGHT	1800
@@ -21,8 +21,8 @@
 // # define SCREEN_WIDTH	2560
 // # define SCREEN_HEIGHT	1440
 // 1920 x 1080 (Full HD)
-// # define SCREEN_WIDTH	1920
-// # define SCREEN_HEIGHT	1080
+# define SCREEN_WIDTH		1920
+# define SCREEN_HEIGHT		1080
 // 1280 x 720 (HD)
 // # define SCREEN_WIDTH	1280
 // # define SCREEN_HEIGHT	720
@@ -33,9 +33,8 @@
 # define MINIMAP_GRID_WIDTH		15
 # define MINIMAP_GRID_HEIGHT	11
 
-
-
-
+# define BIGMAP_GRID_WIDTH		47
+# define BIGMAP_GRID_HEIGHT		35
 
 
 typedef enum e_error_codes

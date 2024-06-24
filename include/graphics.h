@@ -38,12 +38,19 @@ void		draw_end_of_map(t_minimap *minimap, int x, int y);
 void		fill_minimap_unit(t_minimap *minimap, int minimap_pos_x, \
 			int minimap_pos_y, int color);
 bool		is_minimap_unit_out_of_map_scope(const t_minimap *minimap);
-bool		wall_found(const t_minimap *minimap);
+bool		wall_found(int x, int y);
 void		reset_minimap_end_of_map_locator(t_minimap *minimap);
 
 
-// - Big Map
+// - Bigmap
 
+bool		init_bigmap(t_gfx_data *graphics);
+void		init_bigmap_values(t_bigmap *bigmap);
+void		draw_walls_on_bigmap(t_bigmap *bigmap);
+void		draw_bigmap_raster(t_bigmap bigmap);
+void		fill_bigmap_unit(t_bigmap *bigmap, int bigmap_pos_x, \
+			int bigmap_pos_y, int color);
+bool	is_wall_for_bigmap(const t_bigmap *bigmap);
 
 
 // - Rectangle

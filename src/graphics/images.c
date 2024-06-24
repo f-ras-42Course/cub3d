@@ -7,8 +7,8 @@ bool	init_image(t_gfx_data *graphics)
 		return (false);
 	if (!init_minimap(graphics))
 		return (false);
-	// if (!init_bigmap(graphics))
-	// 	return (false);
+	if (!init_bigmap(graphics))
+		return (false);
 	if (!set_all_images_to_window(graphics))
 		return (false);
 	return (true);
@@ -23,6 +23,9 @@ bool	set_all_images_to_window(t_gfx_data *graphics)
 		return (false);
 	if (mlx_image_to_window(graphics->mlx, graphics->minimap.image, minimap_pos_x, \
 			minimap_pos_y) == -1)
+		return (false);
+	if (mlx_image_to_window(graphics->mlx, graphics->bigmap.image, graphics->bigmap.unit_size, \
+			graphics->bigmap.unit_size * .5) == -1)
 		return (false);
 	return (true);
 }
