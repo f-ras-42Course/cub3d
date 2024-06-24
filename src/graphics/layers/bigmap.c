@@ -8,8 +8,8 @@ bool	init_bigmap(t_gfx_data *graphics)
 						graphics->bigmap.width, graphics->bigmap.height);
 	if (!graphics->bigmap.image)
 		return (false);
-	draw_walls_on_bigmap(&(graphics->bigmap));
 	draw_bigmap_raster(graphics->bigmap);
+	draw_walls_on_bigmap(&(graphics->bigmap));
 	// draw_player_on_bigmap(&(graphics->bigmap));
 	return (true);
 }
@@ -36,7 +36,7 @@ void	draw_bigmap_raster(t_bigmap bigmap)
 
 void	init_bigmap_values(t_bigmap *bigmap)
 {
-	bigmap->unit_size = (SCREEN_WIDTH * .015625);
+	bigmap->unit_size = (SCREEN_WIDTH * .03125);
 	bigmap->width = (SCREEN_WIDTH * 0.75) - bigmap->unit_size;
 	bigmap->height = SCREEN_HEIGHT - bigmap->unit_size;
 }
