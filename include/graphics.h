@@ -50,7 +50,8 @@ void		draw_walls_on_bigmap(t_bigmap *bigmap);
 void		draw_bigmap_raster(t_bigmap bigmap);
 void		fill_bigmap_unit(t_bigmap *bigmap, int bigmap_pos_x, \
 			int bigmap_pos_y, int color);
-bool	is_wall_for_bigmap(const t_bigmap *bigmap);
+bool		is_wall_for_bigmap(const t_bigmap *bigmap);
+void		draw_player_on_bigmap(t_bigmap *bigmap);
 
 
 // - Rectangle

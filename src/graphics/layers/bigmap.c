@@ -10,7 +10,7 @@ bool	init_bigmap(t_gfx_data *graphics)
 		return (false);
 	draw_bigmap_raster(graphics->bigmap);
 	draw_walls_on_bigmap(&(graphics->bigmap));
-	// draw_player_on_bigmap(&(graphics->bigmap));
+	draw_player_on_bigmap(&(graphics->bigmap));
 	return (true);
 }
 
@@ -74,4 +74,15 @@ void	fill_bigmap_unit(t_bigmap *bigmap, int bigmap_pos_x, \
 	};
 
 	draw_rect(bigmap->image, measures, color);
+}
+
+void	draw_player_on_bigmap(t_bigmap *bigmap)
+{
+	const int measures[3] = {
+	[RADIUS] = round(bigmap->unit_size * .1),
+	[DRAW_POS_CENTER_X] = round(bigmap->player->position[X] * bigmap->unit_size),
+	[DRAW_POS_CENTER_Y] = round(bigmap->player->position[Y] * bigmap->unit_size)
+	};
+
+	draw_filled_circle(bigmap->image, measures, 0xff0000ff);
 }
