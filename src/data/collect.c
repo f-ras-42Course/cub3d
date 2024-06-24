@@ -23,7 +23,7 @@ void	set_start_position_player(t_all *data)
 			x++;
 		}
 	}
-	set_position(x + .8, y + .8, data->player.position);
+	set_position(x + .5, y + .5, data->player.position);
 }
 
 bool	player_found(char c)
