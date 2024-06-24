@@ -21,6 +21,7 @@ void	loop_hooks(void *ptr_to_data)
 	draw_walls_on_minimap(&(data->graphics.minimap));
 	draw_player_on_minimap(&(data->graphics.minimap));
 	draw_walls_on_bigmap(&(data->graphics.bigmap));
+	draw_bigmap_raster((data->graphics.bigmap));
 	draw_player_on_bigmap(&(data->graphics.bigmap));
 	// update_image(data->graphics);
 }
@@ -28,11 +29,11 @@ void	loop_hooks(void *ptr_to_data)
 void	walking(t_all *data)
 {
 	if (mlx_is_key_down(data->graphics.mlx, MLX_KEY_W))
-		data->player.position[Y] -= 0.01;
+		data->player.position[Y] -= 0.02;
 	if (mlx_is_key_down(data->graphics.mlx, MLX_KEY_S))
-		data->player.position[Y] += 0.01;
+		data->player.position[Y] += 0.02;
 	if (mlx_is_key_down(data->graphics.mlx, MLX_KEY_A))
-		data->player.position[X] -= 0.01;
+		data->player.position[X] -= 0.02;
 	if (mlx_is_key_down(data->graphics.mlx, MLX_KEY_D))
-		data->player.position[X] += 0.01;
+		data->player.position[X] += 0.02;
 }
