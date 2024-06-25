@@ -11,7 +11,9 @@
 // -- Collect
 void	set_data(t_all *data);
 void	set_start_position_player(t_all *data);
+void	set_start_direction_player(t_all *data);
 bool	player_found(char c);
+char	get_player_type(t_all *data);
 
 // -- Utils
 void	set_position(double x, double y, double where[2]);
@@ -21,5 +23,6 @@ void	set_position(double x, double y, double where[2]);
 bool	load_hooks(t_all *data);
 void	loop_hooks(void *ptr_to_data);
 void	walking(t_all *data);
+void	update_image(t_gfx_data *graphics);
 
 #endif
