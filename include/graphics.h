@@ -41,6 +41,9 @@ bool		is_minimap_unit_out_of_map_scope(const t_minimap *minimap);
 bool		wall_found(int x, int y);
 void		reset_minimap_end_of_map_locator(t_minimap *minimap);
 
+// - Minimap line
+
+void		draw_line(t_bigmap *bigmap);
 
 // - Bigmap
 
