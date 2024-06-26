@@ -39,6 +39,6 @@ void	update_image(t_gfx_data *graphics)
 	draw_player_on_minimap(&(graphics->minimap));
 	draw_walls_on_bigmap(&(graphics->bigmap));
 	draw_bigmap_raster((graphics->bigmap));
-	draw_player_on_bigmap(&(graphics->bigmap));
 	draw_line(&(graphics->bigmap));
+	draw_player_on_bigmap(&(graphics->bigmap));
 }
