@@ -3,13 +3,6 @@
 
 void	draw_line(t_bigmap *bigmap)
 {
-	// const int measures[3] = {
-	// [RADIUS] = bigmap->unit_size * .05,
-	// [DRAW_POS_CENTER_X] = bigmap->player->position[X] * bigmap->unit_size,
-	// [DRAW_POS_CENTER_Y] = bigmap->player->position[X] * bigmap->unit_size
-	// };
-	// draw_circle(bigmap->image, measures, 0x000000ff);
-
 	int i = 0;
 	int lsz = 1 * bigmap->unit_size /** sqrt(1 + (pow(cos(bigmap->player->direction[X]) / sin(bigmap->player->direction[Y]), 2)))*/;
 
