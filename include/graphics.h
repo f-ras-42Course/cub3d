@@ -71,4 +71,8 @@ void	draw_circle(mlx_image_t *image, \
 void	draw_filled_circle(mlx_image_t *image, \
 					const int measures[3], unsigned int color);
 
+// - Rendering
+
+void	update_image(t_gfx_data *graphics);
+
 #endif

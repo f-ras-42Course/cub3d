@@ -12,5 +12,6 @@
 # include "definitions.h"
 # include "graphics.h"
 # include "data.h"
+# include "controls.h"
 
 #endif

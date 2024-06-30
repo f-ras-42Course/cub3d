@@ -18,11 +18,4 @@ char	get_player_type(t_all *data);
 // -- Utils
 void	set_position(double x, double y, double where[2]);
 
-// -- Movement
-
-bool	load_hooks(t_all *data);
-void	loop_hooks(void *ptr_to_data);
-void	walking(t_all *data);
-void	update_image(t_gfx_data *graphics);
-
 #endif
