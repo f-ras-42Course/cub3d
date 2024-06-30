@@ -18,4 +18,7 @@ char	get_player_type(t_all *data);
 // -- Utils
 void	set_position(double x, double y, double where[2]);
 
+// -- FPS
+void	show_fps(bool key_pressed);
+
 #endif
