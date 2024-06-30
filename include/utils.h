@@ -6,6 +6,7 @@
 # include <stdarg.h>
 # include <stdbool.h>
 # include "get_next_line.h"
+# include "cub3d.h"
 
 size_t	ft_strlen(const char *s);
 void	ft_putendl_fd(char *s, int fd);
