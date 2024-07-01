@@ -14,15 +14,17 @@ void	set_start_position_player(t_all *data)
 	int	y;
 
 	x = 0;
-	y = -1;
+	y = 0;
 	while (y < MAP_HEIGHT && !player_found(g_temp_test_map[y][x]))
 	{
-		x = 0;
-		y++;
 		while (x < MAP_WIDTH && !player_found(g_temp_test_map[y][x]))
 		{
 			x++;
 		}
+		if (player_found(g_temp_test_map[y][x]))
+			break ;
+		x = 0;
+		y++;
 	}
 	set_position(x + .5, y + .5, data->player.position);
 }
