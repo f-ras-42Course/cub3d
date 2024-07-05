@@ -16,11 +16,21 @@ void	walking(t_all *data)
 	{
 		data->player.direction[X] = (data->player.direction[X] / M_PI + 0.05) * M_PI;
 		data->player.direction[Y] = (data->player.direction[Y] / M_PI + 0.05) * M_PI;
+		if ((int)(data->player.direction[X] / M_PI) == 2)
+		{
+			data->player.direction[X] = 0 * M_PI;
+			data->player.direction[Y] = 0 * M_PI;
+		}
 	}
 	if (mlx_is_key_down(data->graphics.mlx, MLX_KEY_LEFT))
 	{
 		data->player.direction[X] = (data->player.direction[X] / M_PI - 0.05) * M_PI;
 		data->player.direction[Y] = (data->player.direction[Y] / M_PI - 0.05) * M_PI;
+		if (copysign(1, data->player.direction[X] / M_PI) == -1)
+		{
+			data->player.direction[X] = 2 * M_PI;
+			data->player.direction[Y] = 2 * M_PI;
+		}
 	}
 }
 
