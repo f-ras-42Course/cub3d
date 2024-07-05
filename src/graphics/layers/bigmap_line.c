@@ -4,9 +4,11 @@
 void	draw_line(t_bigmap *bigmap)
 {
 	int i = 0;
-	int lsz = 1 * bigmap->unit_size /** sqrt(1 + (pow(cos(bigmap->player->direction[X]) / sin(bigmap->player->direction[Y]), 2)))*/;
+	// int lsz = 1 * bigmap->unit_size * sqrt(1 + (pow(cos(bigmap->player->direction[X]) / sin(bigmap->player->direction[Y]), 2)));
+	int line_size = calculate_line_size(bigmap);
 
-	while (i <= lsz)
+
+	while (i <= line_size)
 	{
 		mlx_put_pixel(bigmap->image, \
 					(bigmap->player->position[X] * bigmap->unit_size) + i * cos(bigmap->player->direction[X]), \
@@ -14,40 +16,67 @@ void	draw_line(t_bigmap *bigmap)
 					0xffffffff);
 		i++;
 	}
+	printf("lzs = %d\n\n", line_size);
+	usleep (0.05 * 1000000);
 }
 
 
-// void	calc_line(t_bigmap *bigmap)
-// {
-// 	int measures[3] = {
-// 	[RADIUS] = bigmap->unit_size * .05,
-// 	[DRAW_POS_CENTER_X] = 9 * bigmap->unit_size,
-// 	[DRAW_POS_CENTER_Y] = 4 * bigmap->unit_size
-// 	};
-// 	draw_circle(bigmap->image, measures, 0x000000ff);
+int	calculate_line_size(t_bigmap *bigmap)
+{
+	int increment[2];
+	double shortest[2];
+	int check_pos[2];
 
-// 	int i = 0;
-// 	double cinp = 1.75 * M_PI;
-// 	double sinp = 1.75 * M_PI;
-// 	int sy = i * bigmap->unit_size * sqrt(1 + (pow(cos(cinp) / sin(sinp), 2)));
-// 	int sx = i * bigmap->unit_size * sqrt(1 + (pow(sin(sinp) / cos(cinp) , 2)));
+	increment[X] = 1;
+	increment[Y] = 1;
+	check_pos[X] = bigmap->player->position[X];
+	check_pos[Y] = bigmap->player->position[Y];
+
+	printf("unit size = %d\n", bigmap->unit_size);
+	printf("player pos X[%.2f], player pos Y[%.2f]\n", bigmap->player->position[X], bigmap->player->position[Y]);
+	printf ("x::%f | y::%f\n", shortest[X], shortest[Y]);
+	printf ("dirX = %f| dirY = %f\n", cos(bigmap->player->direction[X]), sin(bigmap->player->direction[Y]));
+	while (1)
+	{
+		shortest[X] = increment[X] * sqrt(1 + (pow(sin(bigmap->player->direction[Y]) / cos(bigmap->player->direction[X]), 2)));
+		shortest[Y] = increment[Y] * sqrt(1 + (pow(cos(bigmap->player->direction[X]) / sin(bigmap->player->direction[Y]), 2)));
+		
+		
+		
+		if (shortest[X] < shortest[Y])
+		{
+			check_pos[X] += copysign(1, cos(bigmap->player->direction[X]));
+			printf ("X-check pos X: %d, check pos Y: %d\n", check_pos[X], check_pos[Y]); printf("shortest[X]:%.2f shortest[Y]:%.2f\n", shortest[X],  shortest[Y]);
+			if (wall_is_seen(check_pos[X], check_pos[Y]))
+			{
+				if (round(cos(bigmap->player->direction[X])) == -1)
+					shortest[X]--;
+				return (shortest[X] * bigmap->unit_size);
+			}
+			increment[X]++;
+		}
+		else
+		{
+			check_pos[Y] +=  copysign(1, sin(bigmap->player->direction[Y]));
+			printf ("Y-check pos X: %d, check pos Y: %d\n", check_pos[X], check_pos[Y]); printf("shortest[X]:%.2f shortest[Y]:%.2f\n", shortest[X],  shortest[Y]);
+			if (wall_is_seen(check_pos[X], check_pos[Y]))
+			{
+				if (round(sin(bigmap->player->direction[Y])) == -1)
+					shortest[Y]--;
+				return (shortest[Y] * bigmap->unit_size);
+			}
+			increment[Y]++;
+		}
+	}
+}
 
 
-// 	// int		i;
-// 	// int		x;
-// 	// int		y;
-// 	// float	rotation;
-// 	// float	rotation_step;
-
-// 	// i = 0;
-// 	// rotation = 0;
-// 	// rotation_step = (2 * M_PI) / (2 * measures[RADIUS] * M_PI);
-// 	// while (i < 100)
-// 	// {
-// 	// 	x = measures[DRAW_POS_CENTER_X] + measures[RADIUS] * cos(rotation);
-// 	// 	y = measures[DRAW_POS_CENTER_Y] + measures[RADIUS] * sin(rotation);
-// 	// 	mlx_put_pixel(image, x, y, color);
-// 	// 	rotation += rotation_step;
-// 	// 	i++;
-// 	// }
-// }
+bool wall_is_seen(int x, int y)
+{
+	if (g_temp_test_map[y][x] == '1')
+	{
+		printf("wall is seen\n");
+		return (true);
+	}
+	return (false);
+}

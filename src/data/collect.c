@@ -26,7 +26,7 @@ void	set_start_position_player(t_all *data)
 		x = 0;
 		y++;
 	}
-	set_position(x + .5, y + .5, data->player.position);
+	set_position(x, y, data->player.position);
 }
 
 void	set_start_direction_player(t_all *data)
