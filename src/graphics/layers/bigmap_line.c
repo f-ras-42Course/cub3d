@@ -17,15 +17,15 @@ void	draw_line(t_bigmap *bigmap)
 		i++;
 	}
 	printf("lzs = %d\n\n", line_size);
-	usleep (0.05 * 1000000);
+	usleep (0.1 * 1000000);
 }
 
 
 int	calculate_line_size(t_bigmap *bigmap)
 {
-	int increment[2];
-	double shortest[2];
-	int check_pos[2];
+	int		increment[2];
+	double	shortest[2];
+	int		check_pos[2];
 
 	increment[X] = 1;
 	increment[Y] = 1;
@@ -36,6 +36,7 @@ int	calculate_line_size(t_bigmap *bigmap)
 	printf("player pos X[%.2f], player pos Y[%.2f]\n", bigmap->player->position[X], bigmap->player->position[Y]);
 	printf ("x::%f | y::%f\n", shortest[X], shortest[Y]);
 	printf ("dirX = %f| dirY = %f\n", cos(bigmap->player->direction[X]), sin(bigmap->player->direction[Y]));
+	printf ("base-dirX = %.20f| base-dirY = %.20f\n", bigmap->player->direction[X] / M_PI, bigmap->player->direction[Y] / M_PI);
 	while (1)
 	{
 		shortest[X] = increment[X] * sqrt(1 + (pow(sin(bigmap->player->direction[Y]) / cos(bigmap->player->direction[X]), 2)));
