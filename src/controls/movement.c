@@ -5,13 +5,19 @@ void	walking(t_all *data)
 {
 
 	if (mlx_is_key_down(data->graphics.mlx, MLX_KEY_W))
-		data->player.position[Y] -= /*0.02;*/ 1;
+	{
+		data->player.position[Y] += sin(data->player.direction[Y]) / 40;
+		data->player.position[X] += cos(data->player.direction[X]) / 40;
+	}
 	if (mlx_is_key_down(data->graphics.mlx, MLX_KEY_S))
-		data->player.position[Y] += /*0.02;*/ 1;
+	{
+		data->player.position[Y] -= sin(data->player.direction[Y]) / 40;
+		data->player.position[X] -= cos(data->player.direction[X]) / 40;
+	}
 	if (mlx_is_key_down(data->graphics.mlx, MLX_KEY_A))
-		data->player.position[X] -= /*0.02;*/ 1;
+		data->player.position[X] -= 0.05;
 	if (mlx_is_key_down(data->graphics.mlx, MLX_KEY_D))
-		data->player.position[X] += /*0.02;*/ 1;
+		data->player.position[X] += 0.05;
 	if (mlx_is_key_down(data->graphics.mlx, MLX_KEY_RIGHT))
 	{
 		data->player.direction[X] = (data->player.direction[X] / M_PI + 0.05) * M_PI;
