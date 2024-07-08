@@ -12,9 +12,6 @@
 # include "test_map.h"
 # include <math.h>
 
-// #include <stdio.h>
-
-
 // - Graphics 
 bool		init_graphics(t_all *data);
 void		run_graphics(t_all *data);
@@ -43,10 +40,9 @@ void		reset_minimap_end_of_map_locator(t_minimap *minimap);
 
 // - Bigmap line
 
-void		draw_line(t_bigmap *bigmap);
+void		draw_line(t_bigmap *bigmap, int color);
 int			calculate_line_size(t_bigmap *bigmap);
-bool		wall_is_seen(int x, int y);
-
+bool 		wall_is_seen(int x, int y, int dir_x, int dir_y);
 
 // - Bigmap
 

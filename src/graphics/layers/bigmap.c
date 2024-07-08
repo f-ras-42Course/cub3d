@@ -19,8 +19,8 @@ void	draw_bigmap_raster(t_bigmap bigmap)
 	int	x;
 	int	y;
 
-	x = 0;
-	y = 0;
+	x = 1;
+	y = 1;
 	while (y < bigmap.height)
 	{
 		while (x < bigmap.width)
@@ -29,7 +29,7 @@ void	draw_bigmap_raster(t_bigmap bigmap)
 					mlx_put_pixel(bigmap.image, x, y, 0x0000ffff);
 			x++;
 		}
-		x = 0;
+		x = 1;
 		y++;
 	}
 }

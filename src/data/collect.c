@@ -26,7 +26,7 @@ void	set_start_position_player(t_all *data)
 		x = 0;
 		y++;
 	}
-	set_position(x, y, data->player.position);
+	set_position(x + 0.5, y + 0.5, data->player.position);
 }
 
 void	set_start_direction_player(t_all *data)
@@ -52,7 +52,6 @@ void	set_start_direction_player(t_all *data)
 		data->player.direction[Y] = 1.5 * M_PI;
 	}
 }
-
 
 bool	player_found(char c)
 {
