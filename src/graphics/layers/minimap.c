@@ -8,9 +8,6 @@ bool	init_minimap(t_gfx_data *graphics)
 						graphics->minimap.width, graphics->minimap.height);
 	if (!graphics->minimap.image)
 		return (false);
-	draw_minimap_frame(graphics->minimap, raster_only);
-	draw_walls_on_minimap(&(graphics->minimap));
-	draw_player_on_minimap(&(graphics->minimap));
 	return (true);
 }
 

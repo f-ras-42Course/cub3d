@@ -8,9 +8,6 @@ bool	init_bigmap(t_gfx_data *graphics)
 						graphics->bigmap.width, graphics->bigmap.height);
 	if (!graphics->bigmap.image)
 		return (false);
-	draw_bigmap_raster(graphics->bigmap);
-	draw_walls_on_bigmap(&(graphics->bigmap));
-	draw_player_on_bigmap(&(graphics->bigmap));
 	return (true);
 }
 
