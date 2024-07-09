@@ -3,6 +3,8 @@
 
 void	walking(t_all *data)
 {
+	printf ("sin(%f)\n", sin(data->player.direction[Y]) / 40);
+	printf ("cos(%f)\n\n", cos(data->player.direction[Y]) / 40);
 	if (mlx_is_key_down(data->graphics.mlx, MLX_KEY_W))
 	{
 		data->player.position[Y] += sin(data->player.direction[Y]) / 40;
@@ -14,9 +16,15 @@ void	walking(t_all *data)
 		data->player.position[X] -= cos(data->player.direction[X]) / 40;
 	}
 	if (mlx_is_key_down(data->graphics.mlx, MLX_KEY_A))
-		data->player.position[X] -= 0.025;
+	{
+		data->player.position[X] += sin(data->player.direction[Y]) / 40;
+		data->player.position[Y] -= cos(data->player.direction[X]) / 40;
+	}
 	if (mlx_is_key_down(data->graphics.mlx, MLX_KEY_D))
-		data->player.position[X] += 0.025;
+	{
+		data->player.position[X] -= sin(data->player.direction[Y]) / 40;
+		data->player.position[Y] += cos(data->player.direction[X]) / 40; 
+	}
 	if (mlx_is_key_down(data->graphics.mlx, MLX_KEY_RIGHT))
 	{
 		data->player.direction[X] = (data->player.direction[X] / M_PI + 0.02) * M_PI;
