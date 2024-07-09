@@ -15,5 +15,6 @@ void	key_hooks(mlx_key_data_t keydata, void *ptr_to_data);
 
 // - Movement
 void	walking(t_all *data);
+void	wall_collision(t_player *player, double increment, int axis);
 
 #endif

@@ -5,23 +5,23 @@ void	walking(t_all *data)
 {
 	if (mlx_is_key_down(data->graphics.mlx, MLX_KEY_W))
 	{
-		data->player.position[Y] += sin(data->player.direction[Y]) / 40;
-		data->player.position[X] += cos(data->player.direction[X]) / 40;
+		wall_collision(&data->player, sin(data->player.direction[Y]) / 40, Y);
+		wall_collision(&data->player, cos(data->player.direction[X]) / 40, X);
 	}
 	if (mlx_is_key_down(data->graphics.mlx, MLX_KEY_S))
 	{
-		data->player.position[Y] -= sin(data->player.direction[Y]) / 40;
-		data->player.position[X] -= cos(data->player.direction[X]) / 40;
+		wall_collision(&data->player, -sin(data->player.direction[Y]) / 40, Y);
+		wall_collision(&data->player, -cos(data->player.direction[X]) / 40, X);
 	}
 	if (mlx_is_key_down(data->graphics.mlx, MLX_KEY_A))
 	{
-		data->player.position[X] += sin(data->player.direction[Y]) / 40;
-		data->player.position[Y] -= cos(data->player.direction[X]) / 40;
+		wall_collision(&data->player, sin(data->player.direction[Y]) / 40, X);
+		wall_collision(&data->player, -cos(data->player.direction[X]) / 40, Y);
 	}
 	if (mlx_is_key_down(data->graphics.mlx, MLX_KEY_D))
 	{
-		data->player.position[X] -= sin(data->player.direction[Y]) / 40;
-		data->player.position[Y] += cos(data->player.direction[X]) / 40; 
+		wall_collision(&data->player, -sin(data->player.direction[Y]) / 40, X);
+		wall_collision(&data->player, +cos(data->player.direction[X]) / 40, Y);
 	}
 	if (mlx_is_key_down(data->graphics.mlx, MLX_KEY_RIGHT))
 	{
@@ -42,5 +42,19 @@ void	walking(t_all *data)
 			data->player.direction[X] = 2 * M_PI;
 			data->player.direction[Y] = 2 * M_PI;
 		}
+	}
+}
+
+void wall_collision(t_player *player, double increment, int axis)
+{
+	if (axis == X)
+	{
+		if (!wall_found(player->position[X] + increment, player->position[Y]))
+			player->position[X] += increment;
+	}
+	else
+	{
+		if (!wall_found(player->position[X], player->position[Y] + increment))
+			player->position[Y] += increment;
 	}
 }
