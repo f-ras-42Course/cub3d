@@ -53,19 +53,19 @@ int	calculate_line_size(t_bigmap *bigmap)
 	{
 		if (ray.shortest[X] < ray.shortest[Y])
 		{
-			ray.shortest[X] = ray.increment[X] * ray.delta[X];
 			ray.check_pos[X] += copysign(1, cos(bigmap->player->direction[X]));
 			if (wall_found(ray.check_pos[X], ray.check_pos[Y]))
 				return (ray.shortest[X] * bigmap->unit_size);
 			ray.increment[X]++;
+			ray.shortest[X] = ray.increment[X] * ray.delta[X];
 		}
 		else
 		{
-			ray.shortest[Y] = ray.increment[Y] * ray.delta[Y];
 			ray.check_pos[Y] += copysign(1, sin(bigmap->player->direction[Y]));
 			if (wall_found(ray.check_pos[X], ray.check_pos[Y]))
 				return (ray.shortest[Y] * bigmap->unit_size);
 			ray.increment[Y]++;
+			ray.shortest[Y] = ray.increment[Y] * ray.delta[Y];
 		}
 	}
 }
