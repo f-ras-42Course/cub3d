@@ -12,10 +12,7 @@ typedef struct s_player
 
 typedef struct s_ray
 {
-	double		side_dist[2];
-	double		delta_dist[2];
-	bool		hit;
-	bool		side;
+	double		delta_distance[2];
 }				t_ray;
 
 typedef struct s_map
@@ -35,14 +32,12 @@ typedef struct s_fps
 }				t_fps;
 
 
-/*	Full HD: 225	| 4K: 450
-	int	minimap_width;
-	Full HD: 165	| 4K: 330
-	int	minimap_height;
-	Full HD: 5	| 4K: 10
-	int	minimap_frame_thickness;
-	Full HD: 15 	| 4K: 30
-	int	minimap_unit_size;
+/*  minimap_width:
+	Full HD: 225 | 4K: 450
+	minimap_height:
+	Full HD: 165 | 4K: 330
+	minimap_unit_size:
+	Full HD: 15 | 4K: 30
 */
 typedef struct s_minimap
 {

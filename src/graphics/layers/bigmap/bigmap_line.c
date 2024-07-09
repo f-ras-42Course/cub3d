@@ -3,23 +3,33 @@
 
 void	draw_line(t_bigmap *bigmap, int color)
 {
-	int i = 0;
-	int line_size = calculate_line_size(bigmap);
+	int	i;
+	int	line_size;
+	int	bigmap_position[2];
 
+	i = 0;
+	line_size = calculate_line_size(bigmap);
+	bigmap_position[X] = bigmap->player->position[X] * bigmap->unit_size;
+	bigmap_position[Y] = bigmap->player->position[Y] * bigmap->unit_size;
 	while (i <= line_size)
 	{
 		mlx_put_pixel(bigmap->image, \
-					(bigmap->player->position[X] * bigmap->unit_size) + i * cos(bigmap->player->direction[X]), \
-					(bigmap->player->position[Y] * bigmap->unit_size) + i * sin(bigmap->player->direction[Y]), \
-					color);
+		bigmap_position[X] + i * cos(bigmap->player->direction[X]), \
+		bigmap_position[Y] + i * sin(bigmap->player->direction[Y]), \
+		color);
 		i++;
 	}
 }
 
-void	init_line_variables(t_bigmap *bigmap, double shortest[2], double increment[2], int check_pos[2])
+void	init_line_variables(t_bigmap *bigmap, double delta[2], \
+							double increment[2], int check_pos[2])
 {
-	check_pos[X] = bigmap->player->position[X];
-	check_pos[Y] = bigmap->player->position[Y];
+	delta[X] = \
+		sqrt(1 + (pow(sin(bigmap->player->direction[Y]) \
+		/ cos(bigmap->player->direction[X]), 2)));
+	delta[Y] = \
+		sqrt(1 + (pow(cos(bigmap->player->direction[X]) \
+		/ sin(bigmap->player->direction[Y]), 2)));
 	if (cos(bigmap->player->direction[X]) < 0)
 		increment[X] = fmod(bigmap->player->position[X], 1);
 	if (cos(bigmap->player->direction[X]) >= 0)
@@ -28,41 +38,35 @@ void	init_line_variables(t_bigmap *bigmap, double shortest[2], double increment[
 		increment[Y] = fmod(bigmap->player->position[Y], 1);
 	if (sin(bigmap->player->direction[Y]) >= 0)
 		increment[Y] = 1 - fmod(bigmap->player->position[Y], 1);
-	shortest[X] = increment[X] * sqrt(1 + (pow(sin(bigmap->player->direction[Y]) / cos(bigmap->player->direction[X]), 2)));
-	shortest[Y] = increment[Y] * sqrt(1 + (pow(cos(bigmap->player->direction[X]) / sin(bigmap->player->direction[Y]), 2)));
+	check_pos[X] = bigmap->player->position[X];
+	check_pos[Y] = bigmap->player->position[Y];
 }
 
-int		calculate_line_size(t_bigmap *bigmap)
+int	calculate_line_size(t_bigmap *bigmap)
 {
+	double	delta[2];
 	double	shortest[2];
 	double	increment[2];
 	int		check_pos[2];
 
-	init_line_variables(bigmap, shortest, increment, check_pos);
+	init_line_variables(bigmap, delta, increment, check_pos);
 	while (1)
 	{
+		shortest[X] = increment[X] * delta[X];
+		shortest[Y] = increment[Y] * delta[Y];
 		if (shortest[X] < shortest[Y])
 		{
 			check_pos[X] += copysign(1, cos(bigmap->player->direction[X]));
-			if (wall_is_seen(check_pos[X], check_pos[Y], bigmap->player->direction[X], bigmap->player->direction[Y]))
+			if (wall_found(check_pos[X], check_pos[Y]))
 				return (shortest[X] * bigmap->unit_size);
 			increment[X]++;
-			shortest[X] = increment[X] * sqrt(1 + (pow(sin(bigmap->player->direction[Y]) / cos(bigmap->player->direction[X]), 2)));
 		}
 		else
 		{
-			check_pos[Y] +=  copysign(1, sin(bigmap->player->direction[Y]));
-			if (wall_is_seen(check_pos[X], check_pos[Y], bigmap->player->direction[X], bigmap->player->direction[Y]))
+			check_pos[Y] += copysign(1, sin(bigmap->player->direction[Y]));
+			if (wall_found(check_pos[X], check_pos[Y]))
 				return (shortest[Y] * bigmap->unit_size);
 			increment[Y]++;
-			shortest[Y] = increment[Y] * sqrt(1 + (pow(cos(bigmap->player->direction[X]) / sin(bigmap->player->direction[Y]), 2)));
 		}
 	}
-}
-
-bool wall_is_seen(int x, int y, int dir_x, int dir_y)
-{
-	if (g_temp_test_map[y][x] == '1')
-		return (true);
-	return (false);
 }

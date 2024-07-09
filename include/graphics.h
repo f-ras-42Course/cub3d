@@ -35,7 +35,6 @@ void		draw_end_of_map(t_minimap *minimap, int x, int y);
 void		fill_minimap_unit(t_minimap *minimap, int minimap_pos_x, \
 			int minimap_pos_y, int color);
 bool		is_minimap_unit_out_of_map_scope(const t_minimap *minimap);
-bool		wall_found(int x, int y);
 void		reset_minimap_end_of_map_locator(t_minimap *minimap);
 
 // - Bigmap
@@ -52,8 +51,10 @@ void		draw_player_on_bigmap(t_bigmap *bigmap);
 // - Bigmap line
 
 void		draw_line(t_bigmap *bigmap, int color);
+void		init_line_variables(t_bigmap *bigmap, double delta[2], 
+			double increment[2], int check_pos[2]);
 int			calculate_line_size(t_bigmap *bigmap);
-bool 		wall_is_seen(int x, int y, int dir_x, int dir_y);
+bool		wall_found(int x, int y);
 
 // - Rectangle
 
