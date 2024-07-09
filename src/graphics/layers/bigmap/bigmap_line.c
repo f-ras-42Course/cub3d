@@ -21,52 +21,51 @@ void	draw_line(t_bigmap *bigmap, int color)
 	}
 }
 
-void	init_line_variables(t_bigmap *bigmap, double delta[2], \
-							double increment[2], int check_pos[2])
+void	init_line_variables(t_bigmap *bigmap, t_ray *ray)
 {
-	delta[X] = \
+	ray->delta[X] = \
 		sqrt(1 + (pow(sin(bigmap->player->direction[Y]) \
 		/ cos(bigmap->player->direction[X]), 2)));
-	delta[Y] = \
+	ray->delta[Y] = \
 		sqrt(1 + (pow(cos(bigmap->player->direction[X]) \
 		/ sin(bigmap->player->direction[Y]), 2)));
 	if (cos(bigmap->player->direction[X]) < 0)
-		increment[X] = fmod(bigmap->player->position[X], 1);
+		ray->increment[X] = fmod(bigmap->player->position[X], 1);
 	if (cos(bigmap->player->direction[X]) >= 0)
-		increment[X] = 1 - fmod(bigmap->player->position[X], 1);
+		ray->increment[X] = 1 - fmod(bigmap->player->position[X], 1);
 	if (sin(bigmap->player->direction[Y]) < 0)
-		increment[Y] = fmod(bigmap->player->position[Y], 1);
+		ray->increment[Y] = fmod(bigmap->player->position[Y], 1);
 	if (sin(bigmap->player->direction[Y]) >= 0)
-		increment[Y] = 1 - fmod(bigmap->player->position[Y], 1);
-	check_pos[X] = bigmap->player->position[X];
-	check_pos[Y] = bigmap->player->position[Y];
+		ray->increment[Y] = 1 - fmod(bigmap->player->position[Y], 1);
+	ray->shortest[X] = ray->increment[X] * ray->delta[X];
+	ray->shortest[Y] = ray->increment[Y] * ray->delta[Y];
+	ray->check_pos[X] = bigmap->player->position[X];
+	ray->check_pos[Y] = bigmap->player->position[Y];
+
 }
 
 int	calculate_line_size(t_bigmap *bigmap)
 {
-	double	delta[2];
-	double	shortest[2];
-	double	increment[2];
-	int		check_pos[2];
+	t_ray	ray;
 
-	init_line_variables(bigmap, delta, increment, check_pos);
+	init_line_variables(bigmap, &ray);
 	while (1)
 	{
-		shortest[X] = increment[X] * delta[X];
-		shortest[Y] = increment[Y] * delta[Y];
-		if (shortest[X] < shortest[Y])
+		if (ray.shortest[X] < ray.shortest[Y])
 		{
-			check_pos[X] += copysign(1, cos(bigmap->player->direction[X]));
-			if (wall_found(check_pos[X], check_pos[Y]))
-				return (shortest[X] * bigmap->unit_size);
-			increment[X]++;
+			ray.shortest[X] = ray.increment[X] * ray.delta[X];
+			ray.check_pos[X] += copysign(1, cos(bigmap->player->direction[X]));
+			if (wall_found(ray.check_pos[X], ray.check_pos[Y]))
+				return (ray.shortest[X] * bigmap->unit_size);
+			ray.increment[X]++;
 		}
 		else
 		{
-			check_pos[Y] += copysign(1, sin(bigmap->player->direction[Y]));
-			if (wall_found(check_pos[X], check_pos[Y]))
-				return (shortest[Y] * bigmap->unit_size);
-			increment[Y]++;
+			ray.shortest[Y] = ray.increment[Y] * ray.delta[Y];
+			ray.check_pos[Y] += copysign(1, sin(bigmap->player->direction[Y]));
+			if (wall_found(ray.check_pos[X], ray.check_pos[Y]))
+				return (ray.shortest[Y] * bigmap->unit_size);
+			ray.increment[Y]++;
 		}
 	}
 }

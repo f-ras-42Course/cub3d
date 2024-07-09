@@ -51,8 +51,7 @@ void		draw_player_on_bigmap(t_bigmap *bigmap);
 // - Bigmap line
 
 void		draw_line(t_bigmap *bigmap, int color);
-void		init_line_variables(t_bigmap *bigmap, double delta[2], 
-			double increment[2], int check_pos[2]);
+void		init_line_variables(t_bigmap *bigmap, t_ray *ray);
 int			calculate_line_size(t_bigmap *bigmap);
 bool		wall_found(int x, int y);
 

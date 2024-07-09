@@ -12,7 +12,10 @@ typedef struct s_player
 
 typedef struct s_ray
 {
-	double		delta_distance[2];
+	double		delta[2];
+	double		shortest[2];
+	double		increment[2];
+	int			check_pos[2];
 }				t_ray;
 
 typedef struct s_map
