@@ -69,7 +69,7 @@ typedef struct s_bigmap
 typedef struct s_gfx_data
 {
 	mlx_t			*mlx;
-	mlx_image_t		*background;
+	mlx_image_t		*main_image;
 	t_minimap		minimap;
 	t_bigmap		bigmap;
 	struct s_all	*data;

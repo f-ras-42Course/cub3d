@@ -23,7 +23,7 @@ void	draw_bigmap_raster(t_bigmap bigmap)
 		while (x < bigmap.width)
 		{
 				if (x % bigmap.unit_size == 0 || y % bigmap.unit_size == 0)
-					mlx_put_pixel(bigmap.image, x, y, 0x0000ffff);
+					mlx_put_pixel(bigmap.image, x, y, 0x0000ff4f);
 			x++;
 		}
 		x = 1;
@@ -50,9 +50,9 @@ void	draw_walls_on_bigmap(t_bigmap *bigmap)
 		while (x < MAP_WIDTH)
 		{
 			if (wall_found(x, y))
-				fill_bigmap_unit(bigmap, x, y, 0xffaa00ff);
+				fill_bigmap_unit(bigmap, x, y, 0xffaa004f);
 			else
-				fill_bigmap_unit(bigmap, x, y, 0xffffff4f);
+				fill_bigmap_unit(bigmap, x, y, 0xffffff0f);
 			x++;
 		}
 		x = 0;
