@@ -12,6 +12,7 @@ typedef struct s_player
 
 typedef struct s_ray
 {
+	double		direction[2];
 	double		delta[2];
 	double		shortest[2];
 	double		increment[2];
