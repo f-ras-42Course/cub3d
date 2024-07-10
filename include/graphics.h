@@ -48,7 +48,7 @@ void		draw_bigmap_raster(t_bigmap bigmap);
 void		fill_bigmap_unit(t_bigmap *bigmap, int bigmap_pos_x, \
 			int bigmap_pos_y, int color);
 bool		is_wall_for_bigmap(const t_bigmap *bigmap);
-void		draw_player_on_bigmap(t_bigmap *bigmap);
+void		draw_player_on_bigmap(t_bigmap *bigmap, int color);
 
 // - Bigmap line
 
@@ -58,7 +58,6 @@ void		draw_single_line(t_bigmap *bigmap, t_ray *ray, double bigmap_position[2], 
 void		init_line_variables(t_bigmap *bigmap, t_ray *ray);
 int			calculate_line_size(t_bigmap *bigmap, t_ray ray);
 bool		wall_found(int x, int y);
-
 
 // - Rectangle
 

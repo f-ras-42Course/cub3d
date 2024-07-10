@@ -73,7 +73,7 @@ void	fill_bigmap_unit(t_bigmap *bigmap, int bigmap_pos_x, \
 	draw_rect(bigmap->image, measures, color);
 }
 
-void	draw_player_on_bigmap(t_bigmap *bigmap)
+void	draw_player_on_bigmap(t_bigmap *bigmap, int color)
 {
 	const int measures[3] = {
 	[RADIUS] = round(bigmap->unit_size * .1),
@@ -81,5 +81,5 @@ void	draw_player_on_bigmap(t_bigmap *bigmap)
 	[DRAW_POS_CENTER_Y] = round(bigmap->player->position[Y] * bigmap->unit_size)
 	};
 
-	draw_filled_circle(bigmap->image, measures, 0xff0000ff);
+	draw_filled_circle(bigmap->image, measures, color);
 }
