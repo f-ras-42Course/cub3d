@@ -8,8 +8,8 @@ void	bigmap_draw_lines(t_bigmap *bigmap, int color)
 
 	bigmap_position[X] = bigmap->player->position[X] * bigmap->unit_size;
 	bigmap_position[Y] = bigmap->player->position[Y] * bigmap->unit_size;
-	ray.direction[X] = bigmap->player->direction[X] - 33.1034482758 * RD;
-	ray.direction[Y] = bigmap->player->direction[Y] - 33.1034482758 * RD;
+	ray.direction[X] = bigmap->player->direction[X] - 33.10344827585 * RD;
+	ray.direction[Y] = bigmap->player->direction[Y] - 33.10344827585 * RD;
 	for (size_t i = 0; i < 66.2068965517 * (SCREEN_WIDTH / 66.2068965517); i++)
 	{
 		init_line_variables(bigmap, &ray);
