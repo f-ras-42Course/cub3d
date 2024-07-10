@@ -23,7 +23,7 @@ bool		init_image(t_gfx_data *graphics);
 bool		set_all_images_to_window(t_gfx_data *graphics);
 
 // - Layers
-bool		init_mainimage(t_gfx_data *graphics);
+bool		init_mainlayer(t_gfx_data *graphics);
 bool		init_background(t_gfx_data *graphics);
 void		draw_floor(mlx_image_t *image);
 void		draw_sky(mlx_image_t *image);

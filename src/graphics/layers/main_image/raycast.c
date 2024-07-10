@@ -1,23 +1,20 @@
 
-// #include "graphics.h"
+#include "graphics.h"
 
-// void	bigmap_draw_lines(t_bigmap *bigmap, int color)
-// {
-// 	t_ray	ray;
-// 	double	bigmap_position[2];
+void	raycasting(t_mainlayer *mainlayer)
+{
+	t_ray	ray;
 
-// 	bigmap_position[X] = bigmap->player->position[X] * bigmap->unit_size;
-// 	bigmap_position[Y] = bigmap->player->position[Y] * bigmap->unit_size;
-// 	ray.direction[X] = bigmap->player->direction[X] - 33.10344827585 * RD;
-// 	ray.direction[Y] = bigmap->player->direction[Y] - 33.10344827585 * RD;
-// 	for (size_t i = 0; i < 66.2068965517 * (SCREEN_WIDTH / 66.2068965517); i++)
-// 	{
-// 		init_line_variables(bigmap, &ray);
-// 		draw_single_line(bigmap, &ray, bigmap_position, color);
-// 		ray.direction[X] += RD / (SCREEN_WIDTH / 66.2068965517);
-// 		ray.direction[Y] += RD / (SCREEN_WIDTH / 66.2068965517);
-// 	}
-// }
+	ray.direction[X] = mainlayer->player->direction[X] - 33.10344827585 * RD;
+	ray.direction[Y] = mainlayer->player->direction[Y] - 33.10344827585 * RD;
+	for (size_t i = 0; i < 66.2068965517 * (SCREEN_WIDTH / 66.2068965517); i++)
+	{
+		// init_line_variables(mainlayer, &ray);
+		// draw_single_line(mainlayer, &ray, bigmap_position, color);
+		ray.direction[X] += RD / (SCREEN_WIDTH / 66.2068965517);
+		ray.direction[Y] += RD / (SCREEN_WIDTH / 66.2068965517);
+	}
+}
 
 // void	bigmap_draw_single_line(t_bigmap *bigmap, int color)
 // {

@@ -3,7 +3,7 @@
 
 bool	init_image(t_gfx_data *graphics)
 {
-	if (!init_mainimage(graphics))
+	if (!init_mainlayer(graphics))
 		return (false);
 	if (!init_minimap(graphics))
 		return (false);
@@ -19,7 +19,7 @@ bool	set_all_images_to_window(t_gfx_data *graphics)
 	const int	minimap_pos_x = (SCREEN_WIDTH * 0.865);
 	const int	minimap_pos_y = (SCREEN_HEIGHT * 0.015);
 
-	if (mlx_image_to_window(graphics->mlx, graphics->main_image, 0, 0) == -1)
+	if (mlx_image_to_window(graphics->mlx, graphics->mainlayer.image, 0, 0) == -1)
 		return (false);
 	if (mlx_image_to_window(graphics->mlx, graphics->minimap.image, minimap_pos_x, \
 			minimap_pos_y) == -1)

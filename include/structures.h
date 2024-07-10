@@ -66,10 +66,16 @@ typedef struct s_bigmap
 }	t_bigmap;
 
 
+typedef struct s_mainlayer
+{
+	mlx_image_t	*image;
+	t_player	*player;
+}	t_mainlayer;
+
 typedef struct s_gfx_data
 {
 	mlx_t			*mlx;
-	mlx_image_t		*main_image;
+	t_mainlayer		mainlayer;
 	t_minimap		minimap;
 	t_bigmap		bigmap;
 	struct s_all	*data;
