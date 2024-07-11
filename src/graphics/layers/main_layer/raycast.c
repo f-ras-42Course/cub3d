@@ -1,23 +1,28 @@
 
 #include "graphics.h"
 
-
 void	raycasting(t_mainlayer *mainlayer, int ceiling_color, int floor_color)
 {
 	t_ray	ray;
-	int 	wall_height;
+	double	perp_distance;
+	int		wall_height;
+	int		i;
 
+	i = 0;
 	ray.direction = mainlayer->player->direction - 33.10344827585 * RD;
 	place_full_ceiling(mainlayer->image, ceiling_color);
 	place_full_floor(mainlayer->image, floor_color);
-	for (size_t i = 0; i < 66.2068965517 * (SCREEN_WIDTH / 66.2068965517); i++)
+	while (i < 66.2068965517 * (SCREEN_WIDTH / 66.2068965517))
 	{
 		init_ray_variables(mainlayer->player, &ray);
-		wall_height = (int)SCREEN_HEIGHT / ray_distance(ray);
+		perp_distance = ray_distance(ray) \
+						* cos(ray.direction - mainlayer->player->direction);
+		wall_height = (int)SCREEN_HEIGHT / perp_distance;
 		if (wall_height > SCREEN_HEIGHT)
 			wall_height = SCREEN_HEIGHT;
 		place_wall(mainlayer->image, wall_height, i, 0x00ff00ff);
 		ray.direction += RD / (SCREEN_WIDTH / 66.2068965517);
+		i++;
 	}
 }
 
@@ -27,7 +32,7 @@ void	place_full_ceiling(mlx_image_t *image, int color)
 	[RECT_WIDTH] = SCREEN_WIDTH,
 	[RECT_HEIGHT] = SCREEN_HEIGHT / 2,
 	[DRAW_POS_X] = 0,
-	[DRAW_POS_Y] =  0
+	[DRAW_POS_Y] = 0
 	};
 
 	draw_rect(image, measures, color);
@@ -39,7 +44,7 @@ void	place_full_floor(mlx_image_t *image, int color)
 	[RECT_WIDTH] = SCREEN_WIDTH,
 	[RECT_HEIGHT] = SCREEN_HEIGHT / 2,
 	[DRAW_POS_X] = 0,
-	[DRAW_POS_Y] =  SCREEN_HEIGHT / 2
+	[DRAW_POS_Y] = SCREEN_HEIGHT / 2
 	};
 
 	draw_rect(image, measures, color);
@@ -78,7 +83,7 @@ void	init_ray_variables(t_player *player, t_ray *ray)
 	ray->check_pos[Y] = player->position[Y];
 }
 
-double		ray_distance(t_ray ray)
+double	ray_distance(t_ray ray)
 {
 	while (1)
 	{

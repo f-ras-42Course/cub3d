@@ -7,10 +7,8 @@ void	update_image(t_gfx_data *graphics)
 	draw_walls_on_minimap(&(graphics->minimap));
 	draw_player_on_minimap(&(graphics->minimap));
 	raycasting(&(graphics->mainlayer), 0X87CEEBff, 0xADA587ff);
-	// single_raycasting(&(graphics->mainlayer), 0X87CEEBff, 0xADA587ff);
 	// draw_walls_on_bigmap(&(graphics->bigmap));
 	// draw_bigmap_raster((graphics->bigmap));
 	// bigmap_draw_lines(&(graphics->bigmap), 0xff00004f);
-	// bigmap_draw_single_line(&(graphics->bigmap), 0xff00004f);
 	// draw_player_on_bigmap(&(graphics->bigmap), 0xff00004f);
 }
