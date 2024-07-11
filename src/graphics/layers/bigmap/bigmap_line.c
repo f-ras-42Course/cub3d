@@ -12,7 +12,7 @@ void	bigmap_draw_lines(t_bigmap *bigmap, int color)
 	ray.direction[Y] = bigmap->player->direction[Y] - 33.10344827585 * RD;
 	for (size_t i = 0; i < 66.2068965517 * (SCREEN_WIDTH / 66.2068965517); i++)
 	{
-		init_line_variables(bigmap, &ray);
+		init_line_variables(bigmap->player, &ray);
 		draw_single_line(bigmap, &ray, bigmap_position, color);
 		ray.direction[X] += RD / (SCREEN_WIDTH / 66.2068965517);
 		ray.direction[Y] += RD / (SCREEN_WIDTH / 66.2068965517);
@@ -28,11 +28,12 @@ void	bigmap_draw_single_line(t_bigmap *bigmap, int color)
 	bigmap_position[Y] = bigmap->player->position[Y] * bigmap->unit_size;
 	ray.direction[X] = bigmap->player->direction[X];
 	ray.direction[Y] = bigmap->player->direction[Y];
-	init_line_variables(bigmap, &ray);
+	init_line_variables(bigmap->player, &ray);
 	draw_single_line(bigmap, &ray, bigmap_position, color);
 }
 
-void	init_line_variables(t_bigmap *bigmap, t_ray *ray)
+
+void	init_line_variables(t_player *player, t_ray *ray)
 {
 	ray->delta[X] = \
 		sqrt(1 + (pow(sin(ray->direction[Y]) \
@@ -41,17 +42,17 @@ void	init_line_variables(t_bigmap *bigmap, t_ray *ray)
 		sqrt(1 + (pow(cos(ray->direction[X]) \
 		/ sin(ray->direction[Y]), 2)));
 	if (cos(ray->direction[X]) < 0)
-		ray->increment[X] = fmod(bigmap->player->position[X], 1);
+		ray->increment[X] = fmod(player->position[X], 1);
 	if (cos(ray->direction[X]) >= 0)
-		ray->increment[X] = 1 - fmod(bigmap->player->position[X], 1);
+		ray->increment[X] = 1 - fmod(player->position[X], 1);
 	if (sin(ray->direction[Y]) < 0)
-		ray->increment[Y] = fmod(bigmap->player->position[Y], 1);
+		ray->increment[Y] = fmod(player->position[Y], 1);
 	if (sin(ray->direction[Y]) >= 0)
-		ray->increment[Y] = 1 - fmod(bigmap->player->position[Y], 1);
+		ray->increment[Y] = 1 - fmod(player->position[Y], 1);
 	ray->shortest[X] = ray->increment[X] * ray->delta[X];
 	ray->shortest[Y] = ray->increment[Y] * ray->delta[Y];
-	ray->check_pos[X] = bigmap->player->position[X];
-	ray->check_pos[Y] = bigmap->player->position[Y];
+	ray->check_pos[X] = player->position[X];
+	ray->check_pos[Y] = player->position[Y];
 }
 
 
