@@ -8,7 +8,7 @@ void	single_raycasting(t_mainlayer *mainlayer, int ceiling_color, int floor_colo
 
 	ray.direction = mainlayer->player->direction;
 	init_ray_variables(mainlayer->player, &ray);
-	wall_height = (int)SCREEN_HEIGHT / ray_distance(ray);
+	wall_height = (int)SCREEN_HEIGHT / ray_distance(&ray);
 	if (wall_height > SCREEN_HEIGHT)
 		wall_height = SCREEN_HEIGHT;
 	single_place_ceiling(mainlayer->image, wall_height, 0, ceiling_color);

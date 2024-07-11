@@ -16,6 +16,7 @@ typedef struct s_ray
 	double		delta[2];
 	double		shortest[2];
 	int			check_pos[2];
+	char		side;
 }				t_ray;
 
 typedef struct s_map

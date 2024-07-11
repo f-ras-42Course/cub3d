@@ -15,12 +15,15 @@ void	raycasting(t_mainlayer *mainlayer, int ceiling_color, int floor_color)
 	while (i < 66.2068965517 * (SCREEN_WIDTH / 66.2068965517))
 	{
 		init_ray_variables(mainlayer->player, &ray);
-		perp_distance = ray_distance(ray) \
+		perp_distance = ray_distance(&ray) \
 						* cos(ray.direction - mainlayer->player->direction);
 		wall_height = (int)SCREEN_HEIGHT / perp_distance;
 		if (wall_height > SCREEN_HEIGHT)
 			wall_height = SCREEN_HEIGHT;
-		place_wall(mainlayer->image, wall_height, i, 0x00ff00ff);
+		if (ray.side == 'N' || ray.side == 'S')
+			place_wall(mainlayer->image, wall_height, i, 0x00ff00ff);
+		if (ray.side == 'E' || ray.side == 'W')
+			place_wall(mainlayer->image, wall_height, i, 0x004f00ff);
 		ray.direction += RD / (SCREEN_WIDTH / 66.2068965517);
 		i++;
 	}
@@ -83,23 +86,35 @@ void	init_ray_variables(t_player *player, t_ray *ray)
 	ray->check_pos[Y] = player->position[Y];
 }
 
-double	ray_distance(t_ray ray)
+double	ray_distance(t_ray *ray)
 {
 	while (1)
 	{
-		if (ray.shortest[X] < ray.shortest[Y])
+		if (ray->shortest[X] < ray->shortest[Y])
 		{
-			ray.check_pos[X] += copysign(1, cos(ray.direction));
-			if (wall_found(ray.check_pos[X], ray.check_pos[Y]))
-				return (ray.shortest[X]);
-			ray.shortest[X] += ray.delta[X];
+			ray->check_pos[X] += copysign(1, cos(ray->direction));
+			if (wall_found(ray->check_pos[X], ray->check_pos[Y]))
+			{
+				if(copysign(1, cos(ray->direction)) == 1)
+					ray->side = 'E';
+				else
+					ray->side = 'W';
+				return (ray->shortest[X]);
+			}
+			ray->shortest[X] += ray->delta[X];
 		}
 		else
 		{
-			ray.check_pos[Y] += copysign(1, sin(ray.direction));
-			if (wall_found(ray.check_pos[X], ray.check_pos[Y]))
-				return (ray.shortest[Y]);
-			ray.shortest[Y] += ray.delta[Y];
+			ray->check_pos[Y] += copysign(1, sin(ray->direction));
+			if (wall_found(ray->check_pos[X], ray->check_pos[Y]))
+			{
+				if(copysign(1, sin(ray->direction)) == 1)
+					ray->side = 'S';
+				else
+					ray->side = 'N';
+				return (ray->shortest[Y]);
+			}
+			ray->shortest[Y] += ray->delta[Y];
 		}
 	}
 }
