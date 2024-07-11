@@ -22,6 +22,15 @@ void		run_graphics(t_all *data);
 bool		init_image(t_gfx_data *graphics);
 bool		set_all_images_to_window(t_gfx_data *graphics);
 
+// - Raycasting
+void		raycasting(t_mainlayer *mainlayer, int ceiling_color, int floor_color);
+void		single_raycasting(t_mainlayer *mainlayer, int ceiling_color, int floor_color);
+void		init_ray_variables(t_player *player, t_ray *ray);
+int			ray_distance(t_ray ray);
+void		place_ceiling(mlx_image_t *image, int ray_distance, int position, int color);
+void		place_wall(mlx_image_t *image, int ray_distance, int position, int color);
+void		place_floor(mlx_image_t *image, int ray_distance, int position, int color);
+
 // - Layers
 bool		init_mainlayer(t_gfx_data *graphics);
 bool		init_background(t_gfx_data *graphics);

@@ -36,6 +36,7 @@
 # define BIGMAP_GRID_WIDTH		47
 # define BIGMAP_GRID_HEIGHT		35
 
+# define FURTHEST_WALL			10
 
 typedef enum e_error_codes
 {
