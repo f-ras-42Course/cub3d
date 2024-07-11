@@ -6,13 +6,13 @@
 typedef struct s_player
 {
 	double		position[2];
-	double		direction[2];
+	double		direction;
 	double		plane[2];
 }				t_player;
 
 typedef struct s_ray
 {
-	double		direction[2];
+	double		direction;
 	double		delta[2];
 	double		shortest[2];
 	int			check_pos[2];

@@ -33,23 +33,19 @@ void	set_start_direction_player(t_all *data)
 {
 	if (get_player_type(data) == 'E')
 	{
-		data->player.direction[X] = 0 * M_PI;
-		data->player.direction[Y] = 0 * M_PI;
+		data->player.direction = 0 * M_PI;
 	}
 	else if (get_player_type(data) == 'S')
 	{
-		data->player.direction[X] = 0.5 * M_PI;
-		data->player.direction[Y] = 0.5 * M_PI;
+		data->player.direction = 0.5 * M_PI;
 	}
 	else if (get_player_type(data) == 'W')
 	{
-		data->player.direction[X] = 1 * M_PI;
-		data->player.direction[Y] = 1 * M_PI;
+		data->player.direction = 1 * M_PI;
 	}
 	else if (get_player_type(data) == 'N')
 	{
-		data->player.direction[X] = 1.5 * M_PI;
-		data->player.direction[Y] = 1.5 * M_PI;
+		data->player.direction = 1.5 * M_PI;
 	}
 }
 

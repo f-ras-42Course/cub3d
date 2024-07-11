@@ -5,43 +5,35 @@ void	walking(t_all *data)
 {
 	if (mlx_is_key_down(data->graphics.mlx, MLX_KEY_W))
 	{
-		wall_collision(&data->player, sin(data->player.direction[Y]) / 40, Y);
-		wall_collision(&data->player, cos(data->player.direction[X]) / 40, X);
+		wall_collision(&data->player, sin(data->player.direction) / 40, Y);
+		wall_collision(&data->player, cos(data->player.direction) / 40, X);
 	}
 	if (mlx_is_key_down(data->graphics.mlx, MLX_KEY_S))
 	{
-		wall_collision(&data->player, -sin(data->player.direction[Y]) / 40, Y);
-		wall_collision(&data->player, -cos(data->player.direction[X]) / 40, X);
+		wall_collision(&data->player, -sin(data->player.direction) / 40, Y);
+		wall_collision(&data->player, -cos(data->player.direction) / 40, X);
 	}
 	if (mlx_is_key_down(data->graphics.mlx, MLX_KEY_A))
 	{
-		wall_collision(&data->player, sin(data->player.direction[Y]) / 40, X);
-		wall_collision(&data->player, -cos(data->player.direction[X]) / 40, Y);
+		wall_collision(&data->player, sin(data->player.direction) / 40, X);
+		wall_collision(&data->player, -cos(data->player.direction) / 40, Y);
 	}
 	if (mlx_is_key_down(data->graphics.mlx, MLX_KEY_D))
 	{
-		wall_collision(&data->player, -sin(data->player.direction[Y]) / 40, X);
-		wall_collision(&data->player, +cos(data->player.direction[X]) / 40, Y);
+		wall_collision(&data->player, -sin(data->player.direction) / 40, X);
+		wall_collision(&data->player, +cos(data->player.direction) / 40, Y);
 	}
 	if (mlx_is_key_down(data->graphics.mlx, MLX_KEY_RIGHT))
 	{
-		data->player.direction[X] = (data->player.direction[X] / M_PI + 0.02) * M_PI;
-		data->player.direction[Y] = (data->player.direction[Y] / M_PI + 0.02) * M_PI;
-		if ((int)(data->player.direction[X] / M_PI) == 2)
-		{
-			data->player.direction[X] = 0 * M_PI;
-			data->player.direction[Y] = 0 * M_PI;
-		}
+		data->player.direction = (data->player.direction / M_PI + 0.02) * M_PI;
+		if ((int)(data->player.direction / M_PI) == 2)
+			data->player.direction = 0 * M_PI;
 	}
 	if (mlx_is_key_down(data->graphics.mlx, MLX_KEY_LEFT))
 	{
-		data->player.direction[X] = (data->player.direction[X] / M_PI - 0.02) * M_PI;
-		data->player.direction[Y] = (data->player.direction[Y] / M_PI - 0.02) * M_PI;
-		if (copysign(1, data->player.direction[X] / M_PI) == -1)
-		{
-			data->player.direction[X] = 2 * M_PI;
-			data->player.direction[Y] = 2 * M_PI;
-		}
+		data->player.direction = (data->player.direction / M_PI - 0.02) * M_PI;
+		if (copysign(1, data->player.direction / M_PI) == -1)
+			data->player.direction = 2 * M_PI;
 	}
 }
 

@@ -6,8 +6,7 @@ void	single_raycasting(t_mainlayer *mainlayer, int ceiling_color, int floor_colo
 	t_ray	ray;
 	int 	wall_height;
 
-	ray.direction[X] = mainlayer->player->direction[X];
-	ray.direction[Y] = mainlayer->player->direction[Y];
+	ray.direction = mainlayer->player->direction;
 	init_ray_variables(mainlayer->player, &ray);
 	wall_height = (int)SCREEN_HEIGHT / ray_distance(ray);
 	if (wall_height > SCREEN_HEIGHT)

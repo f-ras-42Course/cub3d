@@ -8,14 +8,12 @@ void	bigmap_draw_lines(t_bigmap *bigmap, int color)
 
 	bigmap_position[X] = bigmap->player->position[X] * bigmap->unit_size;
 	bigmap_position[Y] = bigmap->player->position[Y] * bigmap->unit_size;
-	ray.direction[X] = bigmap->player->direction[X] - 33.10344827585 * RD;
-	ray.direction[Y] = bigmap->player->direction[Y] - 33.10344827585 * RD;
+	ray.direction = bigmap->player->direction - 33.10344827585 * RD;
 	for (size_t i = 0; i < 66.2068965517 * (SCREEN_WIDTH / 66.2068965517); i++)
 	{
 		init_line_variables(bigmap->player, &ray);
 		draw_single_line(bigmap, &ray, bigmap_position, color);
-		ray.direction[X] += RD / (SCREEN_WIDTH / 66.2068965517);
-		ray.direction[Y] += RD / (SCREEN_WIDTH / 66.2068965517);
+		ray.direction += RD / (SCREEN_WIDTH / 66.2068965517);
 	}
 }
 
@@ -26,8 +24,7 @@ void	bigmap_draw_single_line(t_bigmap *bigmap, int color)
 
 	bigmap_position[X] = bigmap->player->position[X] * bigmap->unit_size;
 	bigmap_position[Y] = bigmap->player->position[Y] * bigmap->unit_size;
-	ray.direction[X] = bigmap->player->direction[X];
-	ray.direction[Y] = bigmap->player->direction[Y];
+	ray.direction = bigmap->player->direction;
 	init_line_variables(bigmap->player, &ray);
 	draw_single_line(bigmap, &ray, bigmap_position, color);
 }
@@ -36,16 +33,16 @@ void	bigmap_draw_single_line(t_bigmap *bigmap, int color)
 void	init_line_variables(t_player *player, t_ray *ray)
 {
 	ray->delta[X] = \
-		sqrt(1 + (pow(sin(ray->direction[Y]) \
-		/ cos(ray->direction[X]), 2)));
+		sqrt(1 + (pow(sin(ray->direction) \
+		/ cos(ray->direction), 2)));
 	ray->delta[Y] = \
-		sqrt(1 + (pow(cos(ray->direction[X]) \
-		/ sin(ray->direction[Y]), 2)));
-	if (cos(ray->direction[X]) < 0)
+		sqrt(1 + (pow(cos(ray->direction) \
+		/ sin(ray->direction), 2)));
+	if (cos(ray->direction) < 0)
 		ray->shortest[X] = fmod(player->position[X], 1) * ray->delta[X];
 	else
 		ray->shortest[X] = (1 - fmod(player->position[X], 1)) * ray->delta[X];
-	if (sin(ray->direction[Y]) < 0)
+	if (sin(ray->direction) < 0)
 		ray->shortest[Y] = fmod(player->position[Y], 1) * ray->delta[Y];
 	else
 		ray->shortest[Y] = (1 - fmod(player->position[Y], 1)) * ray->delta[Y];
@@ -64,8 +61,8 @@ void	draw_single_line(t_bigmap *bigmap, t_ray *ray, double bigmap_position[2], i
 	while (i <= line_size)
 	{
 		mlx_put_pixel(bigmap->image, \
-		bigmap_position[X] + i * cos(ray->direction[X]), \
-		bigmap_position[Y] + i * sin(ray->direction[Y]), \
+		bigmap_position[X] + i * cos(ray->direction), \
+		bigmap_position[Y] + i * sin(ray->direction), \
 		color);
 		i++;
 	}
@@ -77,14 +74,14 @@ int	calculate_line_size(t_bigmap *bigmap, t_ray ray)
 	{
 		if (ray.shortest[X] < ray.shortest[Y])
 		{
-			ray.check_pos[X] += copysign(1, cos(ray.direction[X]));
+			ray.check_pos[X] += copysign(1, cos(ray.direction));
 			if (wall_found(ray.check_pos[X], ray.check_pos[Y]))
 				return (ray.shortest[X] * bigmap->unit_size);
 			ray.shortest[X] += ray.delta[X];
 		}
 		else
 		{
-			ray.check_pos[Y] += copysign(1, sin(ray.direction[Y]));
+			ray.check_pos[Y] += copysign(1, sin(ray.direction));
 			if (wall_found(ray.check_pos[X], ray.check_pos[Y]))
 				return (ray.shortest[Y] * bigmap->unit_size);
 			ray.shortest[Y] += ray.delta[Y];
