@@ -35,19 +35,6 @@ void	place_full_ceiling(mlx_image_t *image, int color)
 	draw_rect(image, measures, color);
 }
 
-void	place_wall(mlx_image_t *image, int wall_height, int position, \
-					int color)
-{
-	const int	measures[4] = {
-	[RECT_WIDTH] = 1,
-	[RECT_HEIGHT] = wall_height,
-	[DRAW_POS_X] = position,
-	[DRAW_POS_Y] = SCREEN_HEIGHT / 2 - wall_height / 2
-	};
-
-	draw_rect(image, measures, color);
-}
-
 void	place_full_floor(mlx_image_t *image, int color)
 {
 	const int	measures[4] = {
@@ -60,7 +47,18 @@ void	place_full_floor(mlx_image_t *image, int color)
 	draw_rect(image, measures, color);
 }
 
+void	place_wall(mlx_image_t *image, int wall_height, int position, \
+					int color)
+{
+	const int	measures[4] = {
+	[RECT_WIDTH] = 1,
+	[RECT_HEIGHT] = wall_height,
+	[DRAW_POS_X] = position,
+	[DRAW_POS_Y] = SCREEN_HEIGHT / 2 - wall_height / 2
+	};
 
+	draw_rect(image, measures, color);
+}
 
 void	init_ray_variables(t_player *player, t_ray *ray)
 {
