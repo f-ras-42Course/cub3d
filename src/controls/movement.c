@@ -25,13 +25,13 @@ void	walking(t_all *data)
 	}
 	if (mlx_is_key_down(data->graphics.mlx, MLX_KEY_RIGHT))
 	{
-		data->player.direction = (data->player.direction / M_PI + 0.02) * M_PI;
+		data->player.direction = (data->player.direction / M_PI + 0.01) * M_PI;
 		if ((int)(data->player.direction / M_PI) == 2)
 			data->player.direction = 0 * M_PI;
 	}
 	if (mlx_is_key_down(data->graphics.mlx, MLX_KEY_LEFT))
 	{
-		data->player.direction = (data->player.direction / M_PI - 0.02) * M_PI;
+		data->player.direction = (data->player.direction / M_PI - 0.01) * M_PI;
 		if (copysign(1, data->player.direction / M_PI) == -1)
 			data->player.direction = 2 * M_PI;
 	}
