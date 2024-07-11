@@ -1,45 +1,50 @@
 
 #include "graphics.h"
 
-void	raycasting(t_mainlayer *mainlayer, int ceiling_color, int floor_color)
-{
-	t_ray	ray;
-	int 	distance;
-	ray.direction[X] = mainlayer->player->direction[X] - 33.10344827585 * RD;
-	ray.direction[Y] = mainlayer->player->direction[Y] - 33.10344827585 * RD;
-	for (size_t i = 0; i < 66.2068965517 * (SCREEN_WIDTH / 66.2068965517); i++)
-	{
-		init_ray_variables(mainlayer->player, &ray);
-		distance = ray_distance(ray);
-		place_ceiling(mainlayer->image, distance, i, ceiling_color);
-		place_wall(mainlayer->image, distance, i, 0x00ff00ff);
-		place_floor(mainlayer->image, distance, i, floor_color);
-		ray.direction[X] += RD / (SCREEN_WIDTH / 66.2068965517);
-		ray.direction[Y] += RD / (SCREEN_WIDTH / 66.2068965517);
-	}
-}
 
+// void	raycasting(t_mainlayer *mainlayer, int ceiling_color, int floor_color)
+// {
+// 	t_ray	ray;
+// 	int 	wall_height;
+// 	ray.direction[X] = mainlayer->player->direction[X] - 33.10344827585 * RD;
+// 	ray.direction[Y] = mainlayer->player->direction[Y] - 33.10344827585 * RD;
+// 	for (size_t i = 0; i < 66.2068965517 * (SCREEN_WIDTH / 66.2068965517); i++)
+// 	{
+// 		init_ray_variables(mainlayer->player, &ray);
+// 		wall_height = (int)SCREEN_HEIGHT / ray_distance(ray);
+// 		// place_ceiling(mainlayer->image, wall_height, i, ceiling_color);
+// 		// place_wall(mainlayer->image, wall_height, i, 0x00ff00ff);
+// 		// place_floor(mainlayer->image, wall_height, i, floor_color);
+// 		printf("wall_height: %d\n", wall_height);
+// 		ray.direction[X] += RD / (SCREEN_WIDTH / 66.2068965517);
+// 		ray.direction[Y] += RD / (SCREEN_WIDTH / 66.2068965517);
+// 	}
+// }
 
 void	single_raycasting(t_mainlayer *mainlayer, int ceiling_color, int floor_color)
 {
 	t_ray	ray;
-	int 	distance;
+	int 	wall_height;
 
 	ray.direction[X] = mainlayer->player->direction[X];
 	ray.direction[Y] = mainlayer->player->direction[Y];
 	init_ray_variables(mainlayer->player, &ray);
-	distance = ray_distance(ray);
-	place_ceiling(mainlayer->image, distance, 0, ceiling_color);
-	place_wall(mainlayer->image, distance, 0, 0x00ff00ff);
-	place_floor(mainlayer->image, distance, 0, floor_color);
-	// printf("raydistance: %d\n", ray_distance(mainlayer, ray));
+
+	wall_height = (int)SCREEN_HEIGHT / ray_distance(ray);
+	if (wall_height > SCREEN_HEIGHT)
+		wall_height = SCREEN_HEIGHT;
+	printf("wall height: %d\n", wall_height);
+	place_ceiling(mainlayer->image, wall_height, 0, ceiling_color);
+	place_wall(mainlayer->image, wall_height, 0, 0x00ff00ff);
+	place_floor(mainlayer->image, wall_height, 0, floor_color);
 }
 
-void	place_ceiling(mlx_image_t *image, int ray_distance, int position, int color)
+void	place_ceiling(mlx_image_t *image, int wall_height, int position, \
+						int color)
 {
-	const int measures[4] = {
-	[RECT_WIDTH] = 1,
-	[RECT_HEIGHT] = ray_distance / 2,
+	const int	measures[4] = {
+	[RECT_WIDTH] = SCREEN_WIDTH,
+	[RECT_HEIGHT] = SCREEN_HEIGHT / 2 - wall_height / 2,
 	[DRAW_POS_X] = position,
 	[DRAW_POS_Y] = 0
 	};
@@ -47,24 +52,27 @@ void	place_ceiling(mlx_image_t *image, int ray_distance, int position, int color
 	draw_rect(image, measures, color);
 }
 
-void	place_wall(mlx_image_t *image, int ray_distance, int position, int color)
+void	place_wall(mlx_image_t *image, int wall_height, int position, \
+					int color)
 {
-	const int measures[4] = {
-	[RECT_WIDTH] = 1,
-	[RECT_HEIGHT] = SCREEN_HEIGHT - ray_distance,
+	const int	measures[4] = {
+	[RECT_WIDTH] = SCREEN_WIDTH,
+	[RECT_HEIGHT] = wall_height,
 	[DRAW_POS_X] = position,
-	[DRAW_POS_Y] = ray_distance / 2
+	[DRAW_POS_Y] = SCREEN_HEIGHT / 2 - wall_height / 2
 	};
 
 	draw_rect(image, measures, color);
 }
-void	place_floor(mlx_image_t *image, int ray_distance, int position, int color)
+
+void	place_floor(mlx_image_t *image, int wall_height, int position, \
+					int color)
 {
-	const int measures[4] = {
-	[RECT_WIDTH] = 1,
-	[RECT_HEIGHT] = ray_distance / 2,
+	const int	measures[4] = {
+	[RECT_WIDTH] = SCREEN_WIDTH,
+	[RECT_HEIGHT] = SCREEN_HEIGHT / 2 - wall_height / 2,
 	[DRAW_POS_X] = position,
-	[DRAW_POS_Y] = SCREEN_HEIGHT - ray_distance / 2
+	[DRAW_POS_Y] =  SCREEN_HEIGHT - (SCREEN_HEIGHT / 2 - wall_height / 2)
 	};
 
 	draw_rect(image, measures, color);
@@ -92,18 +100,15 @@ void	init_ray_variables(t_player *player, t_ray *ray)
 	ray->check_pos[Y] = player->position[Y];
 }
 
-int		ray_distance(t_ray ray)
+double		ray_distance(t_ray ray)
 {
 	while (1)
 	{
-		if (ray.shortest[X] * SCREEN_HEIGHT / FURTHEST_WALL >= SCREEN_HEIGHT \
-			&& ray.shortest[Y] * SCREEN_HEIGHT / FURTHEST_WALL >= SCREEN_HEIGHT)
-			return (SCREEN_HEIGHT);
-		else if (ray.shortest[X] < ray.shortest[Y])
+		if (ray.shortest[X] < ray.shortest[Y])
 		{
 			ray.check_pos[X] += copysign(1, cos(ray.direction[X]));
 			if (wall_found(ray.check_pos[X], ray.check_pos[Y]))
-				return (ray.shortest[X] * SCREEN_HEIGHT / FURTHEST_WALL);
+				return (ray.shortest[X]);
 			ray.increment[X]++;
 			ray.shortest[X] = ray.increment[X] * ray.delta[X];
 		}
@@ -111,7 +116,7 @@ int		ray_distance(t_ray ray)
 		{
 			ray.check_pos[Y] += copysign(1, sin(ray.direction[Y]));
 			if (wall_found(ray.check_pos[X], ray.check_pos[Y]))
-				return (ray.shortest[Y] * SCREEN_HEIGHT / FURTHEST_WALL);
+				return (ray.shortest[Y]);
 			ray.increment[Y]++;
 			ray.shortest[Y] = ray.increment[Y] * ray.delta[Y];
 		}
