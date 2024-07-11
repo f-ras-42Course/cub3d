@@ -1,6 +1,7 @@
 
 #include "graphics.h"
 
+
 void	raycasting(t_mainlayer *mainlayer, int ceiling_color, int floor_color)
 {
 	t_ray	ray;
@@ -8,29 +9,27 @@ void	raycasting(t_mainlayer *mainlayer, int ceiling_color, int floor_color)
 
 	ray.direction[X] = mainlayer->player->direction[X] - 33.10344827585 * RD;
 	ray.direction[Y] = mainlayer->player->direction[Y] - 33.10344827585 * RD;
+	place_full_ceiling(mainlayer->image, ceiling_color);
+	place_full_floor(mainlayer->image, floor_color);
 	for (size_t i = 0; i < 66.2068965517 * (SCREEN_WIDTH / 66.2068965517); i++)
 	{
 		init_ray_variables(mainlayer->player, &ray);
 		wall_height = (int)SCREEN_HEIGHT / ray_distance(ray);
 		if (wall_height > SCREEN_HEIGHT)
 			wall_height = SCREEN_HEIGHT;
-		// printf("wall_height: %d\n", wall_height);
-		place_ceiling(mainlayer->image, wall_height, i, ceiling_color);
 		place_wall(mainlayer->image, wall_height, i, 0x00ff00ff);
-		place_floor(mainlayer->image, wall_height, i, floor_color);
 		ray.direction[X] += RD / (SCREEN_WIDTH / 66.2068965517);
 		ray.direction[Y] += RD / (SCREEN_WIDTH / 66.2068965517);
 	}
 }
 
-void	place_ceiling(mlx_image_t *image, int wall_height, int position, \
-						int color)
+void	place_full_ceiling(mlx_image_t *image, int color)
 {
 	const int	measures[4] = {
-	[RECT_WIDTH] = 1,
-	[RECT_HEIGHT] = SCREEN_HEIGHT / 2 - wall_height / 2,
-	[DRAW_POS_X] = position,
-	[DRAW_POS_Y] = 0
+	[RECT_WIDTH] = SCREEN_WIDTH,
+	[RECT_HEIGHT] = SCREEN_HEIGHT / 2,
+	[DRAW_POS_X] = 0,
+	[DRAW_POS_Y] =  0
 	};
 
 	draw_rect(image, measures, color);
@@ -49,18 +48,19 @@ void	place_wall(mlx_image_t *image, int wall_height, int position, \
 	draw_rect(image, measures, color);
 }
 
-void	place_floor(mlx_image_t *image, int wall_height, int position, \
-					int color)
+void	place_full_floor(mlx_image_t *image, int color)
 {
 	const int	measures[4] = {
-	[RECT_WIDTH] = 1,
-	[RECT_HEIGHT] = SCREEN_HEIGHT / 2 - wall_height / 2,
-	[DRAW_POS_X] = position,
-	[DRAW_POS_Y] =  SCREEN_HEIGHT - (SCREEN_HEIGHT / 2 - wall_height / 2)
+	[RECT_WIDTH] = SCREEN_WIDTH,
+	[RECT_HEIGHT] = SCREEN_HEIGHT / 2,
+	[DRAW_POS_X] = 0,
+	[DRAW_POS_Y] =  SCREEN_HEIGHT / 2
 	};
 
 	draw_rect(image, measures, color);
 }
+
+
 
 void	init_ray_variables(t_player *player, t_ray *ray)
 {
