@@ -12,7 +12,7 @@ void	single_raycasting(t_mainlayer *mainlayer, int ceiling_color, int floor_colo
 	wall_height = (int)SCREEN_HEIGHT / ray_distance(ray);
 	if (wall_height > SCREEN_HEIGHT)
 		wall_height = SCREEN_HEIGHT;
-	printf("wall height: %d\n", wall_height);
+	// printf("wall height: %d\n", wall_height);
 	single_place_ceiling(mainlayer->image, wall_height, 0, ceiling_color);
 	single_place_wall(mainlayer->image, wall_height, 0, 0x00ff00ff);
 	single_place_floor(mainlayer->image, wall_height, 0, floor_color);

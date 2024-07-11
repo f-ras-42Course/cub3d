@@ -42,15 +42,13 @@ void	init_line_variables(t_player *player, t_ray *ray)
 		sqrt(1 + (pow(cos(ray->direction[X]) \
 		/ sin(ray->direction[Y]), 2)));
 	if (cos(ray->direction[X]) < 0)
-		ray->increment[X] = fmod(player->position[X], 1);
-	if (cos(ray->direction[X]) >= 0)
-		ray->increment[X] = 1 - fmod(player->position[X], 1);
+		ray->shortest[X] = fmod(player->position[X], 1) * ray->delta[X];
+	else
+		ray->shortest[X] = (1 - fmod(player->position[X], 1)) * ray->delta[X];
 	if (sin(ray->direction[Y]) < 0)
-		ray->increment[Y] = fmod(player->position[Y], 1);
-	if (sin(ray->direction[Y]) >= 0)
-		ray->increment[Y] = 1 - fmod(player->position[Y], 1);
-	ray->shortest[X] = ray->increment[X] * ray->delta[X];
-	ray->shortest[Y] = ray->increment[Y] * ray->delta[Y];
+		ray->shortest[Y] = fmod(player->position[Y], 1) * ray->delta[Y];
+	else
+		ray->shortest[Y] = (1 - fmod(player->position[Y], 1)) * ray->delta[Y];
 	ray->check_pos[X] = player->position[X];
 	ray->check_pos[Y] = player->position[Y];
 }
@@ -82,16 +80,14 @@ int	calculate_line_size(t_bigmap *bigmap, t_ray ray)
 			ray.check_pos[X] += copysign(1, cos(ray.direction[X]));
 			if (wall_found(ray.check_pos[X], ray.check_pos[Y]))
 				return (ray.shortest[X] * bigmap->unit_size);
-			ray.increment[X]++;
-			ray.shortest[X] = ray.increment[X] * ray.delta[X];
+			ray.shortest[X] += ray.delta[X];
 		}
 		else
 		{
 			ray.check_pos[Y] += copysign(1, sin(ray.direction[Y]));
 			if (wall_found(ray.check_pos[X], ray.check_pos[Y]))
 				return (ray.shortest[Y] * bigmap->unit_size);
-			ray.increment[Y]++;
-			ray.shortest[Y] = ray.increment[Y] * ray.delta[Y];
+			ray.shortest[Y] += ray.delta[Y];
 		}
 	}
 }
