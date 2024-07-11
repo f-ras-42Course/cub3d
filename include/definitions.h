@@ -21,11 +21,11 @@
 // # define SCREEN_WIDTH	2560
 // # define SCREEN_HEIGHT	1440
 // 1920 x 1080 (Full HD)
-# define SCREEN_WIDTH	1920
-# define SCREEN_HEIGHT	1080
+// # define SCREEN_WIDTH	1920
+// # define SCREEN_HEIGHT	1080
 // 1280 x 720 (HD)
-// # define SCREEN_WIDTH	1280
-// # define SCREEN_HEIGHT	720
+# define SCREEN_WIDTH	1280
+# define SCREEN_HEIGHT	720
 // 640 x 360 (ninth HD)
 // # define SCREEN_WIDTH	640
 // # define SCREEN_HEIGHT	360
@@ -69,6 +69,14 @@ typedef enum	e_xyz
 	Y,
 	Z
 }	t_xyz;
+
+typedef enum	e_nsew
+{
+	N,
+	S,
+	E,
+	W
+}	t_nsew;
 
 typedef enum e_minimap_options
 {
