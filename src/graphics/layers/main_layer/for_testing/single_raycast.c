@@ -1,14 +1,14 @@
 
 #include "graphics.h"
 
-void	single_raycasting(t_mainlayer *mainlayer, int ceiling_color, int floor_color)
+void	single_raycasting(t_mainlayer *mainlayer, uint32_t ceiling_color, uint32_t floor_color)
 {
 	t_ray	ray;
-	int 	wall_height;
+	uint32_t 	wall_height;
 
 	ray.direction = mainlayer->player->direction;
 	init_ray_variables(mainlayer->player, &ray);
-	wall_height = (int)SCREEN_HEIGHT / ray_distance(&ray);
+	wall_height = (uint32_t)SCREEN_HEIGHT / ray_distance(&ray);
 	if (wall_height > SCREEN_HEIGHT)
 		wall_height = SCREEN_HEIGHT;
 	single_place_ceiling(mainlayer->image, wall_height, 0, ceiling_color);
@@ -17,7 +17,7 @@ void	single_raycasting(t_mainlayer *mainlayer, int ceiling_color, int floor_colo
 }
 
 void	single_place_ceiling(mlx_image_t *image, int wall_height, int position, \
-						int color)
+						uint32_t color)
 {
 	const int	measures[4] = {
 	[RECT_WIDTH] = SCREEN_WIDTH,
@@ -30,7 +30,7 @@ void	single_place_ceiling(mlx_image_t *image, int wall_height, int position, \
 }
 
 void	single_place_wall(mlx_image_t *image, int wall_height, int position, \
-					int color)
+					uint32_t color)
 {
 	const int	measures[4] = {
 	[RECT_WIDTH] = SCREEN_WIDTH,
@@ -43,7 +43,7 @@ void	single_place_wall(mlx_image_t *image, int wall_height, int position, \
 }
 
 void	single_place_floor(mlx_image_t *image, int wall_height, int position, \
-					int color)
+					uint32_t color)
 {
 	const int	measures[4] = {
 	[RECT_WIDTH] = SCREEN_WIDTH,

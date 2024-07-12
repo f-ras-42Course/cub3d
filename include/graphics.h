@@ -23,19 +23,19 @@ bool		init_image(t_gfx_data *graphics);
 bool		set_all_images_to_window(t_gfx_data *graphics);
 
 // - Raycasting
-void		raycasting(t_mainlayer *mainlayer, int ceiling_color, int floor_color, int wall_color[4]);
+void		raycasting(t_mainlayer *mainlayer, uint32_t ceiling_color, uint32_t floor_color, uint32_t wall_color[4]);
 void		init_ray_variables(t_player *player, t_ray *ray);
 double		ray_distance(t_ray *ray);
-void		place_full_ceiling(mlx_image_t *image, int color);
-void		place_full_floor(mlx_image_t *image, int color);
-void		place_wall(mlx_image_t *image, int wall_height, int position, int color);
 void		set_wall_side(t_ray *ray, int side_check);
+void		place_full_ceiling_colored(mlx_image_t *image, uint32_t color);
+void		place_full_floor_colored(mlx_image_t *image, uint32_t color);
+void		place_wall_colored(mlx_image_t *image, int wall_height, int position, uint32_t color);
 
-// -- Single Raycasting
-void		single_raycasting(t_mainlayer *mainlayer, int ceiling_color, int floor_color);
-void		single_place_ceiling(mlx_image_t *image, int wall_height, int position, int color);
-void		single_place_wall(mlx_image_t *image, int wall_height, int position, int color);
-void		single_place_floor(mlx_image_t *image, int wall_height, int position, int color);
+// -- Single Raycasting (for testing)
+void		single_raycasting(t_mainlayer *mainlayer, uint32_t ceiling_color, uint32_t floor_color);
+void		single_place_ceiling(mlx_image_t *image, int wall_height, int position, uint32_t color);
+void		single_place_wall(mlx_image_t *image, int wall_height, int position, uint32_t color);
+void		single_place_floor(mlx_image_t *image, int wall_height, int position, uint32_t color);
 
 
 // - Layers

@@ -3,9 +3,9 @@
 
 void	update_image(t_gfx_data *graphics)
 {
-	int	wall_color[4];
-	int	ceiling_color;
-	int	floor_color;
+	uint32_t	wall_color[4];
+	uint32_t	ceiling_color;
+	uint32_t	floor_color;
 
 	wall_color[N] = 0x00ff00ff;
 	wall_color[S] = 0x00ff00ff;

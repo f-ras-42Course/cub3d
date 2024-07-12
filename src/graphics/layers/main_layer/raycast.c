@@ -1,7 +1,7 @@
 
 #include "graphics.h"
 
-void	raycasting(t_mainlayer *mainlayer, int ceiling_color, int floor_color, int wall_color[4])
+void	raycasting(t_mainlayer *mainlayer, uint32_t ceiling_color, uint32_t floor_color, uint32_t wall_color[4])
 {
 	t_ray	ray;
 	double	perp_distance;
@@ -10,8 +10,8 @@ void	raycasting(t_mainlayer *mainlayer, int ceiling_color, int floor_color, int 
 
 	i = 0;
 	ray.direction = mainlayer->player->direction - 33.10344827585 * RD;
-	place_full_ceiling(mainlayer->image, ceiling_color);
-	place_full_floor(mainlayer->image, floor_color);
+	place_full_ceiling_colored(mainlayer->image, ceiling_color);
+	place_full_floor_colored(mainlayer->image, floor_color);
 	while (i < 66.2068965517 * (SCREEN_WIDTH / 66.2068965517))
 	{
 		init_ray_variables(mainlayer->player, &ray);
@@ -20,47 +20,10 @@ void	raycasting(t_mainlayer *mainlayer, int ceiling_color, int floor_color, int 
 		wall_height = (int)SCREEN_HEIGHT / perp_distance;
 		if (wall_height > SCREEN_HEIGHT)
 			wall_height = SCREEN_HEIGHT;
-		place_wall(mainlayer->image, wall_height, i, wall_color[ray.side]);
+		place_wall_colored(mainlayer->image, wall_height, i, wall_color[ray.side]);
 		ray.direction += RD / (SCREEN_WIDTH / 66.2068965517);
 		i++;
 	}
-}
-
-void	place_full_ceiling(mlx_image_t *image, int color)
-{
-	const int	measures[4] = {
-	[RECT_WIDTH] = SCREEN_WIDTH,
-	[RECT_HEIGHT] = SCREEN_HEIGHT / 2,
-	[DRAW_POS_X] = 0,
-	[DRAW_POS_Y] = 0
-	};
-
-	draw_rect(image, measures, color);
-}
-
-void	place_full_floor(mlx_image_t *image, int color)
-{
-	const int	measures[4] = {
-	[RECT_WIDTH] = SCREEN_WIDTH,
-	[RECT_HEIGHT] = SCREEN_HEIGHT / 2,
-	[DRAW_POS_X] = 0,
-	[DRAW_POS_Y] = SCREEN_HEIGHT / 2
-	};
-
-	draw_rect(image, measures, color);
-}
-
-void	place_wall(mlx_image_t *image, int wall_height, int position, \
-					int color)
-{
-	const int	measures[4] = {
-	[RECT_WIDTH] = 1,
-	[RECT_HEIGHT] = wall_height,
-	[DRAW_POS_X] = position,
-	[DRAW_POS_Y] = SCREEN_HEIGHT / 2 - wall_height / 2
-	};
-
-	draw_rect(image, measures, color);
 }
 
 void	init_ray_variables(t_player *player, t_ray *ray)
