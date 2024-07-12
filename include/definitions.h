@@ -70,6 +70,14 @@ typedef enum	e_xyz
 	Z
 }	t_xyz;
 
+typedef enum e_nesw
+{
+	N,
+	E,
+	S,
+	W
+}	t_nesw;
+
 typedef enum e_minimap_options
 {
 	raster_only,

@@ -2,6 +2,7 @@
 # define STRUCTURES_H
 
 # include "MLX42/MLX42.h"
+# include "definitions.h"
 
 typedef struct s_player
 {
@@ -16,7 +17,7 @@ typedef struct s_ray
 	double		delta[2];
 	double		shortest[2];
 	int			check_pos[2];
-	char		side;
+	t_nesw		side;
 }				t_ray;
 
 typedef struct s_map
