@@ -37,12 +37,8 @@ void		single_place_ceiling(mlx_image_t *image, int wall_height, int position, ui
 void		single_place_wall(mlx_image_t *image, int wall_height, int position, uint32_t color);
 void		single_place_floor(mlx_image_t *image, int wall_height, int position, uint32_t color);
 
-
 // - Layers
 bool		init_mainlayer(t_gfx_data *graphics);
-bool		init_background(t_gfx_data *graphics);
-void		draw_floor(mlx_image_t *image);
-void		draw_sky(mlx_image_t *image);
 
 // - Minimap
 bool		init_minimap(t_gfx_data *graphics);
