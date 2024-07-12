@@ -22,6 +22,11 @@ void		run_graphics(t_all *data);
 bool		init_image(t_gfx_data *graphics);
 bool		set_all_images_to_window(t_gfx_data *graphics);
 
+// - Layers
+bool		init_mainlayer(t_gfx_data *graphics);
+bool		init_minimap(t_gfx_data *graphics);
+bool		init_bigmap(t_gfx_data *graphics);
+
 // - Raycasting
 void		raycasting(t_mainlayer *mainlayer, uint32_t ceiling_color, uint32_t floor_color, uint32_t wall_color[4]);
 void		init_ray_variables(t_player *player, t_ray *ray);
@@ -37,11 +42,7 @@ void		single_place_ceiling(mlx_image_t *image, int wall_height, int position, ui
 void		single_place_wall(mlx_image_t *image, int wall_height, int position, uint32_t color);
 void		single_place_floor(mlx_image_t *image, int wall_height, int position, uint32_t color);
 
-// - Layers
-bool		init_mainlayer(t_gfx_data *graphics);
-
 // - Minimap
-bool		init_minimap(t_gfx_data *graphics);
 void		init_minimap_values(t_minimap *minimap);
 void		draw_minimap_frame(t_minimap minimap, t_minimap_options option);
 void		draw_walls_on_minimap(t_minimap *minimap);
@@ -53,8 +54,6 @@ bool		is_minimap_unit_out_of_map_scope(const t_minimap *minimap);
 void		reset_minimap_end_of_map_locator(t_minimap *minimap);
 
 // - Bigmap
-
-bool		init_bigmap(t_gfx_data *graphics);
 void		init_bigmap_values(t_bigmap *bigmap);
 void		draw_walls_on_bigmap(t_bigmap *bigmap);
 void		draw_bigmap_raster(t_bigmap bigmap);
