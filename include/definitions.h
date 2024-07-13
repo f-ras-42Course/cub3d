@@ -36,6 +36,13 @@
 # define BIGMAP_GRID_WIDTH		47
 # define BIGMAP_GRID_HEIGHT		35
 
+
+//-- Tested workable FOVs are: 66.2068965517, 96.00, 101.0526315789, 106.6666666666
+# define FOV					66.2068965517
+// # define FOV					96.0000000000
+// # define FOV					101.0526315789
+// # define FOV					106.6666666666
+
 typedef enum e_error_codes
 {
 	SUCCES,

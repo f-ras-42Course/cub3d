@@ -8,12 +8,12 @@ void	bigmap_draw_lines(t_bigmap *bigmap, int color)
 
 	bigmap_position[X] = bigmap->player->position[X] * bigmap->unit_size;
 	bigmap_position[Y] = bigmap->player->position[Y] * bigmap->unit_size;
-	ray.direction = bigmap->player->direction - 33.10344827585 * RD;
-	for (size_t i = 0; i < 66.2068965517 * (SCREEN_WIDTH / 66.2068965517); i++)
+	ray.direction = bigmap->player->direction - (FOV / 2) * RD;
+	for (size_t i = 0; i < FOV * (SCREEN_WIDTH / FOV); i++)
 	{
 		init_line_variables(bigmap->player, &ray);
 		draw_single_line(bigmap, &ray, bigmap_position, color);
-		ray.direction += RD / (SCREEN_WIDTH / 66.2068965517);
+		ray.direction += RD / (SCREEN_WIDTH / FOV);
 	}
 }
 

@@ -9,10 +9,10 @@ void	raycasting(t_mainlayer *mainlayer, uint32_t ceiling_color, uint32_t floor_c
 	int		i;
 
 	i = 0;
-	ray.direction = mainlayer->player->direction - 33.10344827585 * RD;
+	ray.direction = mainlayer->player->direction - (FOV / 2) * RD;
 	place_full_ceiling_colored(mainlayer->image, ceiling_color);
 	place_full_floor_colored(mainlayer->image, floor_color);
-	while (i < 66.2068965517 * (SCREEN_WIDTH / 66.2068965517))
+	while (i < FOV * (SCREEN_WIDTH / FOV))
 	{
 		init_ray_variables(mainlayer->player, &ray);
 		perp_distance = ray_distance(&ray) \
@@ -21,7 +21,7 @@ void	raycasting(t_mainlayer *mainlayer, uint32_t ceiling_color, uint32_t floor_c
 		if (wall_height > SCREEN_HEIGHT)
 			wall_height = SCREEN_HEIGHT;
 		place_wall_colored(mainlayer->image, wall_height, i, wall_color[ray.side]);
-		ray.direction += RD / (SCREEN_WIDTH / 66.2068965517);
+		ray.direction += RD / (SCREEN_WIDTH / FOV);
 		i++;
 	}
 }
