@@ -26,6 +26,7 @@ bool		set_all_images_to_window(t_gfx_data *graphics);
 bool		init_mainlayer(t_gfx_data *graphics);
 bool		init_minimap(t_gfx_data *graphics);
 bool		init_bigmap(t_gfx_data *graphics);
+void		init_bigmap_values(t_bigmap *bigmap);
 
 // - Raycasting
 void		raycasting(t_mainlayer *mainlayer, uint32_t ceiling_color, uint32_t floor_color, uint32_t wall_color[4]);
@@ -49,41 +50,44 @@ void		draw_walls_on_minimap(t_minimap *minimap);
 void		draw_player_on_minimap(t_minimap *minimap);
 void		draw_end_of_map(t_minimap *minimap, int x, int y);
 void		fill_minimap_unit(t_minimap *minimap, int minimap_pos_x, \
-			int minimap_pos_y, int color);
+								int minimap_pos_y, int color);
 bool		is_minimap_unit_out_of_map_scope(const t_minimap *minimap);
 void		reset_minimap_end_of_map_locator(t_minimap *minimap);
 
 // - Bigmap
-void		init_bigmap_values(t_bigmap *bigmap);
-void		draw_walls_on_bigmap(t_bigmap *bigmap);
-void		draw_bigmap_raster(t_bigmap bigmap);
-void		fill_bigmap_unit(t_bigmap *bigmap, int bigmap_pos_x, \
+void		bigmap(const t_bigmap *bigmap);
+void		draw_walls_on_bigmap(const t_bigmap *bigmap);
+void		fill_bigmap_unit(const t_bigmap *bigmap, int bigmap_pos_x, \
 			int bigmap_pos_y, int color);
 bool		is_wall_for_bigmap(const t_bigmap *bigmap);
-void		draw_player_on_bigmap(t_bigmap *bigmap, int color);
+void		draw_player_on_bigmap(const t_bigmap *bigmap, int color);
 
-// - Bigmap line
+// - Bigmap ray drawing
 
-void		bigmap_draw_lines(t_bigmap *bigmap, int color);
-void		bigmap_draw_single_line(t_bigmap *bigmap, int color);
-void		draw_single_line(t_bigmap *bigmap, t_ray *ray, double bigmap_position[2], int color);
-void		init_line_variables(const t_player *player, t_ray *ray);
-int			calculate_line_size(t_bigmap *bigmap, t_ray ray);
+void		bigmap_draw_ray_lines(const t_bigmap *bigmap, int color);
+void		draw_single_ray_line(const t_bigmap *bigmap, t_ray *ray, \
+			double bigmap_position[2], int color);
+void		init_ray_line_variables(const t_player *player, t_ray *ray);
+int			calculate_line_size(const t_bigmap *bigmap, t_ray *ray);
 bool		wall_found(int x, int y);
+
+// -- Single line bigmap (for testing)
+void		bigmap_draw_direction_angle(const t_bigmap *bigmap, int color);
+void		draw_bigmap_raster(const t_bigmap *bigmap);
 
 // - Rectangle
 
 mlx_image_t	*rect_image_draw(mlx_t *mlx, \
 			const int measures[4], unsigned int color);
 void		draw_rect(mlx_image_t *image, \
-				const int measures[4], unsigned int color);
+						const int measures[4], unsigned int color);
 
 // - Circle
 
-void	draw_circle(mlx_image_t *image, \
-					const int measures[3], unsigned int color);
-void	draw_filled_circle(mlx_image_t *image, \
-					const int measures[3], unsigned int color);
+void		draw_circle(mlx_image_t *image, \
+			const int measures[3], unsigned int color);
+void		draw_filled_circle(mlx_image_t *image, \
+			const int measures[3], unsigned int color);
 
 // - Rendering
 
