@@ -6,6 +6,7 @@ void	set_data(t_all *data)
 {
 	set_start_position_player(data);
 	set_start_direction_player(data);
+	set_player_field_of_view(data);
 }
 
 void	set_start_position_player(t_all *data)
@@ -57,4 +58,11 @@ bool	player_found(char c)
 char	get_player_type(t_all *data)
 {
 	return (g_temp_test_map[(int)data->player.position[Y]][(int)data->player.position[X]]);
+}
+
+void 	set_player_field_of_view(t_all *data)
+{
+	data->player.fov = 66.2068965517;
+
+	cub3d_float_int_printer(STDOUT_FILENO, "Default FOV: %d\n", (int)data->player.fov);
 }

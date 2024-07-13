@@ -30,5 +30,7 @@ void	key_hooks(mlx_key_data_t keydata, void *ptr_to_data)
 			mlx_close_window(data->graphics.mlx);
 		if (keydata.key == MLX_KEY_F)
 			show_fps(true);
+		if (keydata.key == MLX_KEY_V)
+			change_fov(data);
 	}
 }

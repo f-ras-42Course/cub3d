@@ -11,10 +11,10 @@ void	raycasting(t_mainlayer *mainlayer, uint32_t ceiling_color, \
 	const t_player	*player = mainlayer->player;
 
 	i = 0;
-	ray.direction = player->direction - (FOV / 2) * RD;
+	ray.direction = player->direction - (player->fov / 2) * RD;
 	place_full_ceiling_colored(mainlayer->image, ceiling_color);
 	place_full_floor_colored(mainlayer->image, floor_color);
-	while (i < FOV * (SCREEN_WIDTH / FOV))
+	while (i < player->fov * (SCREEN_WIDTH / player->fov))
 	{
 		init_ray_variables(player, &ray);
 		perp_distance = ray_distance(&ray) \
@@ -23,7 +23,7 @@ void	raycasting(t_mainlayer *mainlayer, uint32_t ceiling_color, \
 		if (wall_height > SCREEN_HEIGHT)
 			wall_height = SCREEN_HEIGHT;
 		place_wall_colored(mainlayer->image, wall_height, i, wall_color[ray.side]);
-		ray.direction += RD / (SCREEN_WIDTH / FOV);
+		ray.direction += RD / (SCREEN_WIDTH / player->fov);
 		i++;
 	}
 }

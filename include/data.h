@@ -21,4 +21,8 @@ void	set_position(double x, double y, double where[2]);
 // -- FPS
 void	show_fps(bool key_pressed);
 
+// -- FOV
+void 	set_player_field_of_view(t_all *data);
+void	change_fov(t_all *data);
+
 #endif
