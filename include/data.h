@@ -24,5 +24,6 @@ void	show_fps(bool key_pressed);
 // -- FOV
 void 	set_player_field_of_view(t_all *data);
 void	change_fov(t_all *data);
+void	zoom_in(t_all *data);
 
 #endif

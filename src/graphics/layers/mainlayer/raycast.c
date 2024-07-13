@@ -20,6 +20,8 @@ void	raycasting(t_mainlayer *mainlayer, uint32_t ceiling_color, \
 		perp_distance = ray_distance(&ray) \
 						* cos(ray.direction - player->direction);
 		wall_height = (int)SCREEN_HEIGHT / perp_distance;
+		if (player->fov == 16)
+			wall_height *= 3;
 		if (wall_height > SCREEN_HEIGHT)
 			wall_height = SCREEN_HEIGHT;
 		place_wall_colored(mainlayer->image, wall_height, i, wall_color[ray.side]);

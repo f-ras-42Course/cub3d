@@ -16,3 +16,16 @@ void	change_fov(t_all *data)
 	}
 	cub3d_float_int_printer(STDOUT_FILENO, "FOV set to: %d\n", (int)data->player.fov);
 }
+
+void	zoom_in(t_all *data)
+{
+	static double old_fov;
+
+	if (data->player.fov != 16)
+	{
+		old_fov = data->player.fov;
+		data->player.fov = 16.0000000000;
+	}
+	else
+		data->player.fov = old_fov;
+}
