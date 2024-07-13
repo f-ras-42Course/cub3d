@@ -8,7 +8,6 @@ typedef struct s_player
 {
 	double		position[2];
 	double		direction;
-	double		plane[2];
 	// double		fov;
 }				t_player;
 
