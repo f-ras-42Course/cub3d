@@ -34,5 +34,7 @@ void	key_hooks(mlx_key_data_t keydata, void *ptr_to_data)
 			change_fov(data);
 		if (keydata.key == MLX_KEY_Z)
 			zoom_in(data);
+		if (keydata.key == MLX_KEY_M)
+			bigmap_io_switch(&(data->graphics.bigmap));
 	}
 }

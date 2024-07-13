@@ -8,6 +8,7 @@ bool	init_bigmap(t_gfx_data *graphics)
 						graphics->bigmap.width, graphics->bigmap.height);
 	if (!graphics->bigmap.image)
 		return (false);
+	graphics->bigmap.image->enabled = false;
 	return (true);
 }
 

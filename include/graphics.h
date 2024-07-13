@@ -73,6 +73,7 @@ void		fill_bigmap_unit(const t_bigmap *bigmap, int bigmap_pos_x, \
 								int bigmap_pos_y, int color);
 bool		is_wall_for_bigmap(const t_bigmap *bigmap);
 void		draw_player_on_bigmap(const t_bigmap *bigmap, int color);
+void		bigmap_io_switch(t_bigmap *bigmap);
 
 // - Bigmap ray drawing
 

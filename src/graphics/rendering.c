@@ -15,5 +15,6 @@ void	update_image(t_gfx_data *graphics)
 	floor_color = 0xADA587ff;
 	minimap(&(graphics->minimap));
 	raycasting(&(graphics->mainlayer), ceiling_color, floor_color, wall_color);
-	bigmap(&(graphics->bigmap));
+	if (graphics->bigmap.image->enabled)
+		bigmap(&(graphics->bigmap));
 }
