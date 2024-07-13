@@ -19,7 +19,7 @@ void	draw_walls_on_minimap(t_minimap *minimap)
 	{
 		while (x < MINIMAP_GRID_WIDTH)
 		{
-			if (is_minimap_unit_out_of_map_scope(minimap))
+			if (minimap_unit_is_out_of_map_scope(minimap))
 				draw_end_of_map(minimap, x, y);
 			else if (wall_found(minimap->end_of_map_locator_x, \
 						minimap->end_of_map_locator_y))

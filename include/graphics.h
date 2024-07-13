@@ -59,7 +59,7 @@ void		fill_minimap_unit(t_minimap *minimap, int minimap_pos_x, \
 								int minimap_pos_y, int color);
 
 // - Minimap checks
-bool		is_minimap_unit_out_of_map_scope(const t_minimap *minimap);
+bool		minimap_unit_is_out_of_map_scope(const t_minimap *minimap);
 void		reset_minimap_end_of_map_locator(t_minimap *minimap);
 
 // - Minimap framworks (for testing)

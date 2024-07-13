@@ -1,7 +1,7 @@
 
 #include "graphics.h"
 
-bool	is_minimap_unit_out_of_map_scope(const t_minimap *minimap)
+bool	minimap_unit_is_out_of_map_scope(const t_minimap *minimap)
 {
 	return (minimap->end_of_map_locator_x < 0 \
 		|| minimap->end_of_map_locator_y < 0 \
