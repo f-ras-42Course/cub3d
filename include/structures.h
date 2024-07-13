@@ -9,6 +9,7 @@ typedef struct s_player
 	double		position[2];
 	double		direction;
 	double		plane[2];
+	// double		fov;
 }				t_player;
 
 typedef struct s_ray
@@ -36,7 +37,6 @@ typedef struct s_fps
 	double		old_time;
 }				t_fps;
 
-
 /*  minimap_width:
 	Full HD: 225 | 4K: 450
 	minimap_height:
@@ -56,7 +56,6 @@ typedef struct s_minimap
 	t_player	*player;
 }	t_minimap;
 
-
 typedef struct s_bigmap
 {
 	mlx_image_t	*image;
@@ -65,7 +64,6 @@ typedef struct s_bigmap
 	int			unit_size;
 	t_player	*player;
 }	t_bigmap;
-
 
 typedef struct s_mainlayer
 {

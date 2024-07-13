@@ -29,7 +29,7 @@ bool		init_bigmap(t_gfx_data *graphics);
 
 // - Raycasting
 void		raycasting(t_mainlayer *mainlayer, uint32_t ceiling_color, uint32_t floor_color, uint32_t wall_color[4]);
-void		init_ray_variables(t_player *player, t_ray *ray);
+void		init_ray_variables(const t_player *player, t_ray *ray);
 double		ray_distance(t_ray *ray);
 void		set_wall_side(t_ray *ray, int side_check);
 void		place_full_ceiling_colored(mlx_image_t *image, uint32_t color);
@@ -67,7 +67,7 @@ void		draw_player_on_bigmap(t_bigmap *bigmap, int color);
 void		bigmap_draw_lines(t_bigmap *bigmap, int color);
 void		bigmap_draw_single_line(t_bigmap *bigmap, int color);
 void		draw_single_line(t_bigmap *bigmap, t_ray *ray, double bigmap_position[2], int color);
-void		init_line_variables(t_player *player, t_ray *ray);
+void		init_line_variables(const t_player *player, t_ray *ray);
 int			calculate_line_size(t_bigmap *bigmap, t_ray ray);
 bool		wall_found(int x, int y);
 

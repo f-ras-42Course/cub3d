@@ -1,22 +1,24 @@
 
 #include "graphics.h"
 
-void	raycasting(t_mainlayer *mainlayer, uint32_t ceiling_color, uint32_t floor_color, uint32_t wall_color[4])
+void	raycasting(t_mainlayer *mainlayer, uint32_t ceiling_color, \
+					uint32_t floor_color, uint32_t wall_color[4])
 {
-	t_ray	ray;
-	double	perp_distance;
-	int		wall_height;
-	int		i;
+	t_ray			ray;
+	double			perp_distance;
+	int				wall_height;
+	int				i;
+	const t_player	*player = mainlayer->player;
 
 	i = 0;
-	ray.direction = mainlayer->player->direction - (FOV / 2) * RD;
+	ray.direction = player->direction - (FOV / 2) * RD;
 	place_full_ceiling_colored(mainlayer->image, ceiling_color);
 	place_full_floor_colored(mainlayer->image, floor_color);
 	while (i < FOV * (SCREEN_WIDTH / FOV))
 	{
-		init_ray_variables(mainlayer->player, &ray);
+		init_ray_variables(player, &ray);
 		perp_distance = ray_distance(&ray) \
-						* cos(ray.direction - mainlayer->player->direction);
+						* cos(ray.direction - player->direction);
 		wall_height = (int)SCREEN_HEIGHT / perp_distance;
 		if (wall_height > SCREEN_HEIGHT)
 			wall_height = SCREEN_HEIGHT;
@@ -26,7 +28,7 @@ void	raycasting(t_mainlayer *mainlayer, uint32_t ceiling_color, uint32_t floor_c
 	}
 }
 
-void	init_ray_variables(t_player *player, t_ray *ray)
+void	init_ray_variables(const t_player *player, t_ray *ray)
 {
 	ray->delta[X] = \
 		sqrt(1 + (pow(sin(ray->direction) \

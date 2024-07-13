@@ -3,15 +3,16 @@
 
 void	bigmap_draw_lines(t_bigmap *bigmap, int color)
 {
-	t_ray	ray;
-	double	bigmap_position[2];
+	t_ray			ray;
+	double			bigmap_position[2];
+	const t_player	*player = bigmap->player;
 
-	bigmap_position[X] = bigmap->player->position[X] * bigmap->unit_size;
-	bigmap_position[Y] = bigmap->player->position[Y] * bigmap->unit_size;
-	ray.direction = bigmap->player->direction - (FOV / 2) * RD;
+	bigmap_position[X] = player->position[X] * bigmap->unit_size;
+	bigmap_position[Y] = player->position[Y] * bigmap->unit_size;
+	ray.direction = player->direction - (FOV / 2) * RD;
 	for (size_t i = 0; i < FOV * (SCREEN_WIDTH / FOV); i++)
 	{
-		init_line_variables(bigmap->player, &ray);
+		init_line_variables(player, &ray);
 		draw_single_line(bigmap, &ray, bigmap_position, color);
 		ray.direction += RD / (SCREEN_WIDTH / FOV);
 	}
@@ -19,18 +20,19 @@ void	bigmap_draw_lines(t_bigmap *bigmap, int color)
 
 void	bigmap_draw_single_line(t_bigmap *bigmap, int color)
 {
-	t_ray	ray;
-	double	bigmap_position[2];
+	t_ray			ray;
+	double			bigmap_position[2];
+	const t_player	*player = bigmap->player;
 
-	bigmap_position[X] = bigmap->player->position[X] * bigmap->unit_size;
-	bigmap_position[Y] = bigmap->player->position[Y] * bigmap->unit_size;
-	ray.direction = bigmap->player->direction;
-	init_line_variables(bigmap->player, &ray);
+	bigmap_position[X] = player->position[X] * bigmap->unit_size;
+	bigmap_position[Y] = player->position[Y] * bigmap->unit_size;
+	ray.direction = player->direction;
+	init_line_variables(player, &ray);
 	draw_single_line(bigmap, &ray, bigmap_position, color);
 }
 
 
-void	init_line_variables(t_player *player, t_ray *ray)
+void	init_line_variables(const t_player *player, t_ray *ray)
 {
 	ray->delta[X] = \
 		sqrt(1 + (pow(sin(ray->direction) \
