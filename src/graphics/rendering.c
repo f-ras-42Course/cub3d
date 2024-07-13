@@ -13,9 +13,7 @@ void	update_image(t_gfx_data *graphics)
 	wall_color[W] = 0x004f00ff;
 	ceiling_color = 0X87CEEBff;
 	floor_color = 0xADA587ff;
-	reset_minimap_end_of_map_locator(&(graphics->minimap));
-	draw_walls_on_minimap(&(graphics->minimap));
-	draw_player_on_minimap(&(graphics->minimap));
+	minimap(&(graphics->minimap));
 	raycasting(&(graphics->mainlayer), ceiling_color, floor_color, wall_color);
 	bigmap(&(graphics->bigmap));
 }

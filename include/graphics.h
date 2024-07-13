@@ -25,6 +25,7 @@ bool		set_all_images_to_window(t_gfx_data *graphics);
 // - Layers
 bool		init_mainlayer(t_gfx_data *graphics);
 bool		init_minimap(t_gfx_data *graphics);
+void		init_minimap_values(t_minimap *minimap);
 bool		init_bigmap(t_gfx_data *graphics);
 void		init_bigmap_values(t_bigmap *bigmap);
 
@@ -44,15 +45,19 @@ void		single_place_wall(mlx_image_t *image, int wall_height, int position, uint3
 void		single_place_floor(mlx_image_t *image, int wall_height, int position, uint32_t color);
 
 // - Minimap
-void		init_minimap_values(t_minimap *minimap);
-void		draw_minimap_frame(t_minimap minimap, t_minimap_options option);
+void		minimap(t_minimap *minimap);
 void		draw_walls_on_minimap(t_minimap *minimap);
 void		draw_player_on_minimap(t_minimap *minimap);
 void		draw_end_of_map(t_minimap *minimap, int x, int y);
 void		fill_minimap_unit(t_minimap *minimap, int minimap_pos_x, \
 								int minimap_pos_y, int color);
+
+// - Minimap checks
 bool		is_minimap_unit_out_of_map_scope(const t_minimap *minimap);
 void		reset_minimap_end_of_map_locator(t_minimap *minimap);
+
+// - Minimap framworks (for testing)
+void		draw_minimap_frame(const t_minimap *minimap, t_minimap_options option);
 
 // - Bigmap
 void		bigmap(const t_bigmap *bigmap);

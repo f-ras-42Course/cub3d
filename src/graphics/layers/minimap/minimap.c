@@ -1,51 +1,21 @@
 
 #include "graphics.h"
 
-bool	init_minimap(t_gfx_data *graphics)
+void	minimap(t_minimap *minimap)
 {
-	init_minimap_values(&(graphics->minimap));
-	graphics->minimap.image = mlx_new_image(graphics->mlx, \
-						graphics->minimap.width, graphics->minimap.height);
-	if (!graphics->minimap.image)
-		return (false);
-	return (true);
+	reset_minimap_end_of_map_locator(minimap);
+	draw_walls_on_minimap(minimap);
+	draw_player_on_minimap(minimap);
 }
 
-void	draw_minimap_frame(t_minimap minimap, t_minimap_options option)
+void	draw_walls_on_minimap(t_minimap *minimap)
 {
 	int	x;
 	int	y;
 
 	x = 0;
 	y = 0;
-	while (y < minimap.height)
-	{
-		while (x < minimap.width)
-		{
-			if ((option == frame_only || option == raster_plus_frame) \
-				&& ((y < minimap.frame_thickness \
-				|| x < minimap.frame_thickness \
-				|| x > minimap.width - minimap.frame_thickness \
-				|| y > minimap.height - minimap.frame_thickness)))
-				mlx_put_pixel(minimap.image, x, y, 0xff0000ff);
-			else if ((option == raster_only || option == raster_plus_frame) \
-					&& (x % minimap.unit_size == 0 || y % minimap.unit_size == 0))
-					mlx_put_pixel(minimap.image, x, y, 0x0000ffff);
-			x++;
-		}
-		x = 0;
-		y++;
-	}
-}
-
-void	draw_walls_on_minimap(t_minimap *minimap)
-{
-	int x;
-	int y;
-
-	x = 0;
-	y = 0;
-	while (y <  MINIMAP_GRID_HEIGHT)
+	while (y < MINIMAP_GRID_HEIGHT)
 	{
 		while (x < MINIMAP_GRID_WIDTH)
 		{
@@ -65,7 +35,7 @@ void	draw_walls_on_minimap(t_minimap *minimap)
 		y++;
 		(minimap->end_of_map_locator_y)++;
 	}
-};
+}
 
 void	fill_minimap_unit(t_minimap *minimap, int minimap_pos_x, \
 			int minimap_pos_y, int color)
@@ -82,9 +52,9 @@ void	fill_minimap_unit(t_minimap *minimap, int minimap_pos_x, \
 
 void	draw_end_of_map(t_minimap *minimap, int raster_x, int raster_y)
 {
-	static int		color;
-	int x;
-	int y;
+	static int	color;
+	int			x;
+	int			y;
 
 	raster_x *= minimap->unit_size;
 	raster_y *= minimap->unit_size;
@@ -103,7 +73,7 @@ void	draw_end_of_map(t_minimap *minimap, int raster_x, int raster_y)
 
 void	draw_player_on_minimap(t_minimap *minimap)
 {
-	const int measures[3] = {
+	const int	measures[3] = {
 	[RADIUS] = round(minimap->unit_size * .3),
 	[DRAW_POS_CENTER_X] = round(minimap->width * .5),
 	[DRAW_POS_CENTER_Y] = round(minimap->height * .5)
