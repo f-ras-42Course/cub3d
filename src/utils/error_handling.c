@@ -4,6 +4,15 @@
 static const char	*g_error_msg[] = {
 	"Succes",
 	// PARSE
+	"invalid map",
+	"map too small",
+	"no player found",
+	"found invalid character while parsing map",
+	"this game does not support multiplayer",
+	"one or more elements are repeated",
+	"not all elements are present",
+	"provide correct rgb colors for floor/ceiling (255,255,255)",
+	"the file given as argument does not exist",
 	"make sure the map ends with '.cub'",
 	"no map supplied",
 	// GFX
