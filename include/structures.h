@@ -56,7 +56,7 @@ typedef struct s_minimap
 	int			end_of_map_locator_x;
 	int			end_of_map_locator_y;
 	t_player	*player;
-}	t_minimap;
+}				t_minimap;
 
 typedef struct s_bigmap
 {
@@ -65,13 +65,24 @@ typedef struct s_bigmap
 	int			height;
 	int			unit_size;
 	t_player	*player;
-}	t_bigmap;
+}				t_bigmap;
+
+typedef struct s_textures
+{
+	mlx_texture_t		*ceiling_texture;
+	mlx_texture_t		*floor_texture;
+	mlx_texture_t		*north_texture;
+	mlx_texture_t		*south_texture;
+	mlx_texture_t		*east_texture;
+	mlx_texture_t		*west_texture;
+}						t_textures;
 
 typedef struct s_mainlayer
 {
 	mlx_image_t	*image;
 	t_player	*player;
-}	t_mainlayer;
+	t_textures	textures;
+}				t_mainlayer;
 
 typedef struct s_gfx_data
 {
@@ -80,7 +91,7 @@ typedef struct s_gfx_data
 	t_minimap		minimap;
 	t_bigmap		bigmap;
 	struct s_all	*data;
-}	t_gfx_data;
+}					t_gfx_data;
 
 typedef struct s_all
 {

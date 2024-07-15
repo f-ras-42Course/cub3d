@@ -16,6 +16,8 @@ static const char	*g_error_msg[] = {
 	"make sure the map ends with '.cub'",
 	"no map supplied",
 	// GFX
+	"texture must be a '.png' file",
+	"make sure all texture files exist",
 	"MLX crashed (GFX); go into debug mode for more info",
 	"MLX crashed (HOOKS); go into debug mode for more info"
 };

@@ -7,7 +7,8 @@ int	main(int argc, char **argv)
 
 	// if (!parse_map(&data, argc, argv[1]))
 	// 	return (data.error_code);
-	set_data(&data);
+	if (!set_data(&data))
+		return (data.error_code);
 	if (!init_graphics(&data))
 		return (data.error_code);
 	if (!load_hooks(&data))
