@@ -30,15 +30,25 @@ bool		init_bigmap(t_gfx_data *graphics);
 void		init_bigmap_values(t_bigmap *bigmap);
 
 // - Raycasting
-void		raycasting(t_mainlayer *mainlayer, uint32_t ceiling_color, \
+//-Textured
+void		raycasting(t_mainlayer *mainlayer);
+void		place_full_ceiling_textured(mlx_image_t *image, const mlx_texture_t* texture);
+void		place_full_floor_textured(mlx_image_t *image, const mlx_texture_t* texture);
+void		place_wall_textured(mlx_image_t *image, int wall_height, int position, \
+						const mlx_texture_t* texture);
+void		test_texture(mlx_image_t *image, const mlx_texture_t* texture);
+
+//-Colored
+void		raycasting_colored(t_mainlayer *mainlayer, uint32_t ceiling_color, \
 						uint32_t floor_color, uint32_t wall_color[4]);
-void		init_ray_variables(const t_player *player, t_ray *ray);
-double		ray_distance(t_ray *ray);
-void		set_wall_side(t_ray *ray, int side_check);
 void		place_full_ceiling_colored(mlx_image_t *image, uint32_t color);
 void		place_full_floor_colored(mlx_image_t *image, uint32_t color);
 void		place_wall_colored(mlx_image_t *image, int wall_height, \
 								int position, uint32_t color);
+//-Shared
+void		init_ray_variables(const t_player *player, t_ray *ray);
+double		ray_distance(t_ray *ray);
+void		set_wall_side(t_ray *ray, int side_check);
 
 // -- Single Raycasting (for testing)
 void		single_raycasting(t_mainlayer *mainlayer, uint32_t ceiling_color, \
@@ -94,6 +104,8 @@ mlx_image_t	*rect_image_draw(mlx_t *mlx, \
 								const int measures[4], unsigned int color);
 void		draw_rect(mlx_image_t *image, \
 						const int measures[4], unsigned int color);
+void		draw_rect_textured(mlx_image_t *image, \
+					const int measures[4], const mlx_texture_t *texture);
 
 // - Circle
 
@@ -101,6 +113,11 @@ void		draw_circle(mlx_image_t *image, \
 							const int measures[3], unsigned int color);
 void		draw_filled_circle(mlx_image_t *image, \
 								const int measures[3], unsigned int color);
+
+// - RGBA
+
+int			get_rgba(int r, int g, int b, int a);
+uint32_t	get_color_from_pixel_data(int x, int y, const mlx_texture_t *texture);
 
 // - Rendering
 

@@ -31,3 +31,25 @@ void	draw_rect(mlx_image_t *image, \
 		}
 	}
 }
+
+void	draw_rect_textured(mlx_image_t *image, \
+					const int measures[4], const mlx_texture_t *texture)
+{
+	int			color;
+	int			x;
+	int			y;
+
+	x = measures[DRAW_POS_X];
+	y = measures[DRAW_POS_Y];
+	while (y < (measures[RECT_HEIGHT] + measures[DRAW_POS_Y]))
+	{
+		color = get_color_from_pixel_data(\
+				x - measures[DRAW_POS_X], y - measures[DRAW_POS_Y], texture);
+		mlx_put_pixel(image, x, y, color);
+		x++;
+		if (x >= (measures[RECT_WIDTH] + measures[DRAW_POS_X]))
+		{
+			x = measures[DRAW_POS_X];
+			y++;		}
+	}
+}

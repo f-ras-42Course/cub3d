@@ -37,32 +37,53 @@ bool	is_all_png_files(const t_map *map)
 	return (true);
 }
 
+/*
+**	Below the original code - from north_texture onwards:
+	textures->north_texture = mlx_load_png(map->north_texture);
+	if (!textures->north_texture)
+		return ((void)write(STDERR_FILENO, "Couldn't load: ", 16), \
+				ft_putendl_fd(map->north_texture, STDERR_FILENO), false);
+	textures->south_texture = mlx_load_png(map->south_texture);
+	if (!textures->south_texture)
+		return ((void)write(STDERR_FILENO, "Couldn't load: ", 16), \
+				ft_putendl_fd(map->south_texture, STDERR_FILENO), false);
+	textures->east_texture = mlx_load_png(map->east_texture);
+	if (!textures->east_texture)
+		return ((void)write(STDERR_FILENO, "Couldn't load: ", 16), \
+				ft_putendl_fd(map->east_texture, STDERR_FILENO), false);
+	textures->west_texture = mlx_load_png(map->west_texture);
+	if (!textures->west_texture)
+		return ((void)write(STDERR_FILENO, "Couldn't load: ", 16), \
+				ft_putendl_fd(map->west_texture, STDERR_FILENO), false);
+*/
 bool	set_all_textures(t_textures *textures, const t_map *map)
 {
 	textures->ceiling_texture = mlx_load_png("./textures/pack1/sky.png");
 	if (!textures->ceiling_texture)
 		return ((void)write(STDERR_FILENO, "\nCouldn't load: ", 16), \
 				ft_putendl_fd("./textures/pack1/sky.png", STDERR_FILENO), false);
-	textures->floor_texture = mlx_load_png("./textures/pack1/sand.png");
+	textures->floor_texture = mlx_load_png("./textures/pack1/sand2.png");
 	if (!textures->floor_texture)
 		return ((void)write(STDERR_FILENO, "\nCouldn't load: ", 16), \
-				ft_putendl_fd("./textures/pack1/sand.png", STDERR_FILENO), false);
-	// textures->north_texture = mlx_load_png(map->north_texture);
-	// if (!textures->north_texture)
-	// 	return ((void)write(STDERR_FILENO, "Couldn't load: ", 16), \
-	// 			ft_putendl_fd(map->north_texture, STDERR_FILENO), false);
-	// textures->south_texture = mlx_load_png(map->south_texture);
-	// if (!textures->south_texture)
-	// 	return ((void)write(STDERR_FILENO, "Couldn't load: ", 16), \
-	// 			ft_putendl_fd(map->south_texture, STDERR_FILENO), false);
-	// textures->east_texture = mlx_load_png(map->east_texture);
-	// if (!textures->east_texture)
-	// 	return ((void)write(STDERR_FILENO, "Couldn't load: ", 16), \
-	// 			ft_putendl_fd(map->east_texture, STDERR_FILENO), false);
-	// textures->west_texture = mlx_load_png(map->west_texture);
-	// if (!textures->west_texture)
-	// 	return ((void)write(STDERR_FILENO, "Couldn't load: ", 16), \
-	// 			ft_putendl_fd(map->west_texture, STDERR_FILENO), false);
+				ft_putendl_fd("./textures/pack1/sand2.png", STDERR_FILENO), false);
+	
+	//--- Temporary code until parsing is fixed:
+	textures->north_texture = mlx_load_png("./textures/pack2/Dark/texture_01.png");
+	if (!textures->north_texture)
+		return ((void)write(STDERR_FILENO, "\nCouldn't load: ", 16), \
+				ft_putendl_fd(map->north_texture, STDERR_FILENO), false);
+	textures->south_texture = mlx_load_png("./textures/pack2/Green/texture_09.png");
+	if (!textures->south_texture)
+		return ((void)write(STDERR_FILENO, "\nCouldn't load: ", 16), \
+				ft_putendl_fd(map->south_texture, STDERR_FILENO), false);
+	textures->east_texture = mlx_load_png("./textures/pack2/Orange/texture_11.png");
+	if (!textures->east_texture)
+		return ((void)write(STDERR_FILENO, "\nCouldn't load: ", 16), \
+				ft_putendl_fd(map->east_texture, STDERR_FILENO), false);
+	textures->west_texture = mlx_load_png("./textures/pack2/Red/texture_10.png");
+	if (!textures->west_texture)
+		return ((void)write(STDERR_FILENO, "\nCouldn't load: ", 16), \
+				ft_putendl_fd(map->west_texture, STDERR_FILENO), false);
 	return (true);
 }
 
