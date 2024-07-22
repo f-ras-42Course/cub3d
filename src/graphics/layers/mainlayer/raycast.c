@@ -18,26 +18,46 @@ void	raycasting(t_mainlayer *mainlayer)
 
 	ceiling_color = 0X87CEEBff;
 	floor_color = 0xADA587ff;
+	double	wallX;
+	int 	texX;
+
 	i = 0;
 	ray.direction = player->direction - (player->fov / 2) * RD;
-	place_full_ceiling_textured(mainlayer->image, mainlayer->textures.ceiling_texture);
+	place_full_ceiling_colored(mainlayer->image, ceiling_color);
 	place_full_floor_colored(mainlayer->image, floor_color);
 	while (i < player->fov * (SCREEN_WIDTH / player->fov))
 	{
 		init_ray_variables(player, &ray);
 		perp_distance = ray_distance(&ray) \
 						* cos(ray.direction - player->direction);
+		
+		if (ray.side == 'S' || ray.side == 'N')
+			wallX = player->position[Y] + perp_distance * sin(player->direction);
+		else
+			wallX = player->position[X] + perp_distance * cos(player->direction);
+
+		wallX -= floor(wallX);
+		texX = wallX * 1024;
+
+		// if (ray.side == 'S')
+		// 	texX = (int)mainlayer->textures.south_texture->width - texX - 1;
+		// if (ray.side == 'W')
+		// 	texX = (int)mainlayer->textures.west_texture->width - texX - 1;
+
 		wall_height = (int)SCREEN_HEIGHT / perp_distance;
 		if (player->fov == 16)
 			wall_height *= 3;
 		if (wall_height > SCREEN_HEIGHT)
 			wall_height = SCREEN_HEIGHT;
-		place_wall_textured(mainlayer->image, wall_height, i, wall_texture[ray.side]);
+		place_wall_textured(mainlayer->image, wall_height, i, texX, wall_texture[ray.side]);
 		ray.direction += RD / (SCREEN_WIDTH / player->fov);
 		i++;
 	}
 	// test_texture(mainlayer->image, wall_texture[ray.side]);
 }
+
+	// place_full_ceiling_textured(mainlayer->image, mainlayer->textures.ceiling_texture);
+	// place_full_floor_textured(mainlayer->image, mainlayer->textures.floor_texture);
 
 void	raycasting_colored(t_mainlayer *mainlayer, uint32_t ceiling_color, \
 					uint32_t floor_color, uint32_t wall_color[4])

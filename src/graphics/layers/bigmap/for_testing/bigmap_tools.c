@@ -1,6 +1,13 @@
 
 #include "graphics.h"
 
+void		bigmap_single_ray(const t_bigmap *bigmap)
+{
+	draw_walls_on_bigmap(bigmap);
+	bigmap_draw_direction_angle(bigmap, 0xff0000ff);
+	draw_player_on_bigmap(bigmap, 0xff00004f);
+}
+
 void	bigmap_draw_direction_angle(const t_bigmap *bigmap, int color)
 {
 	t_ray			ray;

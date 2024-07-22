@@ -33,7 +33,7 @@ void	draw_rect(mlx_image_t *image, \
 }
 
 void	draw_rect_textured(mlx_image_t *image, \
-					const int measures[4], const mlx_texture_t *texture)
+					const int measures[4], int texX, const mlx_texture_t *texture)
 {
 	int			color;
 	int			x;
@@ -44,12 +44,13 @@ void	draw_rect_textured(mlx_image_t *image, \
 	while (y < (measures[RECT_HEIGHT] + measures[DRAW_POS_Y]))
 	{
 		color = get_color_from_pixel_data(\
-				x - measures[DRAW_POS_X], y - measures[DRAW_POS_Y], texture);
+				texX, y, texture);
 		mlx_put_pixel(image, x, y, color);
 		x++;
 		if (x >= (measures[RECT_WIDTH] + measures[DRAW_POS_X]))
 		{
 			x = measures[DRAW_POS_X];
-			y++;		}
+			y++;
+		}
 	}
 }
