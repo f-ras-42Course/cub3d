@@ -31,12 +31,14 @@ void		init_bigmap_values(t_bigmap *bigmap);
 
 // - Raycasting
 //-Textured
-void		raycasting(t_mainlayer *mainlayer);
+void		raycasting(t_mainlayer *mainlayer, uint32_t ceiling_color, uint32_t floor_color);
 void		place_full_ceiling_textured(mlx_image_t *image, const mlx_texture_t* texture);
 void		place_full_floor_textured(mlx_image_t *image, const mlx_texture_t* texture);
-void		place_wall_textured(mlx_image_t *image, int wall_height, int position, \
+void		place_wall_textured(mlx_image_t *image, t_wall_data *wall, \
 						const mlx_texture_t* texture);
 void		test_texture(mlx_image_t *image, const mlx_texture_t* texture);
+int			wall_height_limiter(int wall_height);
+
 
 //-Colored
 void		raycasting_colored(t_mainlayer *mainlayer, uint32_t ceiling_color, \
@@ -51,12 +53,16 @@ double		ray_distance(t_ray *ray);
 void		set_wall_side(t_ray *ray, int side_check);
 
 // -- Single Raycasting (for testing)
+void		single_raycasting_textured(t_mainlayer *mainlayer, \
+						uint32_t ceiling_color, uint32_t floor_color);
 void		single_raycasting(t_mainlayer *mainlayer, uint32_t ceiling_color, \
 								uint32_t floor_color);
 void		single_place_ceiling(mlx_image_t *image, int wall_height, \
 									int position, uint32_t color);
 void		single_place_wall(mlx_image_t *image, int wall_height, \
 								int position, uint32_t color);
+void		single_place_wall_texture(mlx_image_t *image, int wall_height, int position, int tex[2],\
+							const mlx_texture_t* texture);
 void		single_place_floor(mlx_image_t *image, int wall_height, \
 								int position, uint32_t color);
 
@@ -95,6 +101,7 @@ int			calculate_line_size(const t_bigmap *bigmap, t_ray *ray);
 bool		wall_found(int x, int y);
 
 // -- Single line bigmap (for testing)
+void		bigmap_single_ray(const t_bigmap *bigmap);
 void		bigmap_draw_direction_angle(const t_bigmap *bigmap, int color);
 void		draw_bigmap_raster(const t_bigmap *bigmap);
 
@@ -104,8 +111,7 @@ mlx_image_t	*rect_image_draw(mlx_t *mlx, \
 								const int measures[4], unsigned int color);
 void		draw_rect(mlx_image_t *image, \
 						const int measures[4], unsigned int color);
-void		draw_rect_textured(mlx_image_t *image, \
-					const int measures[4], const mlx_texture_t *texture);
+void		draw_line_textured(mlx_image_t *image, t_wall_data *wall, const mlx_texture_t *texture);
 
 // - Circle
 

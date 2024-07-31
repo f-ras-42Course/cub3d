@@ -70,7 +70,6 @@ typedef enum e_error_codes
 	MLX_HOOKS_CRASH
 }	t_error_codes;
 
-
 enum e_rectangle_measures
 {
 	RECT_WIDTH,

@@ -5,9 +5,7 @@ uint32_t	get_color_from_pixel_data(int x, int y, const mlx_texture_t *texture)
 {
 	uint8_t	*pixel;
 
-	pixel = &texture->pixels[((x % texture->width) * texture->bytes_per_pixel) \
-							+ ((y % texture->height) * texture->width \
-												* texture->bytes_per_pixel)];
+	pixel = &texture->pixels[(x * texture->bytes_per_pixel) + ((y % texture->height) * texture->width * texture->bytes_per_pixel)];
 	return(get_rgba(*pixel, *(pixel + 1), *(pixel + 2), *(pixel + 3)));
 }
 

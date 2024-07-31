@@ -91,7 +91,22 @@ typedef struct s_gfx_data
 	t_minimap		minimap;
 	t_bigmap		bigmap;
 	struct s_all	*data;
+	bool			testmode;
 }					t_gfx_data;
+
+typedef struct s_wall_data
+{
+	double			perp_distance;
+	double			step[2];
+	int				wall_height;
+	int				line_height;
+	int				tex[2];
+	int				start_x;
+	int				start_y;
+	t_ray			*ray;
+	t_player		*player;
+}					t_wall_data;
+
 
 typedef struct s_all
 {

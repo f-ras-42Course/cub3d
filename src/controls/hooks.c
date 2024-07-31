@@ -1,6 +1,8 @@
 
 #include "controls.h"
 
+static void	testmode_io_switch(t_gfx_data *graphics);
+
 bool	load_hooks(t_all *data)
 {
 	mlx_key_hook(data->graphics.mlx, key_hooks, data);
@@ -36,5 +38,15 @@ void	key_hooks(mlx_key_data_t keydata, void *ptr_to_data)
 			zoom_in(data);
 		if (keydata.key == MLX_KEY_M)
 			bigmap_io_switch(&(data->graphics.bigmap));
+		if (keydata.key == MLX_KEY_T)
+			testmode_io_switch(&(data->graphics));
 	}
+}
+
+static void	testmode_io_switch(t_gfx_data *graphics)
+{
+	if (graphics->testmode)
+		graphics->testmode = false;
+	else
+		graphics->testmode = true;
 }

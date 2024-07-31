@@ -32,24 +32,53 @@ void	draw_rect(mlx_image_t *image, \
 	}
 }
 
-void	draw_rect_textured(mlx_image_t *image, \
-					const int measures[4], const mlx_texture_t *texture)
+void draw_line_textured(mlx_image_t *image, t_wall_data *wall, \
+						const mlx_texture_t *texture)
 {
+	double		tex_position;
 	int			color;
 	int			x;
 	int			y;
 
-	x = measures[DRAW_POS_X];
-	y = measures[DRAW_POS_Y];
-	while (y < (measures[RECT_HEIGHT] + measures[DRAW_POS_Y]))
+	x = wall->start_x;
+	y = wall->start_y;
+	// printf("Y: %d\n", y);
+	tex_position = wall->tex[Y];
+	printf("test: %d\n", wall->tex[Y]);
+	while (y < (wall->line_height + wall->start_y))
 	{
 		color = get_color_from_pixel_data(\
-				x - measures[DRAW_POS_X], y - measures[DRAW_POS_Y], texture);
+				wall->tex[X], wall->tex[Y], texture);
 		mlx_put_pixel(image, x, y, color);
-		x++;
-		if (x >= (measures[RECT_WIDTH] + measures[DRAW_POS_X]))
-		{
-			x = measures[DRAW_POS_X];
-			y++;		}
+		tex_position += wall->step[Y];
+		wall->tex[Y] = tex_position;
+		y++;
 	}
+	// printf("end tex[Y]: %d\n", wall->tex[Y]);
 }
+
+
+
+// void	draw_rect_textured(mlx_image_t *image, \
+// 					const int measures[4], int texX, int texY, const mlx_texture_t *texture)
+// {
+// 	int			color;
+// 	int			x;
+// 	int			y;
+
+// 	x = measures[DRAW_POS_X];
+// 	y = measures[DRAW_POS_Y];
+// 	// printf("Y: %d\n", y);
+// 	while (y < (measures[RECT_HEIGHT] + measures[DRAW_POS_Y]))
+// 	{
+// 		color = get_color_from_pixel_data(\
+// 				texX, y, texture);
+// 		mlx_put_pixel(image, x, y, color);
+// 		x++;
+// 		if (x >= (measures[RECT_WIDTH] + measures[DRAW_POS_X]))
+// 		{
+// 			x = measures[DRAW_POS_X];
+// 			y++;
+// 		}
+// 	}
+// }

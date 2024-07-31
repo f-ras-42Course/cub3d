@@ -1,43 +1,57 @@
 
 #include "graphics.h"
 
-void	raycasting(t_mainlayer *mainlayer)
+void	raycasting(t_mainlayer *mainlayer, uint32_t ceiling_color, uint32_t floor_color)
 {
-	t_ray				ray;
-	double				perp_distance;
-	int					wall_height;
-	int					i;
 	const t_player		*player = mainlayer->player;
 	const mlx_texture_t	*wall_texture[4] = {
 	[N] = mainlayer->textures.north_texture,
 	[E] = mainlayer->textures.east_texture,
 	[S]	= mainlayer->textures.south_texture,
 	[W] = mainlayer->textures.west_texture};
-	uint32_t		ceiling_color;
-	uint32_t		floor_color;
+	t_ray				ray;
+	t_wall_data			wall;
 
-	ceiling_color = 0X87CEEBff;
-	floor_color = 0xADA587ff;
-	i = 0;
+	wall.start_x = 0;
 	ray.direction = player->direction - (player->fov / 2) * RD;
-	place_full_ceiling_textured(mainlayer->image, mainlayer->textures.ceiling_texture);
+	place_full_ceiling_colored(mainlayer->image, ceiling_color);
 	place_full_floor_colored(mainlayer->image, floor_color);
-	while (i < player->fov * (SCREEN_WIDTH / player->fov))
+	wall.ray = &ray;
+	wall.player = mainlayer->player;
+	while (wall.start_x < player->fov * (SCREEN_WIDTH / player->fov))
 	{
 		init_ray_variables(player, &ray);
-		perp_distance = ray_distance(&ray) \
+		wall.perp_distance = ray_distance(&ray) \
 						* cos(ray.direction - player->direction);
-		wall_height = (int)SCREEN_HEIGHT / perp_distance;
-		if (player->fov == 16)
-			wall_height *= 3;
-		if (wall_height > SCREEN_HEIGHT)
-			wall_height = SCREEN_HEIGHT;
-		place_wall_textured(mainlayer->image, wall_height, i, wall_texture[ray.side]);
+		place_wall_textured(mainlayer->image, &wall, wall_texture[ray.side]);
 		ray.direction += RD / (SCREEN_WIDTH / player->fov);
-		i++;
+		wall.start_x++;
 	}
-	// test_texture(mainlayer->image, wall_texture[ray.side]);
 }
+
+
+	// printf("\n\n");
+	// usleep(0.1 * 1000000);
+	// test_texture(mainlayer->image, wall_texture[ray.side]);
+
+		// int			color;
+		// int			x;
+		// int			y;
+
+		// x = i;
+		// y = SCREEN_HEIGHT / 2 - wall_height / 2;
+		// printf("Y: %d\n", y);
+		// while (y < wall_height)
+		// {
+		// 	color = get_color_from_pixel_data(\
+		// 			tex[X], tex[Y], wall_texture[ray.side]);
+		// 	mlx_put_pixel(mainlayer->image, x, y, color);
+		// 	y++;
+		// }
+		// y = 0;
+
+	// place_full_ceiling_textured(mainlayer->image, mainlayer->textures.ceiling_texture);
+	// place_full_floor_textured(mainlayer->image, mainlayer->textures.floor_texture);
 
 void	raycasting_colored(t_mainlayer *mainlayer, uint32_t ceiling_color, \
 					uint32_t floor_color, uint32_t wall_color[4])

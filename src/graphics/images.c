@@ -11,6 +11,7 @@ bool	init_image(t_gfx_data *graphics)
 		return (false);
 	if (!set_all_images_to_window(graphics))
 		return (false);
+	graphics->testmode = false;
 	return (true);
 }
 
