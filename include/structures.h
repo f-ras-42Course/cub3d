@@ -96,6 +96,7 @@ typedef struct s_gfx_data
 
 typedef struct s_wall_data
 {
+	double			ray_distance;
 	double			perp_distance;
 	double			step[2];
 	int				wall_height;

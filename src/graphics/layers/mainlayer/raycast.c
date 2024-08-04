@@ -1,13 +1,14 @@
 
 #include "graphics.h"
 
-void	raycasting(t_mainlayer *mainlayer, uint32_t ceiling_color, uint32_t floor_color)
+void	raycasting(t_mainlayer *mainlayer, uint32_t ceiling_color, \
+					uint32_t floor_color)
 {
 	const t_player		*player = mainlayer->player;
 	const mlx_texture_t	*wall_texture[4] = {
 	[N] = mainlayer->textures.north_texture,
 	[E] = mainlayer->textures.east_texture,
-	[S]	= mainlayer->textures.south_texture,
+	[S] = mainlayer->textures.south_texture,
 	[W] = mainlayer->textures.west_texture};
 	t_ray				ray;
 	t_wall_data			wall;
@@ -21,37 +22,14 @@ void	raycasting(t_mainlayer *mainlayer, uint32_t ceiling_color, uint32_t floor_c
 	while (wall.start_x < player->fov * (SCREEN_WIDTH / player->fov))
 	{
 		init_ray_variables(player, &ray);
-		wall.perp_distance = ray_distance(&ray) \
-						* cos(ray.direction - player->direction);
+		wall.ray_distance = ray_distance(&ray);
+		wall.perp_distance = wall.ray_distance \
+							* cos(ray.direction - player->direction);
 		place_wall_textured(mainlayer->image, &wall, wall_texture[ray.side]);
 		ray.direction += RD / (SCREEN_WIDTH / player->fov);
 		wall.start_x++;
 	}
 }
-
-
-	// printf("\n\n");
-	// usleep(0.1 * 1000000);
-	// test_texture(mainlayer->image, wall_texture[ray.side]);
-
-		// int			color;
-		// int			x;
-		// int			y;
-
-		// x = i;
-		// y = SCREEN_HEIGHT / 2 - wall_height / 2;
-		// printf("Y: %d\n", y);
-		// while (y < wall_height)
-		// {
-		// 	color = get_color_from_pixel_data(\
-		// 			tex[X], tex[Y], wall_texture[ray.side]);
-		// 	mlx_put_pixel(mainlayer->image, x, y, color);
-		// 	y++;
-		// }
-		// y = 0;
-
-	// place_full_ceiling_textured(mainlayer->image, mainlayer->textures.ceiling_texture);
-	// place_full_floor_textured(mainlayer->image, mainlayer->textures.floor_texture);
 
 void	raycasting_colored(t_mainlayer *mainlayer, uint32_t ceiling_color, \
 					uint32_t floor_color, uint32_t wall_color[4])
@@ -76,7 +54,8 @@ void	raycasting_colored(t_mainlayer *mainlayer, uint32_t ceiling_color, \
 			wall_height *= 3;
 		if (wall_height > SCREEN_HEIGHT)
 			wall_height = SCREEN_HEIGHT;
-		place_wall_colored(mainlayer->image, wall_height, i, wall_color[ray.side]);
+		place_wall_colored(mainlayer->image, wall_height, i, \
+							wall_color[ray.side]);
 		ray.direction += RD / (SCREEN_WIDTH / player->fov);
 		i++;
 	}
@@ -131,12 +110,12 @@ double	ray_distance(t_ray *ray)
 
 void	set_wall_side(t_ray *ray, int side_check)
 {
-		if (side_check == 1)
-			ray->side = E;
-		if (side_check == -1)
-			ray->side = W;
-		if(side_check == 2)
-			ray->side = S;
-		if (side_check == -2)
-			ray->side = N;
+	if (side_check == 1)
+		ray->side = E;
+	if (side_check == -1)
+		ray->side = W;
+	if (side_check == 2)
+		ray->side = S;
+	if (side_check == -2)
+		ray->side = N;
 }
