@@ -25,7 +25,7 @@ void	raycasting(t_mainlayer *mainlayer, uint32_t ceiling_color, \
 		wall.ray_distance = ray_distance(&ray);
 		wall.perp_distance = wall.ray_distance \
 							* cos(ray.direction - player->direction);
-		place_wall_textured(mainlayer->image, &wall, wall_texture[ray.side]);
+		place_object_textured(mainlayer->image, &wall, wall_texture[ray.side]);
 		ray.direction += RD / (SCREEN_WIDTH / player->fov);
 		wall.start_x++;
 	}

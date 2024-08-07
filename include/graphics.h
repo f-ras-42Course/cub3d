@@ -40,7 +40,7 @@ void		place_full_ceiling_textured(mlx_image_t *image, \
 										const mlx_texture_t *texture);
 void		place_full_floor_textured(mlx_image_t *image, \
 									const mlx_texture_t *texture);
-void		place_wall_textured(mlx_image_t *image, t_wall_data *wall, \
+void		place_object_textured(mlx_image_t *image, t_wall_data *wall, \
 								const mlx_texture_t *texture);
 int			wall_height_limiter(int wall_height);
 

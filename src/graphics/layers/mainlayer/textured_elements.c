@@ -1,7 +1,7 @@
 
 #include "graphics.h"
 
-void	place_wall_textured(mlx_image_t *image, t_wall_data *wall, \
+void	place_object_textured(mlx_image_t *image, t_wall_data *wall, \
 					const mlx_texture_t *texture)
 {
 	if (wall->ray->side == E || wall->ray->side == W)

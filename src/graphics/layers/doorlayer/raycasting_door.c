@@ -31,10 +31,10 @@ void	raycasting_door(t_doorlayer *doorlayer)
 		wall.perp_distance = wall.ray_distance \
 							* cos(ray.direction - player->direction);
 		if (ray.is_door_open)
-			place_wall_textured(doorlayer->image, &wall, \
+			place_object_textured(doorlayer->image, &wall, \
 								doorlayer->textures->door_open_texture);
 		else if (ray.is_door_closed)
-			place_wall_textured(doorlayer->image, &wall, \
+			place_object_textured(doorlayer->image, &wall, \
 								doorlayer->textures->door_closed_texture);
 		ray.direction += RD / (SCREEN_WIDTH / player->fov);
 		wall.start_x++;
