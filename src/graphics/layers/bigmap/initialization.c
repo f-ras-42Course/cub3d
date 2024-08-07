@@ -14,7 +14,12 @@ bool	init_bigmap(t_gfx_data *graphics)
 
 void	init_bigmap_values(t_bigmap *bigmap)
 {
-	bigmap->unit_size = (SCREEN_WIDTH * .03125);
-	bigmap->width = (SCREEN_WIDTH * 0.75) - bigmap->unit_size;
+	if (MAP_WIDTH <= 13 && MAP_HEIGHT <= 8)
+		bigmap->unit_size = (SCREEN_WIDTH * .06250);
+	else if (MAP_WIDTH * .66667 > MAP_HEIGHT)
+		bigmap->unit_size = SCREEN_WIDTH * .03125 / (1 << (int)log2((MAP_WIDTH - 1) / 13));
+	else
+		bigmap->unit_size = SCREEN_WIDTH * .03125 / (1 << (int)log2(MAP_HEIGHT / 9));
+	bigmap->width = (SCREEN_WIDTH * 0.8125);
 	bigmap->height = SCREEN_HEIGHT - bigmap->unit_size;
 }

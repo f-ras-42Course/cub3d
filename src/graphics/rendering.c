@@ -9,4 +9,3 @@ void	update_image(t_gfx_data *graphics)
 	if (graphics->bigmap.image->enabled)
 		bigmap(&(graphics->bigmap));
 }
-

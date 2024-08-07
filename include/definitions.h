@@ -33,9 +33,6 @@
 # define MINIMAP_GRID_WIDTH		15
 # define MINIMAP_GRID_HEIGHT	11
 
-# define BIGMAP_GRID_WIDTH		47
-# define BIGMAP_GRID_HEIGHT		35
-
 
 /*-- 				Workable FOVs are formulated below:
 /										32.0000000000
