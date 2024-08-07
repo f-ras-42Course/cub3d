@@ -58,11 +58,3 @@ void	draw_player_on_bigmap(const t_bigmap *bigmap, int color)
 
 	draw_filled_circle(bigmap->image, measures, color);
 }
-
-void	bigmap_io_switch(t_bigmap *bigmap)
-{
-	if (bigmap->image->enabled)
-		bigmap->image->enabled = false;
-	else
-		bigmap->image->enabled = true;
-}

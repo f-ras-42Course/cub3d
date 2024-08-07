@@ -81,6 +81,7 @@ void	init_ray_variables(const t_player *player, t_ray *ray)
 	ray->check_pos[Y] = player->position[Y];
 }
 
+//To add: also stop if closed door found (optimization)
 double	ray_distance(t_ray *ray)
 {
 	while (1)

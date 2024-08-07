@@ -1,8 +1,6 @@
 
 #include "controls.h"
 
-static void	testmode_io_switch(t_gfx_data *graphics);
-
 bool	load_hooks(t_all *data)
 {
 	mlx_key_hook(data->graphics.mlx, key_hooks, data);
@@ -40,13 +38,24 @@ void	key_hooks(mlx_key_data_t keydata, void *ptr_to_data)
 			bigmap_io_switch(&(data->graphics.bigmap));
 		if (keydata.key == MLX_KEY_T)
 			testmode_io_switch(&(data->graphics));
+		if (keydata.key == MLX_KEY_SPACE)
+			open_close_door(&(data->player));
 	}
 }
 
-static void	testmode_io_switch(t_gfx_data *graphics)
+void	open_close_door(t_player *player)
 {
-	if (graphics->testmode)
-		graphics->testmode = false;
-	else
-		graphics->testmode = true;
+	const double	distance_to_wall[2] = {
+	[X] = copysign(0.5, cos(player->direction)),
+	[Y] = copysign(0.5, sin(player->direction)),
+	};
+
+	if (closed_door_found(player->position[X] + distance_to_wall[X], player->position[Y]))
+		g_temp_test_map[(int)player->position[Y]][(int)(player->position[X] + distance_to_wall[X])] = 'O';
+	else if (closed_door_found(player->position[X], player->position[Y] + distance_to_wall[Y]))
+		g_temp_test_map[(int)(player->position[Y] + distance_to_wall[Y])][(int)player->position[X]] = 'O';
+	else if (open_door_found(player->position[X] + distance_to_wall[X], player->position[Y]))
+		g_temp_test_map[(int)player->position[Y]][(int)(player->position[X] + distance_to_wall[X])] = 'D';
+	else if (open_door_found(player->position[X], player->position[Y] + distance_to_wall[Y]))
+		g_temp_test_map[(int)(player->position[Y] + distance_to_wall[Y])][(int)player->position[X]] = 'D';
 }

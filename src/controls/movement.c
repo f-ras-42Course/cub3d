@@ -41,12 +41,14 @@ void wall_collision(t_player *player, double increment, int axis)
 {
 	if (axis == X)
 	{
-		if (!wall_found(player->position[X] + increment, player->position[Y]))
+		if (!wall_found(player->position[X] + increment, player->position[Y]) &&
+			!closed_door_found(player->position[X] + increment, player->position[Y]))
 			player->position[X] += increment;
 	}
 	else
 	{
-		if (!wall_found(player->position[X], player->position[Y] + increment))
+		if (!wall_found(player->position[X], player->position[Y] + increment) &&
+			!closed_door_found(player->position[X], player->position[Y] + increment))
 			player->position[Y] += increment;
 	}
 }

@@ -59,6 +59,9 @@
 # define MAP_WIDTH	15
 # define MAP_HEIGHT	11
 
+// # define MAP_WIDTH	60
+// # define MAP_HEIGHT	44
+
 // const char	g_temp_test_map[MAP_HEIGHT][MAP_WIDTH] = {
 // {'1', '1', '1', '1', '1', '1', '1', '1', '1', '1', '1', '1', '1', '1', '1'},
 // {'1', '1', '1', '1', '1', '1', '1', '0', '1', '1', '1', '1', '1', '1', '1'},
@@ -73,6 +76,6 @@
 // {'1', '1', '1', '1', '1', '1', '1', '1', '1', '1', '1', '1', '1', '1', '1'},
 // };
 
-extern const char	g_temp_test_map[MAP_HEIGHT][MAP_WIDTH];
+extern char	g_temp_test_map[MAP_HEIGHT][MAP_WIDTH];
 
 #endif

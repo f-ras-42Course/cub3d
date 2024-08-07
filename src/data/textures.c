@@ -11,6 +11,7 @@ bool	init_texture_data(t_all *data)
 	all_textures_to_null(textures);
 	if (!set_all_textures(textures, &(data->map)))
 		return (error(TEXTURE_LOAD_FAILED, data), false);
+	data->graphics.doorlayer.textures = textures;
 	return (true);
 }
 
@@ -82,6 +83,14 @@ bool	set_all_textures(t_textures *textures, const t_map *map)
 				ft_putendl_fd(map->east_texture, STDERR_FILENO), false);
 	textures->west_texture = mlx_load_png("./textures/pack2-1024/Red/texture_01.png");
 	if (!textures->west_texture)
+		return ((void)write(STDERR_FILENO, "\nCouldn't load: ", 16), \
+				ft_putendl_fd(map->west_texture, STDERR_FILENO), false);
+	textures->door_closed_texture = mlx_load_png("./textures/pack2-1024/Light/texture_10.png");
+	if (!textures->door_closed_texture)
+		return ((void)write(STDERR_FILENO, "\nCouldn't load: ", 16), \
+				ft_putendl_fd(map->west_texture, STDERR_FILENO), false);
+	textures->door_open_texture = mlx_load_png("./textures/pack2-1024/Light/texture_10_open.png");
+	if (!textures->door_open_texture)
 		return ((void)write(STDERR_FILENO, "\nCouldn't load: ", 16), \
 				ft_putendl_fd(map->west_texture, STDERR_FILENO), false);
 	return (true);

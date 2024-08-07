@@ -70,6 +70,8 @@ ree: clean
 	$(RM) $(NAME)
 	$(MAKE)
 
+#Options
+
 # Optimize
 optim:
 	$(MAKE) OPTIM=1

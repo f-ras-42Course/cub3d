@@ -18,6 +18,9 @@ typedef struct s_ray
 	double		shortest[2];
 	int			check_pos[2];
 	t_nesw		side;
+	// bool		is_open_door;
+	bool		is_door_closed;
+	bool		is_door_open;
 }				t_ray;
 
 typedef struct s_map
@@ -75,6 +78,8 @@ typedef struct s_textures
 	mlx_texture_t		*south_texture;
 	mlx_texture_t		*east_texture;
 	mlx_texture_t		*west_texture;
+	mlx_texture_t		*door_closed_texture;
+	mlx_texture_t		*door_open_texture;
 }						t_textures;
 
 typedef struct s_mainlayer
@@ -84,12 +89,20 @@ typedef struct s_mainlayer
 	t_textures	textures;
 }				t_mainlayer;
 
+typedef struct s_doorlayer
+{
+	mlx_image_t	*image;
+	t_player	*player;
+	t_textures	*textures;
+}				t_doorlayer;
+
 typedef struct s_gfx_data
 {
 	mlx_t			*mlx;
 	t_mainlayer		mainlayer;
 	t_minimap		minimap;
 	t_bigmap		bigmap;
+	t_doorlayer		doorlayer;
 	struct s_all	*data;
 	bool			testmode;
 }					t_gfx_data;

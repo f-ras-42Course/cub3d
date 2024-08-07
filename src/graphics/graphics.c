@@ -9,6 +9,7 @@ bool	init_graphics(t_all *data)
 	data->graphics.minimap.player = &(data->player);
 	data->graphics.bigmap.player = &(data->player);
 	data->graphics.mainlayer.player = &(data->player);
+	data->graphics.doorlayer.player = &(data->player);
 	if (!init_image(&data->graphics))
 		return (error(MLX_GFX_CRASH, data), false);
 	data->graphics.data = data;

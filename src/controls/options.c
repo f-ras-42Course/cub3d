@@ -29,3 +29,19 @@ void	zoom_in(t_all *data)
 	else
 		data->player.fov = old_fov;
 }
+
+void	bigmap_io_switch(t_bigmap *bigmap)
+{
+	if (bigmap->image->enabled)
+		bigmap->image->enabled = false;
+	else
+		bigmap->image->enabled = true;
+}
+
+void	testmode_io_switch(t_gfx_data *graphics)
+{
+	if (graphics->testmode)
+		graphics->testmode = false;
+	else
+		graphics->testmode = true;
+}

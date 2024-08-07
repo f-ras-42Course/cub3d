@@ -25,6 +25,7 @@ bool		set_all_images_to_window(t_gfx_data *graphics);
 
 // - Layers
 bool		init_mainlayer(t_gfx_data *graphics);
+bool		init_doorlayer(t_gfx_data *graphics);
 bool		init_minimap(t_gfx_data *graphics);
 void		init_minimap_values(t_minimap *minimap);
 bool		init_bigmap(t_gfx_data *graphics);
@@ -34,6 +35,7 @@ void		init_bigmap_values(t_bigmap *bigmap);
 //-Textured
 void		raycasting(t_mainlayer *mainlayer, uint32_t ceiling_color, \
 						uint32_t floor_color);
+void		raycasting_door(t_doorlayer *doorlayer);
 void		place_full_ceiling_textured(mlx_image_t *image, \
 										const mlx_texture_t *texture);
 void		place_full_floor_textured(mlx_image_t *image, \
@@ -52,6 +54,7 @@ void		place_wall_colored(mlx_image_t *image, int wall_height, \
 //-Shared
 void		init_ray_variables(const t_player *player, t_ray *ray);
 double		ray_distance(t_ray *ray);
+double		ray_distance_door(t_ray *ray);
 void		set_wall_side(t_ray *ray, int side_check);
 
 // - Minimap
@@ -73,7 +76,6 @@ void		fill_bigmap_unit(const t_bigmap *bigmap, int bigmap_pos_x, \
 								int bigmap_pos_y, int color);
 bool		is_wall_for_bigmap(const t_bigmap *bigmap);
 void		draw_player_on_bigmap(const t_bigmap *bigmap, int color);
-void		bigmap_io_switch(t_bigmap *bigmap);
 
 // - Bigmap ray drawing
 
@@ -82,7 +84,6 @@ void		draw_single_ray_line(const t_bigmap *bigmap, t_ray *ray, \
 									double bigmap_position[2], int color);
 void		init_ray_line_variables(const t_player *player, t_ray *ray);
 int			calculate_line_size(const t_bigmap *bigmap, t_ray *ray);
-bool		wall_found(int x, int y);
 
 // - Rectangle
 
