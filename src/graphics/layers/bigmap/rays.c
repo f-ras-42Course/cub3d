@@ -66,14 +66,16 @@ int	calculate_line_size(const t_bigmap *bigmap, t_ray *ray)
 		if (ray->shortest[X] < ray->shortest[Y])
 		{
 			ray->check_pos[X] += copysign(1, cos(ray->direction));
-			if (wall_found(ray->check_pos[X], ray->check_pos[Y]))
+			if (wall_found(ray->check_pos[X], ray->check_pos[Y])
+				|| closed_door_found(ray->check_pos[X], ray->check_pos[Y]))
 				return (ray->shortest[X] * bigmap->unit_size);
 			ray->shortest[X] += ray->delta[X];
 		}
 		else
 		{
 			ray->check_pos[Y] += copysign(1, sin(ray->direction));
-			if (wall_found(ray->check_pos[X], ray->check_pos[Y]))
+			if (wall_found(ray->check_pos[X], ray->check_pos[Y])
+				|| closed_door_found(ray->check_pos[X], ray->check_pos[Y]))
 				return (ray->shortest[Y] * bigmap->unit_size);
 			ray->shortest[Y] += ray->delta[Y];
 		}

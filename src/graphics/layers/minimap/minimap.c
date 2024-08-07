@@ -24,6 +24,9 @@ void	draw_walls_on_minimap(t_minimap *minimap)
 			else if (wall_found(minimap->end_of_map_locator_x, \
 						minimap->end_of_map_locator_y))
 				fill_minimap_unit(minimap, x, y, 0xffaa00ff);
+			else if (closed_door_found(minimap->end_of_map_locator_x, \
+						minimap->end_of_map_locator_y))
+				fill_minimap_unit(minimap, x, y, 0xffbb00ff);
 			else
 				fill_minimap_unit(minimap, x, y, 0xffffff4f);
 			x++;

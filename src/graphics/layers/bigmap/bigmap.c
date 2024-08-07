@@ -24,6 +24,8 @@ void	draw_walls_on_bigmap(const t_bigmap *bigmap)
 		{
 			if (wall_found(x, y))
 				fill_bigmap_unit(bigmap, x, y, 0xffaa004f);
+			else if (closed_door_found(x, y))
+				fill_bigmap_unit(bigmap, x, y, 0xffbb004f);
 			else
 				fill_bigmap_unit(bigmap, x, y, 0xffffff0f);
 			x++;
