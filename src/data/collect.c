@@ -64,7 +64,7 @@ char	get_player_type(t_all *data)
 
 void 	set_player_field_of_view(t_all *data)
 {
-	data->player.fov = 66.2068965517;
+	data->player.fov = DEFAULT_FOV;
 
 	cub3d_float_int_printer(STDOUT_FILENO, "Default FOV: %d\n", (int)data->player.fov);
 }
