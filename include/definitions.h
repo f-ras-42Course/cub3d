@@ -22,15 +22,17 @@
 # define DEFAULT_RESOLUTION		R_HD
 # define SUPPORTED_RESOLUTIONS	7
 
-/*-- 				Workable FOVs are formulated below (with star '*' is choosable in game):
-/										32.0000000000
-/										64.0000000000
-/										*66.2068965517
-/										*96.0000000000
-/										*101.0526315789
-/										104.0000000000
-/										*106.6666666666
-/										128.0000000000*/
+/*Workable FOVs are formulated below:
+ * - (with star '*' is choosable in game)
+ *										32.0000000000
+ *										64.0000000000
+ *										*66.2068965517
+ *										*96.0000000000
+ *										*101.0526315789
+ *										104.0000000000
+ *										*106.6666666666
+ *										128.0000000000
+ */
 # define DEFAULT_FOV					66.2068965517
 
 typedef enum e_resolutions
