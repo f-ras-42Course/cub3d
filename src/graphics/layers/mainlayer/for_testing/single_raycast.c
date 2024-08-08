@@ -26,7 +26,7 @@ void	single_raycasting_textured(t_mainlayer *mainlayer)
 	wall.step[X] -= floor(wall.step[X]);
 	wall.tex[X] = wall.step[X] * wall_texture[ray.side]->width;
 	wall.line_height = wall_height_limiter(wall.wall_height);
-	wall.start_y = SCREEN_HEIGHT / 2 - wall.line_height / 2;
+	wall.start_y = screen_height() / 2 - wall.line_height / 2;
 	wall.step[Y] = wall_texture[ray.side]->width / (double)wall.wall_height;
 }
 
@@ -42,9 +42,9 @@ void	single_raycasting(t_mainlayer *mainlayer, \
 	init_ray_variables(mainlayer->player, &ray);
 	perp_distance = ray_distance(&ray) \
 					* cos(ray.direction - player->direction);
-	wall_height = (uint32_t)SCREEN_HEIGHT / perp_distance;
-	if (wall_height > SCREEN_HEIGHT)
-		wall_height = SCREEN_HEIGHT;
+	wall_height = (uint32_t)screen_height() / perp_distance;
+	if (wall_height > (uint32_t)screen_height())
+		wall_height = screen_height();
 	single_place_ceiling(mainlayer->image, wall_height, 0, ceiling_color);
 	single_place_wall(mainlayer->image, wall_height, 0, 0x00ff00ff);
 	single_place_floor(mainlayer->image, wall_height, 0, floor_color);
@@ -54,8 +54,8 @@ void	single_place_ceiling(mlx_image_t *image, int wall_height, int position, \
 						uint32_t color)
 {
 	const int	measures[4] = {
-	[RECT_WIDTH] = SCREEN_WIDTH,
-	[RECT_HEIGHT] = SCREEN_HEIGHT / 2 - wall_height / 2,
+	[RECT_WIDTH] = screen_width(),
+	[RECT_HEIGHT] = screen_height() / 2 - wall_height / 2,
 	[DRAW_POS_X] = position,
 	[DRAW_POS_Y] = 0
 	};
@@ -67,10 +67,10 @@ void	single_place_wall(mlx_image_t *image, int wall_height, int position, \
 					uint32_t color)
 {
 	const int	measures[4] = {
-	[RECT_WIDTH] = SCREEN_WIDTH,
+	[RECT_WIDTH] = screen_width(),
 	[RECT_HEIGHT] = wall_height,
 	[DRAW_POS_X] = position,
-	[DRAW_POS_Y] = SCREEN_HEIGHT / 2 - wall_height / 2
+	[DRAW_POS_Y] = screen_height() / 2 - wall_height / 2
 	};
 
 	draw_rect(image, measures, color);
@@ -80,10 +80,10 @@ void	single_place_floor(mlx_image_t *image, int wall_height, int position, \
 					uint32_t color)
 {
 	const int	measures[4] = {
-	[RECT_WIDTH] = SCREEN_WIDTH,
-	[RECT_HEIGHT] = SCREEN_HEIGHT / 2 - wall_height / 2,
+	[RECT_WIDTH] = screen_width(),
+	[RECT_HEIGHT] = screen_height() / 2 - wall_height / 2,
 	[DRAW_POS_X] = position,
-	[DRAW_POS_Y] = SCREEN_HEIGHT - (SCREEN_HEIGHT / 2 - wall_height / 2)
+	[DRAW_POS_Y] = screen_height() - (screen_height() / 2 - wall_height / 2)
 	};
 
 	draw_rect(image, measures, color);

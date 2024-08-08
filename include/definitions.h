@@ -6,33 +6,11 @@
 #  define DEBUG 0
 # endif
 
-/* supported resolutions */
-
-// 7680 x 4320 (8K)
-// # define SCREEN_WIDTH	7680
-// # define SCREEN_HEIGHT	4320
-// 3200 x 1800 (4K)
-// # define SCREEN_WIDTH	3840
-// # define SCREEN_HEIGHT	2160
-// 3200 x 1800 (WQXGA+)
-// # define SCREEN_WIDTH	3200
-// # define SCREEN_HEIGHT	1800
-// 2560 x 1440 (Quad HD)
-// # define SCREEN_WIDTH	2560
-// # define SCREEN_HEIGHT	1440
-// 1920 x 1080 (Full HD)
-// # define SCREEN_WIDTH	1920
-// # define SCREEN_HEIGHT	1080
-// 1280 x 720 (HD)
-# define SCREEN_WIDTH	1280
-# define SCREEN_HEIGHT	720
-// 640 x 360 (ninth HD)
-// # define SCREEN_WIDTH	640
-// # define SCREEN_HEIGHT	360
-
 # define MINIMAP_GRID_WIDTH		15
 # define MINIMAP_GRID_HEIGHT	11
 
+# define SUPPORTED_RESOLUTIONS	7
+# define DEFAULT_RESOLUTION		R_HD
 
 /*-- 				Workable FOVs are formulated below:
 /										32.0000000000
@@ -44,6 +22,18 @@
 /										106.6666666666
 /										128.0000000000*/
 //# define DEFAULT_FOV					66.2068965517 -- definition not in use
+
+typedef enum e_resolutions
+{
+	R_8K,
+	R_4K,
+	R_WQXGAPLUS,
+	R_QUAD_HD,
+	R_FULL_HD,
+	R_HD,
+	R_NINTH_HD,
+	GET_RESOLUTION
+}	t_resolutions;
 
 typedef enum e_error_codes
 {
@@ -82,7 +72,7 @@ enum e_circle_measures
 	DRAW_POS_CENTER_Y
 };
 
-typedef enum	e_xyz
+typedef enum e_xyz
 {
 	X,
 	Y,

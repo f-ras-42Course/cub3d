@@ -10,7 +10,7 @@ void	place_object_textured(mlx_image_t *image, t_wall_data *wall, \
 	else
 		wall->step[X] = wall->player->position[X] + wall->ray_distance \
 						* cos(wall->ray->direction);
-	wall->wall_height = (int)SCREEN_HEIGHT / wall->perp_distance;
+	wall->wall_height = (int)screen_height() / wall->perp_distance;
 	if (wall->player->fov == 16)
 		wall->wall_height *= 3;
 	wall->step[X] -= floor(wall->step[X]);
@@ -18,10 +18,10 @@ void	place_object_textured(mlx_image_t *image, t_wall_data *wall, \
 	if (wall->ray->side == W || wall->ray->side == S)
 		wall->tex[X] = texture->width - wall->tex[X] - 1;
 	wall->line_height = wall_height_limiter(wall->wall_height);
-	wall->start_y = SCREEN_HEIGHT / 2 - wall->line_height / 2;
+	wall->start_y = screen_height() / 2 - wall->line_height / 2;
 	wall->step[Y] = texture->height / (double)wall->wall_height;
-	if (wall->wall_height > SCREEN_HEIGHT)
-		wall->tex[Y] = (wall->wall_height - SCREEN_HEIGHT) / 2 * wall->step[Y];
+	if (wall->wall_height > screen_height())
+		wall->tex[Y] = (wall->wall_height - screen_height()) / 2 * wall->step[Y];
 	else
 		wall->tex[Y] = 0;
 	draw_line_textured(image, wall, texture);
@@ -29,8 +29,8 @@ void	place_object_textured(mlx_image_t *image, t_wall_data *wall, \
 
 int	wall_height_limiter(int wall_height)
 {
-	if (wall_height > SCREEN_HEIGHT)
-		return (SCREEN_HEIGHT);
+	if (wall_height > screen_height())
+		return (screen_height());
 	return (wall_height);
 }
 

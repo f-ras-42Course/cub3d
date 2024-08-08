@@ -7,6 +7,7 @@ bool	set_data(t_all *data)
 	set_start_position_player(data);
 	set_start_direction_player(data);
 	set_player_field_of_view(data);
+	set_resolution(DEFAULT_RESOLUTION);
 	return (init_texture_data(data));
 }
 

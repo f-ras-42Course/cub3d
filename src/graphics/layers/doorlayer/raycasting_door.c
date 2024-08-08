@@ -4,8 +4,8 @@
 static void	clean_sheet(mlx_image_t *image)
 {
 	const int	measures[4] = {
-	[RECT_WIDTH] = SCREEN_WIDTH,
-	[RECT_HEIGHT] = SCREEN_HEIGHT,
+	[RECT_WIDTH] = screen_width(),
+	[RECT_HEIGHT] = screen_height(),
 	[DRAW_POS_X] = 0,
 	[DRAW_POS_Y] = 0
 	};
@@ -24,7 +24,7 @@ void	raycasting_door(t_doorlayer *doorlayer)
 	wall.ray = &ray;
 	wall.player = doorlayer->player;
 	clean_sheet(doorlayer->image);
-	while (wall.start_x < player->fov * (SCREEN_WIDTH / player->fov))
+	while (wall.start_x < player->fov * (screen_width() / player->fov))
 	{
 		init_ray_variables(player, &ray);
 		wall.ray_distance = ray_distance_door(&ray);
@@ -36,7 +36,7 @@ void	raycasting_door(t_doorlayer *doorlayer)
 		else if (ray.is_door_closed)
 			place_object_textured(doorlayer->image, &wall, \
 								doorlayer->textures->door_closed_texture);
-		ray.direction += RD / (SCREEN_WIDTH / player->fov);
+		ray.direction += RD / (screen_width() / player->fov);
 		wall.start_x++;
 	}
 }

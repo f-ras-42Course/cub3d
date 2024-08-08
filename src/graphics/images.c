@@ -19,8 +19,8 @@ bool	init_image(t_gfx_data *graphics)
 
 bool	set_all_images_to_window(t_gfx_data *graphics)
 {
-	const int	minimap_pos_x = (SCREEN_WIDTH * 0.865);
-	const int	minimap_pos_y = (SCREEN_HEIGHT * 0.015);
+	const int	minimap_pos_x = (screen_width() * 0.865);
+	const int	minimap_pos_y = (screen_height() * 0.015);
 
 	if (mlx_image_to_window(graphics->mlx, graphics->mainlayer.image, 0, 0) == -1)
 		return (false);
