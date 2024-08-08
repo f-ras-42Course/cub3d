@@ -9,8 +9,18 @@
 # define MINIMAP_GRID_WIDTH		15
 # define MINIMAP_GRID_HEIGHT	11
 
-# define SUPPORTED_RESOLUTIONS	7
+/*
+ * Choose one of the following options:
+ - R_8K	
+ - R_4K
+ - R_WQXGAPLUS
+ - R_QUAD_HD
+ - R_FULL_HD
+ - R_HD
+ - R_NINTH_HD
+ */
 # define DEFAULT_RESOLUTION		R_HD
+# define SUPPORTED_RESOLUTIONS	7
 
 /*-- 				Workable FOVs are formulated below (with star '*' is choosable in game):
 /										32.0000000000

@@ -37,8 +37,7 @@ bool			wall_found(int x, int y);
 bool			closed_door_found(int x, int y);
 bool			open_door_found(int x, int y);
 
-// -- Sreen Resolutions
-
+// -- Screen Resolutions
 int				screen_width(void);
 int				screen_height(void);
 t_resolutions	set_resolution(t_resolutions set);
