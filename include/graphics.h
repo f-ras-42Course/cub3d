@@ -114,4 +114,9 @@ uint32_t	get_color_from_pixel_data(int x, int y, \
 
 void		update_image(t_gfx_data *graphics);
 
+// - Resize
+
+void		resize_all(t_gfx_data *graphics);
+void 		resize_images(t_gfx_data *graphics);
+
 #endif

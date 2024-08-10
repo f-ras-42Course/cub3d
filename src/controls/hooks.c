@@ -40,6 +40,10 @@ void	key_hooks(mlx_key_data_t keydata, void *ptr_to_data)
 			testmode_io_switch(&(data->graphics));
 		if (keydata.key == MLX_KEY_SPACE)
 			open_close_door(&(data->player));
+		if (keydata.key == MLX_KEY_MINUS)
+			decrease_resolution(&(data->graphics));
+		if (keydata.key == MLX_KEY_EQUAL)
+			increase_resolution(&(data->graphics));
 	}
 }
 

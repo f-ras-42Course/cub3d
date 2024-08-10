@@ -38,8 +38,13 @@ bool			closed_door_found(int x, int y);
 bool			open_door_found(int x, int y);
 
 // -- Screen Resolutions
+void			init_default_resolution(void);
 int				screen_width(void);
 int				screen_height(void);
 t_resolutions	set_resolution(t_resolutions set);
+void			decrease_resolution(t_gfx_data *graphics);
+void			increase_resolution(t_gfx_data *graphics);
+bool			is_within_monitor_limit(void);
+void			keep_within_monitor_limit(t_resolutions current);
 
 #endif

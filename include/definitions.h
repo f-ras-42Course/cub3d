@@ -11,7 +11,7 @@
 
 /*
  * Choose one of the following options:
- - R_8K	
+ - R_8K
  - R_4K
  - R_WQXGAPLUS
  - R_QUAD_HD
@@ -37,13 +37,13 @@
 
 typedef enum e_resolutions
 {
-	R_8K,
-	R_4K,
-	R_WQXGAPLUS,
-	R_QUAD_HD,
-	R_FULL_HD,
-	R_HD,
 	R_NINTH_HD,
+	R_HD,
+	R_FULL_HD,
+	R_QUAD_HD,
+	R_WQXGAPLUS,
+	R_4K,
+	R_8K,
 	GET_RESOLUTION
 }	t_resolutions;
 
