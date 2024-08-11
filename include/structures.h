@@ -38,9 +38,9 @@ typedef struct s_map
 
 typedef struct s_fps
 {
-	double		full_second_passed;
-	int			frames;
-	bool		enabled;
+	double		old_time;
+	double		time;
+	bool		printing_enabled;
 }				t_fps;
 
 /*  minimap_width:

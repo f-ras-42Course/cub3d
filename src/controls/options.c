@@ -47,8 +47,8 @@ void	testmode_io_switch(t_gfx_data *graphics)
 
 void	fps_ioswitch(t_fps *fps)
 {
-	if (fps->enabled)
-		fps->enabled = false;
+	if (fps->printing_enabled)
+		fps->printing_enabled = false;
 	else
-		fps->enabled = true;
+		fps->printing_enabled = true;
 }

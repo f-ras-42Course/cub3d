@@ -8,7 +8,7 @@ bool	set_data(t_all *data)
 	set_start_direction_player(data);
 	set_player_field_of_view(data);
 	init_default_resolution();
-	init_fps(&(data->fps));
+	data->fps.printing_enabled = false;
 	return (init_texture_data(data));
 }
 

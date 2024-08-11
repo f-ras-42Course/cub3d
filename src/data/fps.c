@@ -1,21 +1,14 @@
 
 #include "data.h"
 
-void	frames_per_second(t_fps *fps)
+void	fps_printer(t_fps *fps)
 {
-	fps->frames++;
-	if (mlx_get_time() > fps->full_second_passed)
-	{
-		if (fps->enabled)
-			cub3d_float_int_printer(STDOUT_FILENO, "%d FPS\n", fps->frames);
-		fps->full_second_passed++;
-		fps->frames = 0;
-	}
+	if (fps->printing_enabled)
+		cub3d_float_int_printer(STDOUT_FILENO, "%d FPS\n", (int)(1.0 / (fps->time - fps->old_time)));
 }
 
-void	init_fps(t_fps *fps)
+void	update_fps(t_fps *fps)
 {
-	fps->enabled = false;
-	fps->frames = 0;
-	fps->full_second_passed = 0;
+	fps->old_time = fps->time;
+	fps->time = mlx_get_time();
 }

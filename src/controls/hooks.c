@@ -14,9 +14,10 @@ void	loop_hooks(void *ptr_to_data)
 	t_all	*data;
 
 	data = ptr_to_data;
+	update_fps(&(data->fps));
 	walking(data);
 	update_image(&(data->graphics));
-	frames_per_second(&(data->fps));
+	fps_printer(&(data->fps));
 }
 
 void	key_hooks(mlx_key_data_t keydata, void *ptr_to_data)
