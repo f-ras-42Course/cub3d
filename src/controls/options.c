@@ -44,3 +44,11 @@ void	testmode_io_switch(t_gfx_data *graphics)
 	else
 		graphics->testmode = true;
 }
+
+void	fps_ioswitch(t_fps *fps)
+{
+	if (fps->enabled)
+		fps->enabled = false;
+	else
+		fps->enabled = true;
+}

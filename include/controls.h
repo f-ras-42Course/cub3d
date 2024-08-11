@@ -19,9 +19,10 @@ void	walking(t_all *data);
 void	wall_collision(t_player *player, double increment, int axis);
 
 // -- Options
-void	bigmap_io_switch(t_bigmap *bigmap);
-void	zoom_in(t_all *data);
 void	change_fov(t_all *data);
+void	zoom_in(t_all *data);
+void	bigmap_io_switch(t_bigmap *bigmap);
 void	testmode_io_switch(t_gfx_data *graphics);
+void	fps_ioswitch(t_fps *fps);
 
 #endif

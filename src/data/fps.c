@@ -1,23 +1,21 @@
 
 #include "data.h"
 
-void	show_fps(bool key_pressed)
+void	frames_per_second(t_fps *fps)
 {
-	static int	second;
-	static int	frames;
-	static bool	fps_on;
-
-	if (key_pressed && !fps_on)
-		fps_on = true;
-	else if (key_pressed && fps_on)
-		fps_on = false;
-	else
-		frames++;
-	if (mlx_get_time() > second)
+	fps->frames++;
+	if (mlx_get_time() > fps->full_second_passed)
 	{
-		if (fps_on)
-			cub3d_float_int_printer(STDOUT_FILENO, "%d FPS\n", frames);
-		second++;
-		frames = 0;
+		if (fps->enabled)
+			cub3d_float_int_printer(STDOUT_FILENO, "%d FPS\n", fps->frames);
+		fps->full_second_passed++;
+		fps->frames = 0;
 	}
+}
+
+void	init_fps(t_fps *fps)
+{
+	fps->enabled = false;
+	fps->frames = 0;
+	fps->full_second_passed = 0;
 }

@@ -27,7 +27,8 @@ bool			ends_with_png(const char *str);
 void			set_position(double x, double y, double where[2]);
 
 // -- FPS
-void			show_fps(bool key_pressed);
+void			frames_per_second(t_fps *fps);
+void			init_fps(t_fps *fps);
 
 // -- FOV
 void 			set_player_field_of_view(t_all *data);
