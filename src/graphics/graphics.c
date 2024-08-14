@@ -13,6 +13,8 @@ bool	init_graphics(t_all *data)
 		cub3d_float_int_printer(STDOUT_FILENO, "Screen Resolution set to: %d x %d"\
 							"\n", screen_width(), screen_height());
 	}
+	mlx_set_mouse_pos(data->graphics.mlx, screen_width() / 2, screen_height() / 2);
+	mlx_set_cursor_mode(data->graphics.mlx, MLX_MOUSE_DISABLED);
 	data->graphics.minimap.player = &(data->player);
 	data->graphics.bigmap.player = &(data->player);
 	data->graphics.mainlayer.player = &(data->player);

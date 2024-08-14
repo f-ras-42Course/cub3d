@@ -6,6 +6,7 @@ bool	load_hooks(t_all *data)
 	mlx_key_hook(data->graphics.mlx, key_hooks, data);
 	if (!mlx_loop_hook(data->graphics.mlx, loop_hooks, data))
 		return(error(MLX_HOOKS_CRASH, data), false);
+	mlx_cursor_hook(data->graphics.mlx, cursor_hooks, data);
 	return (true);
 }
 
@@ -63,4 +64,32 @@ void	open_close_door(t_player *player)
 		g_temp_test_map[(int)player->position[Y]][(int)(player->position[X] + distance_to_wall[X])] = 'D';
 	else if (open_door_found(player->position[X], player->position[Y] + distance_to_wall[Y]))
 		g_temp_test_map[(int)(player->position[Y] + distance_to_wall[Y])][(int)player->position[X]] = 'D';
+}
+
+void	cursor_hooks(double xpos, double ypos, void *ptr_to_data)
+{
+	t_all		*data;
+	double		rot_speed;
+	const int	screen_mid[2] = {
+	[X] = screen_width() / 2,
+	[Y] = screen_height() / 2
+	};
+
+	data = ptr_to_data;
+	rot_speed = (data->fps.time - data->fps.old_time) * 0.5;
+	if (xpos < screen_mid[X])
+	{
+		data->player.direction = (data->player.direction / M_PI - (rot_speed \
+		* (screen_mid[X] - xpos))) * M_PI;
+		if (copysign(1, data->player.direction / M_PI) == -1)
+			data->player.direction = 2 * M_PI;
+	}
+	if (xpos > screen_mid[X])
+	{
+		data->player.direction = (data->player.direction / M_PI + (rot_speed \
+		* (xpos - screen_mid[X]))) * M_PI;
+		if ((int)(data->player.direction / M_PI) == 2)
+			data->player.direction = 0 * M_PI;
+	}
+	mlx_set_mouse_pos(data->graphics.mlx, screen_mid[X], screen_mid[Y]);
 }
