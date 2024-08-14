@@ -3,10 +3,14 @@
 
 void	resize_all(t_gfx_data *graphics)
 {
+	int	monitor[2];
+
+	mlx_get_monitor_size(0, &monitor[X], &monitor[Y]);
 	mlx_set_window_size(graphics->mlx, screen_width(), screen_height());
 	init_minimap_values(&(graphics->minimap));
 	init_bigmap_values(&(graphics->bigmap));
 	resize_images(graphics);
+	mlx_set_window_pos(graphics->mlx, monitor[X] / 2 - screen_width() / 2, monitor[Y] / 2 - screen_height() / 2);
 }
 
 void 	resize_images(t_gfx_data *graphics)
