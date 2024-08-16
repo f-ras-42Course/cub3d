@@ -19,6 +19,7 @@ void	loop_hooks(void *ptr_to_data)
 	walking(data);
 	update_image(&(data->graphics));
 	fps_printer(&(data->fps));
+	fps_to_screen(&(data->graphics), &(data->fps));
 }
 
 void	key_hooks(mlx_key_data_t keydata, void *ptr_to_data)
@@ -31,7 +32,10 @@ void	key_hooks(mlx_key_data_t keydata, void *ptr_to_data)
 		if (keydata.key == MLX_KEY_ESCAPE || keydata.key == MLX_KEY_Q)
 			mlx_close_window(data->graphics.mlx);
 		if (keydata.key == MLX_KEY_F)
-			fps_ioswitch(&(data->fps));
+		{
+			fps_print_ioswitch(&(data->fps));
+			fps_screen_ioswitch(&(data->graphics), &(data->fps));
+		}
 		if (keydata.key == MLX_KEY_V && keydata.key != MLX_KEY_Z)
 			change_fov(data);
 		if (keydata.key == MLX_KEY_Z)

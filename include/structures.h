@@ -41,6 +41,7 @@ typedef struct s_fps
 	double		old_time;
 	double		time;
 	bool		printing_enabled;
+	bool		on_screen_enabled;
 }				t_fps;
 
 /*  minimap_width:
@@ -104,6 +105,7 @@ typedef struct s_gfx_data
 	t_minimap		minimap;
 	t_bigmap		bigmap;
 	t_doorlayer		doorlayer;
+	mlx_image_t		*fps_on_screen[MAX_SCREEN_FPS + 1];
 	struct s_all	*data;
 	bool			testmode;
 }					t_gfx_data;

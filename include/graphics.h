@@ -119,4 +119,9 @@ void		update_image(t_gfx_data *graphics);
 void		resize_all(t_gfx_data *graphics);
 void 		resize_images(t_gfx_data *graphics);
 
+// - FPS to screen
+
+bool		init_fps_images(t_gfx_data *graphics);
+void		fps_to_screen(t_gfx_data *graphics, t_fps *fps);
+
 #endif

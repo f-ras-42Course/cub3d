@@ -35,6 +35,8 @@
  */
 # define DEFAULT_FOV					66.2068965517
 
+# define MAX_SCREEN_FPS					120
+
 typedef enum e_resolutions
 {
 	R_NINTH_HD,

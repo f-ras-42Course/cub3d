@@ -24,6 +24,7 @@ void	change_fov(t_all *data);
 void	zoom_in(t_all *data);
 void	bigmap_io_switch(t_bigmap *bigmap);
 void	testmode_io_switch(t_gfx_data *graphics);
-void	fps_ioswitch(t_fps *fps);
+void	fps_print_ioswitch(t_fps *fps);
+void	fps_screen_ioswitch(t_gfx_data *graphics, t_fps *fps);
 
 #endif

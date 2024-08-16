@@ -45,10 +45,25 @@ void	testmode_io_switch(t_gfx_data *graphics)
 		graphics->testmode = true;
 }
 
-void	fps_ioswitch(t_fps *fps)
+void	fps_print_ioswitch(t_fps *fps)
 {
 	if (fps->printing_enabled)
 		fps->printing_enabled = false;
 	else
 		fps->printing_enabled = true;
+}
+
+void	fps_screen_ioswitch(t_gfx_data *graphics, t_fps *fps)
+{
+	int	i;
+
+	i = 0;
+	if (fps->on_screen_enabled)
+	{
+		fps->on_screen_enabled = false;
+		while (i <= MAX_SCREEN_FPS)
+			graphics->fps_on_screen[i++]->enabled = false;
+	}
+	else
+		fps->on_screen_enabled = true;
 }

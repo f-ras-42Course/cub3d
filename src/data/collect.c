@@ -9,6 +9,7 @@ bool	set_data(t_all *data)
 	set_player_field_of_view(data);
 	init_default_resolution();
 	data->fps.printing_enabled = false;
+	data->fps.on_screen_enabled = false;
 	return (init_texture_data(data));
 }
 
