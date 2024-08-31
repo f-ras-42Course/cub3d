@@ -1,7 +1,7 @@
 
 NAME = cub3d
 CC = cc
-CFLAGS = -Werror -Wextra -Wall -Wno-unused-parameter
+CFLAGS = -Werror -Wextra -Wall -Wno-unused-parameter -Ofast -flto -march=native
 MLX42_FLAGS = -ldl -lglfw -pthread -lm
 INCLUDE = -I include -I $(MLX42_DIR)/include
 SRC_DIR = src
@@ -15,6 +15,7 @@ LIB_DIR = lib
 MLX42 = $(LIB_DIR)/libmlx42.a
 MLX42_DIR = $(LIB_DIR)/MLX42
 MLX42_BUILD = $(MLX42_DIR)/build
+MLX42_CMAKE = $(MLX42_DIR)/CMakeLists.txt
 
 ifdef DEBUG
 CFLAGS += -g -D DEBUG=-1
@@ -25,16 +26,12 @@ ifdef FSAN
 CFLAGS += -fsanitize=address -g
 endif
 
-ifdef OPTIM
-CFLAGS += -Ofast -flto -march=native
-endif
-
 # Targets
 .PHONY: all mandatory bonus clean fclean re directories debug rebug fsan resan message
 
 all: $(NAME)
 
-$(NAME): $(MLX42) $(OBJECTS)
+$(NAME): $(MLX42_CMAKE) $(MLX42) $(OBJECTS)
 	$(CC) $(OBJECTS) $(MLX42) $(MLX42_FLAGS) $(CFLAGS) -o $@
 	@$(MAKE) message EXECUTABLE=$@
 
@@ -45,6 +42,9 @@ $(OBJ_DIR)/%.o: $(SRC_DIR)/%.c
 bonus: all
 
 # Libraries
+$(MLX42_CMAKE):
+	$(MAKE) init_subm
+
 $(MLX42):
 	cmake -S $(MLX42_DIR) -B $(MLX42_BUILD) $(MLX42_DEBUG)
 	make -C $(MLX42_BUILD) -j4
@@ -72,11 +72,6 @@ ree: clean
 
 #Options
 
-# Optimize
-optim:
-	$(MAKE) OPTIM=1
-roptim: fclean optim
-
 # Debugging
 debug:
 	$(MAKE) DEBUG=1 
@@ -101,3 +96,17 @@ update_subm:
 	git submodule update --recursive
 	git submodule foreach --recursive git fetch
 	git submodule foreach git merge origin master
+
+##########################################
+#										 #
+# Optimize //-- (now default mode)		 #
+#										 #
+# ifdef OPTIM							 #
+# CFLAGS += -Ofast -flto -march=native	 #
+# endif									 #
+#										 #
+# optim:								 #
+# 	$(MAKE) OPTIM=1						 #
+# roptim: fclean optim					 #
+#										 #
+##########################################
