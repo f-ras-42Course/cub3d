@@ -80,7 +80,7 @@ void	cursor_hooks(double xpos, double ypos, void *ptr_to_data)
 	};
 
 	data = ptr_to_data;
-	rot_speed = (data->fps.time - data->fps.old_time) * 0.5;
+	rot_speed = (data->fps.time - data->fps.old_time) * 0.05;
 	if (xpos < screen_mid[X])
 	{
 		data->player.direction = (data->player.direction / M_PI - (rot_speed \
