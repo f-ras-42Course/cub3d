@@ -14,12 +14,11 @@ t_str	*validate_characters_in_map(char *line, t_all *data)
 		{
 			if (player_found == true)
 				return (error(MULTIPLE_PLAYERS, data), NULL);
-			data->player.position[X] = i;
-			data->player.position[Y] = data->map.size[Y];
-			// also can determine direction!
+			data->map.player_location[X] = i;
+			data->map.player_location[Y] = data->map.size[Y];
 			player_found = true;
 		}
-		else if (!isinset(line[i], " 01"))
+		else if (!isinset(line[i], " 01D"))
 			return (error(INVALID_CHARACTER, data), NULL);
 		i++;
 	}
@@ -32,7 +31,7 @@ t_str	*validate_characters_in_map(char *line, t_all *data)
 
 bool	is_valid_player_and_map_size(t_all *data)
 {
-	if (data->player.position[X] == -1)
+	if (data->map.player_location[X] == -1)
 		return (error(NO_PLAYER, data), false);
 	else if (data->map.size[X] < 3 || data->map.size[Y] < 3)
 		return (error(MAP_TOO_SMALL, data), false);
@@ -107,6 +106,6 @@ bool	get_map(t_all *data, int fd, char *line)
 	}
 	if (!get_size_and_individual_lines(line, fd, data, &head) || \
 		!allocate_map_and_copy(head, &data->map))
-		return (free_str(head), true);
-	return (free_str(head), false);
+		return (free_str(head), false);
+	return (free_str(head), true);
 }

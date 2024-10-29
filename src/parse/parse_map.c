@@ -6,14 +6,19 @@ bool	is_valid_cell(t_all *data, char **map, size_t x, size_t y)
 {
 	bool	down_left_diagonal;
 
-	if (isinset(map[y][x], "0NSEW") && (x == 0 || y == 0 || \
-		x == data->map.size[X] - 1 || y == data->map.size[Y] - 1))
+	if ((x == 0 || y == 0 || x == data->map.size[X] - 1 || y == data->map.size[Y] - 1) \
+		&& isinset(map[y][x], "0NSEWD"))
 		return (false);
 	if (x == 0)
 		down_left_diagonal = true;
 	else
 		down_left_diagonal = \
 			is_valid_neighbour(data, x - 1, y + 1, get_set(map[y][x]));
+	if (map[y][x] == 'D')
+	{
+		return ((map[y + 1][x] == '1' && map[y - 1][x] == '1') || \
+				(map[y][x + 1] == '1' && map[y][x - 1] == '1'));
+	}
 	return (is_valid_neighbour(data, x + 1, y, get_set(map[y][x])) && \
 			is_valid_neighbour(data, x, y + 1, get_set(map[y][x])) && \
 			is_valid_neighbour(data, x + 1, y + 1, get_set(map[y][x])) && \
@@ -48,15 +53,11 @@ for an inclomple/invalid map*/
 bool	parse_map(t_all *data, int argc, char *map_name)
 {
 	int		fd;
-	char	*line;
 
 	if (!is_valid_file(data, map_name, argc))
 		return (false);
 	else if (!open_file(data, map_name, &fd))
 		return (false);
 	init_map_data(&data->map, &data->player);
-	line = get_elements(data, fd);
-	if (!line || !get_map(data, fd, line) || !is_valid_map(data))
-		return (false);
-	return (true);
+	return (get_elements(data, fd));
 }

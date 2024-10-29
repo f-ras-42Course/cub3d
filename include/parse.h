@@ -23,7 +23,8 @@ bool	open_file(t_all *data, char *map, int *fd);
 void	init_map_data(t_map *map, t_player *player);
 bool	is_valid_file(t_all *data, char *map_name, int argc);
 
-char	*get_elements(t_all *data, int fd);
+bool	is_valid_map(t_all *data);
+bool	get_elements(t_all *data, int fd);
 bool	parse_map(t_all *data, int argc, char *map_name);
 bool	get_map(t_all *data, int fd, char *line);
 

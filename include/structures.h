@@ -33,7 +33,7 @@ typedef struct s_map
 	char		*west_texture;
 	int			floor_color;
 	int			ceiling_color;
-	int			index[2];
+	int			player_location[2];
 }				t_map;
 
 typedef struct s_fps

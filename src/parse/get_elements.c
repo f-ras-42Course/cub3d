@@ -66,23 +66,21 @@ bool	validate_identifier(t_all *data, t_map *map, char *line, int *id)
 	return (false);
 }
 
-char	*get_elements(t_all *data, int fd)
+bool	get_elements(t_all *data, int fd)
 {
 	char	*line;
-	int		id_count;
+	int		identifier_count;
 
-	id_count = 0;
+	identifier_count = 0;
 	line = get_next_line(fd);
-	while (line && id_count < 6)
+	while (line && identifier_count < 6)
 	{
-		if (validate_identifier(data, &data->map, line, &id_count))
+		if (validate_identifier(data, &data->map, line, &identifier_count))
 			return (free(line), NULL);
 		free(line);
 		line = get_next_line(fd);
 	}
-	if (id_count != 6)
-		error(NOT_ALL_ELEMENTS, data);
-	else if (!line)
-		error(NO_MAP, data);
-	return (line);
+	if (identifier_count != 6 || !line)
+		return (error(NOT_ALL_ELEMENTS, data), false);
+	return (get_map(data, fd, line) && is_valid_map(data));
 }

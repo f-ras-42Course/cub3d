@@ -8,14 +8,8 @@ void	init_map_data(t_map *map, t_player *player)
 	map->map = NULL;
 	map->size[X] = 0;
 	map->size[Y] = 0;
-	map->north_texture = NULL;
-	map->south_texture = NULL;
-	map->east_texture = NULL;
-	map->west_texture = NULL;
-	map->ceiling_color = -1;
-	map->floor_color = -1;
-	map->index[0] = 0;
-	map->index[1] = 0;
+	map->player_location[0] = 0;
+	map->player_location[1] = 0;
 	player->position[X] = -1;
 	player->position[Y] = -1;
 }
@@ -25,9 +19,11 @@ bool	open_file(t_all *data, char *map, int *fd)
 {
 	*fd = open(map, O_RDONLY);
 	if (*fd == -1 && errno == ENOENT)
-		return (error(NO_SUCH_FILE, data), false);
-	else if (*fd == -1)
+	{
+		if (errno == ENOENT)
+			return (error(NO_SUCH_FILE, data), false);
 		return (perror("Error: "), false);
+	}
 	return (true);
 }
 
@@ -35,8 +31,9 @@ bool	is_valid_file(t_all *data, char *map_name, int argc)
 {
 	if (argc == 1)
 		return (error(NO_MAP, data), false);
-	else if (ft_strcmp(".cub", \
-			ft_strnstr(map_name, ".cub", ft_strlen(map_name))))
+	while (*map_name && *map_name != '.')
+		map_name++;
+	if (ft_strcmp(map_name, ".cub"))
 		return (error(NO_DOT_CUB, data), false);
 	return (true);
 }
@@ -56,8 +53,8 @@ char	*get_set(char cell)
 	if (cell == ' ')
 		return ("1 ");
 	else if (cell == '1')
-		return ("10WSEN ");
+		return ("10WSEND ");
 	else if (cell == '0')
-		return ("01NSEW");
-	return ("01");
+		return ("01NSEWD");
+	return ("01D");
 }
