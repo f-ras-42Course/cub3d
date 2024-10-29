@@ -8,10 +8,14 @@ void	init_map_data(t_map *map, t_player *player)
 	map->map = NULL;
 	map->size[X] = 0;
 	map->size[Y] = 0;
+	map->east_texture = NULL;
+	map->north_texture = NULL;
+	map->west_texture = NULL;
+	map->south_texture = NULL;
+	map->ceiling_color = -1;
+	map->floor_color = -1;
 	map->player_location[0] = 0;
 	map->player_location[1] = 0;
-	player->position[X] = -1;
-	player->position[Y] = -1;
 }
 
 /*opens file and does some custom error checking*/
