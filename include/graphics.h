@@ -118,6 +118,7 @@ void		update_image(t_gfx_data *graphics);
 
 void		resize_all(t_gfx_data *graphics);
 void 		resize_images(t_gfx_data *graphics);
+void		bring_window_to_center(t_gfx_data *graphics);
 
 // - FPS to screen
 

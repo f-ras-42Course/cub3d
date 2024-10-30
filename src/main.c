@@ -5,14 +5,14 @@ int	main(int argc, char **argv)
 {
 	t_all	data;
 
-	if (!parse_map(&data, argc, argv[1]))
+	// if (!parse_map(&data, argc, argv[1]))
+	// 	return (data.error_code);
+	if (!set_data(&data))
 		return (data.error_code);
-	// if (!set_data(&data))
-	// 	return (data.error_code);
-	// if (!init_graphics(&data))
-	// 	return (data.error_code);
-	// if (!load_hooks(&data))
-	// 	return (data.error_code);
-	// run_graphics(&data);
+	if (!init_graphics(&data))
+		return (data.error_code);
+	if (!load_hooks(&data))
+		return (data.error_code);
+	run_graphics(&data);
 	return (SUCCES);
 }

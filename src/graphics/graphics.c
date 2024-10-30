@@ -23,6 +23,7 @@ bool	init_graphics(t_all *data)
 		return (error(MLX_GFX_CRASH, data), false);
 	data->graphics.data = data;
 	init_fps_images(&(data->graphics));
+	bring_window_to_center(&(data->graphics));
 	return (true);
 }
 
