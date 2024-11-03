@@ -20,7 +20,7 @@ void	free_str(t_str *head);
 char	*get_set(char cell);
 bool	is_valid_neighbour(t_all *data, size_t x, size_t y, char *set);
 bool	open_file(t_all *data, char *map, int *fd);
-void	init_map_data(t_map *map, t_player *player);
+void	init_map_data(t_map *map);
 bool	is_valid_file(t_all *data, char *map_name, int argc);
 
 bool	is_valid_map(t_all *data);

@@ -3,7 +3,7 @@
 
 /*initializes some variables that can be checked later to see if all identifiers
 are found or the player position is confirmed*/
-void	init_map_data(t_map *map, t_player *player)
+void	init_map_data(t_map *map)
 {
 	map->map = NULL;
 	map->size[X] = 0;

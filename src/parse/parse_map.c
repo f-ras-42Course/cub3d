@@ -58,6 +58,6 @@ bool	parse_map(t_all *data, int argc, char *map_name)
 		return (false);
 	else if (!open_file(data, map_name, &fd))
 		return (false);
-	init_map_data(&data->map, &data->player);
+	init_map_data(&data->map);
 	return (get_elements(data, fd));
 }

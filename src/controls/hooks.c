@@ -83,6 +83,7 @@ void	cursor_hooks(double xpos, double ypos, void *ptr_to_data)
 	[Y] = screen_height() / 2
 	};
 
+	(void)ypos;
 	data = ptr_to_data;
 	rot_speed = (data->fps.time - data->fps.old_time) * 0.05;
 	if (xpos < screen_mid[X])
