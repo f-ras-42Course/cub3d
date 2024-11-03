@@ -17,7 +17,7 @@ void	cursor_hooks(double xpos, double ypos, void* param);
 
 // - Movement
 void	walking(t_all *data);
-void	wall_collision(t_player *player, double increment, int axis);
+void	wall_collision(t_player *player, double increment, t_xyz axis);
 
 // -- Options
 void	change_fov(t_all *data);

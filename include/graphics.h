@@ -11,7 +11,6 @@
 # include "definitions.h"
 # include "structures.h"
 # include "utils.h"
-# include "test_map.h"
 # include "test_graphics.h"
 # include <math.h>
 

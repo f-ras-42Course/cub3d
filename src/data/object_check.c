@@ -1,16 +1,26 @@
+
 #include "data.h"
 
 bool	wall_found(int x, int y)
 {
-	return(g_temp_test_map[y][x] == '1');
+	char **map;
+
+	map = map_data(GET);
+	return(map[y][x] == '1');
 }
 
 bool	closed_door_found(int x, int y)
 {
-	return(g_temp_test_map[y][x] == 'D');
+	char **map;
+
+	map = map_data(GET);
+	return(map[y][x] == 'D');
 }
 
 bool	open_door_found(int x, int y)
 {
-	return(g_temp_test_map[y][x] == 'O');
+	char **map;
+
+	map = map_data(GET);
+	return(map[y][x] == 'O');
 }

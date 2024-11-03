@@ -57,17 +57,21 @@ void	open_close_door(t_player *player)
 {
 	const double	distance_to_wall[2] = {
 	[X] = copysign(0.5, cos(player->direction)),
-	[Y] = copysign(0.5, sin(player->direction)),
+	[Y] = copysign(0.5, sin(player->direction))
+	};
+	const int		check_here[2] = {
+	[X] = (int)(player->position[X] + distance_to_wall[X]),
+	[Y] = (int)(player->position[Y] + distance_to_wall[Y])
 	};
 
-	if (closed_door_found(player->position[X] + distance_to_wall[X], player->position[Y]))
-		g_temp_test_map[(int)player->position[Y]][(int)(player->position[X] + distance_to_wall[X])] = 'O';
-	else if (closed_door_found(player->position[X], player->position[Y] + distance_to_wall[Y]))
-		g_temp_test_map[(int)(player->position[Y] + distance_to_wall[Y])][(int)player->position[X]] = 'O';
-	else if (open_door_found(player->position[X] + distance_to_wall[X], player->position[Y]))
-		g_temp_test_map[(int)player->position[Y]][(int)(player->position[X] + distance_to_wall[X])] = 'D';
-	else if (open_door_found(player->position[X], player->position[Y] + distance_to_wall[Y]))
-		g_temp_test_map[(int)(player->position[Y] + distance_to_wall[Y])][(int)player->position[X]] = 'D';
+	if (closed_door_found(check_here[X], player->position[Y]))
+		open_door(check_here[X], player->position[Y]);
+	else if (closed_door_found(player->position[X], check_here[Y]))
+		open_door(player->position[X], check_here[Y]);
+	else if (open_door_found(check_here[X], player->position[Y]))
+		close_door(check_here[X], player->position[Y]);
+	else if (open_door_found(player->position[X], check_here[Y]))
+		close_door(player->position[X], check_here[Y]);
 }
 
 void	cursor_hooks(double xpos, double ypos, void *ptr_to_data)

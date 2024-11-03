@@ -40,7 +40,7 @@ void	walking(t_all *data)
 	}
 }
 
-void wall_collision(t_player *player, double increment, int axis)
+void wall_collision(t_player *player, double increment, t_xyz axis)
 {
 	if (axis == X)
 	{

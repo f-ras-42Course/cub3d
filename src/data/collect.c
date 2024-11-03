@@ -1,6 +1,5 @@
 
 #include "data.h"
-#include "test_map.h"
 
 bool	set_data(t_all *data)
 {
@@ -10,28 +9,15 @@ bool	set_data(t_all *data)
 	init_default_resolution();
 	data->fps.printing_enabled = false;
 	data->fps.on_screen_enabled = false;
+	make_cub_data_widely_available(&(data->map));
 	return (init_texture_data(data));
 }
 
 void	set_start_position_player(t_all *data)
 {
-	int	x;
-	int	y;
-
-	x = 0;
-	y = 0;
-	while (y < MAP_HEIGHT && !player_found(g_temp_test_map[y][x]))
-	{
-		while (x < MAP_WIDTH && !player_found(g_temp_test_map[y][x]))
-		{
-			x++;
-		}
-		if (player_found(g_temp_test_map[y][x]))
-			break ;
-		x = 0;
-		y++;
-	}
-	set_position(x + 0.5, y + 0.5, data->player.position);
+	set_position(data->map.player_location[X] + 0.5, \
+	data->map.player_location[Y] + 0.5, \
+	data->player.position);
 }
 
 void	set_start_direction_player(t_all *data)
@@ -61,7 +47,7 @@ bool	player_found(char c)
 
 char	get_player_type(t_all *data)
 {
-	return (g_temp_test_map[(int)data->player.position[Y]][(int)data->player.position[X]]);
+	return (data->map.map[data->map.player_location[Y]][data->map.player_location[X]]);
 }
 
 void 	set_player_field_of_view(t_all *data)

@@ -13,14 +13,14 @@ void	bigmap(const t_bigmap *bigmap)
 
 void	draw_walls_on_bigmap(const t_bigmap *bigmap)
 {
-	int	x;
-	int	y;
+	size_t	x;
+	size_t	y;
 
 	x = 0;
 	y = 0;
-	while (y < MAP_HEIGHT)
+	while (y < map_height(GET))
 	{
-		while (x < MAP_WIDTH)
+		while (x < map_width(GET))
 		{
 			if (wall_found(x, y))
 				fill_bigmap_unit(bigmap, x, y, 0xffaa004f);

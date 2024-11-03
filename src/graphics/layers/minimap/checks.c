@@ -3,11 +3,14 @@
 
 bool	minimap_unit_is_out_of_map_scope(const t_minimap *minimap)
 {
+	char	**map;
+
+	map = map_data(GET);
 	return (minimap->end_of_map_locator_x < 0 \
 		|| minimap->end_of_map_locator_y < 0 \
-		|| minimap->end_of_map_locator_x > MAP_WIDTH - 1 \
-		|| minimap->end_of_map_locator_y > MAP_HEIGHT - 1 \
-		|| g_temp_test_map[minimap->end_of_map_locator_y] \
+		|| minimap->end_of_map_locator_x > map_width(GET) - 1 \
+		|| minimap->end_of_map_locator_y > map_height(GET) - 1 \
+		|| map[minimap->end_of_map_locator_y] \
 							[minimap->end_of_map_locator_x] == ' ');
 }
 

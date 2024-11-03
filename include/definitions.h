@@ -109,4 +109,11 @@ typedef enum e_minimap_options
 	fill_end_of_map
 }	t_minimap_options;
 
+typedef	enum	e_mapaccess
+{
+	GET,
+	SET,
+	CHANGE_ELEMENT
+}	t_mapaccess;
+
 #endif

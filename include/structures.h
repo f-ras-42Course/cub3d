@@ -58,8 +58,8 @@ typedef struct s_minimap
 	int			height;
 	int			frame_thickness;
 	int			unit_size;
-	int			end_of_map_locator_x;
-	int			end_of_map_locator_y;
+	size_t		end_of_map_locator_x;
+	size_t		end_of_map_locator_y;
 	t_player	*player;
 }				t_minimap;
 

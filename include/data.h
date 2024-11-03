@@ -15,8 +15,19 @@ void			set_start_direction_player(t_all *data);
 bool			player_found(char c);
 char			get_player_type(t_all *data);
 
-// -- Textures
+// -- Free
+void			free_cub_data(t_map *cub);
 
+// -- Cub
+void			make_cub_data_widely_available(t_map *cub);
+char			**map_data(t_mapaccess option, ...);
+size_t			map_height(t_mapaccess option, ...);
+size_t			map_width(t_mapaccess option, ...);
+
+// -- Print
+void			test_print_map(char **map);
+
+// -- Textures
 bool			init_texture_data(t_all *data);
 bool			is_all_png_files(const t_map *map);
 void			all_textures_to_null(t_textures *textures);
@@ -37,6 +48,8 @@ void 			set_player_field_of_view(t_all *data);
 bool			wall_found(int x, int y);
 bool			closed_door_found(int x, int y);
 bool			open_door_found(int x, int y);
+void			close_door(int x, int y);
+void			open_door(int x, int y);
 
 // -- Screen Resolutions
 void			init_default_resolution(void);
