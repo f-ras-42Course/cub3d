@@ -22,7 +22,6 @@ int	main(int argc, char **argv)
 		free_cub_data(&data.map);
 		return (data.error_code);
 	}
-	// test_print_map(map_data(GET));
 	run_graphics(&data);
 	free_cub_data(&data.map);
 	return (SUCCES);
