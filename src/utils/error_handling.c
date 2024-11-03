@@ -5,7 +5,7 @@
 will write to standard error and adds a new_line.*/
 void	error(int error_code, t_all *data)
 {
-	static const char	*error_msg[] = {"Succes",
+	const char	*error_msg[] = {"Succes",
 		"invalid map",
 		"map too small",
 		"no player found",
