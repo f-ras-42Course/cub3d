@@ -72,7 +72,7 @@ bool	allocate_map_and_copy(t_str *current, t_map *map)
 	size_t	x;
 
 	y = 0;
-	map->map = malloc(map->size[Y] * sizeof(char *));
+	map->map = malloc((map->size[Y] + 1) * sizeof(char *));
 	if (!map->map)
 		return (false);
 	while (y < map->size[Y])
@@ -90,6 +90,7 @@ bool	allocate_map_and_copy(t_str *current, t_map *map)
 		current = current->next;
 		y++;
 	}
+	map->map[y] = NULL;
 	return (true);
 }
 
