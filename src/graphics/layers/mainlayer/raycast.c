@@ -1,8 +1,7 @@
 
 #include "graphics.h"
 
-void	raycasting(t_mainlayer *mainlayer, uint32_t ceiling_color, \
-					uint32_t floor_color)
+void	raycasting(t_mainlayer *mainlayer)
 {
 	const t_player		*player = mainlayer->player;
 	const mlx_texture_t	*wall_texture[4] = {
@@ -15,8 +14,8 @@ void	raycasting(t_mainlayer *mainlayer, uint32_t ceiling_color, \
 
 	wall.start_x = 0;
 	ray.direction = player->direction - (player->fov / 2) * RD;
-	place_full_ceiling_colored(mainlayer->image, ceiling_color);
-	place_full_floor_colored(mainlayer->image, floor_color);
+	place_full_ceiling_colored(mainlayer->image, mainlayer->ceiling_color);
+	place_full_floor_colored(mainlayer->image, mainlayer->floor_color);
 	wall.ray = &ray;
 	wall.player = mainlayer->player;
 	while (wall.start_x < player->fov * (screen_width() / player->fov))

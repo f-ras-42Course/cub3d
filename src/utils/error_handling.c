@@ -17,7 +17,7 @@ void	error(int error_code, t_all *data)
 		"the file given as argument does not exist",
 		"make sure the map ends with '.cub'",
 		"no map supplied",
-		"texture must be a '.png' file",
+		"texture must be '.png' file",
 		"make sure all texture files exist",
 		"MLX crashed (GFX); go into debug mode for more info",
 		"MLX crashed (HOOKS); go into debug mode for more info"};

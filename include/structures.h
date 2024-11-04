@@ -18,7 +18,6 @@ typedef struct s_ray
 	double		shortest[2];
 	int			check_pos[2];
 	t_nesw		side;
-	// bool		is_open_door;
 	bool		is_door_closed;
 	bool		is_door_open;
 }				t_ray;
@@ -26,7 +25,7 @@ typedef struct s_ray
 typedef struct s_map
 {
 	char		**map;
-	size_t		size[2]; // 1 HEIGHT, 1 WIDTH
+	size_t		size[2];
 	char		*north_texture;
 	char		*south_texture;
 	char		*east_texture;
@@ -89,6 +88,8 @@ typedef struct s_mainlayer
 	mlx_image_t	*image;
 	t_player	*player;
 	t_textures	textures;
+	uint32_t	floor_color;
+	uint32_t	ceiling_color;
 }				t_mainlayer;
 
 typedef struct s_doorlayer

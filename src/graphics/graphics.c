@@ -15,10 +15,8 @@ bool	init_graphics(t_all *data)
 	}
 	mlx_set_mouse_pos(data->graphics.mlx, screen_width() / 2, screen_height() / 2);
 	mlx_set_cursor_mode(data->graphics.mlx, MLX_MOUSE_DISABLED);
-	data->graphics.minimap.player = &(data->player);
-	data->graphics.bigmap.player = &(data->player);
-	data->graphics.mainlayer.player = &(data->player);
-	data->graphics.doorlayer.player = &(data->player);
+	set_player_pointers(data);
+	set_floor_and_ceiling_color(data);
 	if (!init_image(&(data->graphics)))
 		return (error(MLX_GFX_CRASH, data), false);
 	data->graphics.data = data;
