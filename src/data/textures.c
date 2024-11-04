@@ -40,14 +40,6 @@ bool	is_all_png_files(const t_map *map)
 
 bool	set_all_textures(t_textures *textures, const t_map *map)
 {
-	textures->ceiling_texture = mlx_load_png("./textures/pack1-1024/sky.png");
-	if (!textures->ceiling_texture)
-		return ((void)write(STDERR_FILENO, "\nCouldn't load: ", 16), \
-				ft_putendl_fd("./textures/pack1-1024/sky.png", STDERR_FILENO), false);
-	textures->floor_texture = mlx_load_png("./textures/pack1-1024/sand2.png");
-	if (!textures->floor_texture)
-		return ((void)write(STDERR_FILENO, "\nCouldn't load: ", 16), \
-				ft_putendl_fd("./textures/pack1-1024/sand2.png", STDERR_FILENO), false);
 	textures->north_texture = mlx_load_png(map->north_texture);
 	if (!textures->north_texture)
 		return ((void)write(STDERR_FILENO, "Couldn't load: ", 16), \
