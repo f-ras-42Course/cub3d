@@ -22,6 +22,11 @@ void		run_graphics(t_all *data);
 bool		init_image(t_gfx_data *graphics);
 bool		set_all_images_to_window(t_gfx_data *graphics);
 
+// - Set
+
+void		set_player_pointers(t_all *data);
+void		set_floor_and_ceiling_color(t_all *data);
+
 // - Layers
 bool		init_mainlayer(t_gfx_data *graphics);
 bool		init_doorlayer(t_gfx_data *graphics);
@@ -32,8 +37,7 @@ void		init_bigmap_values(t_bigmap *bigmap);
 
 // - Raycasting
 //-Textured
-void		raycasting(t_mainlayer *mainlayer, uint32_t ceiling_color, \
-						uint32_t floor_color);
+void		raycasting(t_mainlayer *mainlayer);
 void		raycasting_door(t_doorlayer *doorlayer);
 void		place_full_ceiling_textured(mlx_image_t *image, \
 										const mlx_texture_t *texture);
