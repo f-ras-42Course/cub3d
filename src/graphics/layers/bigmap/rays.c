@@ -1,6 +1,20 @@
 
 #include "graphics.h"
 
+/**
+*	while (i < screen_width())
+*	
+*	operates the same as:
+*	
+*	while (i < player->fov * (screen_width() / player->fov))
+*	
+*	In other words:
+
+*	It goes exactly through the whole FOV 'x'-times for all the
+*	supported resolutions. As long as workable FOVs are used.
+*	
+*	More info about 'workables' are found at definitions.h -> DEFAULT_FOV.
+*/
 void	bigmap_draw_ray_lines(const t_bigmap *bigmap, int color)
 {
 	int				i;
@@ -12,7 +26,7 @@ void	bigmap_draw_ray_lines(const t_bigmap *bigmap, int color)
 	bigmap_position[X] = player->position[X] * bigmap->unit_size;
 	bigmap_position[Y] = player->position[Y] * bigmap->unit_size;
 	ray.direction = player->direction - (player->fov / 2) * RD;
-	while (i < player->fov * (screen_width() / player->fov))
+	while (i < screen_width())
 	{
 		init_ray_line_variables(player, &ray);
 		draw_single_ray_line(bigmap, &ray, bigmap_position, color);
@@ -23,12 +37,14 @@ void	bigmap_draw_ray_lines(const t_bigmap *bigmap, int color)
 
 void	init_ray_line_variables(const t_player *player, t_ray *ray)
 {
+	printf("player pos[x] = %f, player pos[y] = %f\n", player->position[X], player->position[Y]);
 	ray->delta[X] = \
 		sqrt(1 + (pow(sin(ray->direction) \
 		/ cos(ray->direction), 2)));
 	ray->delta[Y] = \
 		sqrt(1 + (pow(cos(ray->direction) \
 		/ sin(ray->direction), 2)));
+	printf("delta[x] = %f, delta[y] = %f\n", ray->delta[X], ray->delta[Y]);
 	if (cos(ray->direction) < 0)
 		ray->shortest[X] = fmod(player->position[X], 1) * ray->delta[X];
 	else
@@ -37,6 +53,7 @@ void	init_ray_line_variables(const t_player *player, t_ray *ray)
 		ray->shortest[Y] = fmod(player->position[Y], 1) * ray->delta[Y];
 	else
 		ray->shortest[Y] = (1 - fmod(player->position[Y], 1)) * ray->delta[Y];
+	printf("shortest(1)[x] = %f, shortest(1)[y] = %f\n\n\n", ray->shortest[X], ray->shortest[Y]);
 	ray->check_pos[X] = player->position[X];
 	ray->check_pos[Y] = player->position[Y];
 }

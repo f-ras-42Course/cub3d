@@ -1,18 +1,22 @@
 
 #include "graphics.h"
 
-static void	clean_sheet(mlx_image_t *image)
-{
-	const int	measures[4] = {
-	[RECT_WIDTH] = screen_width(),
-	[RECT_HEIGHT] = screen_height(),
-	[DRAW_POS_X] = 0,
-	[DRAW_POS_Y] = 0
-	};
+static void	clean_sheet(mlx_image_t *image);
 
-	draw_rect(image, measures, 0x0);
-}
+/**
+*	while (wall.start_x < screen_width())
+*	
+*	operates the same as:
+*	
+*	while (wall.start_x * (screen_width() / player->fov))
+*	
+*	In other words:
 
+*	It goes exactly through the whole FOV 'x'-times for all the
+*	supported resolutions. As long as workable FOVs are used.
+*	
+*	More info about 'workables' are found at definitions.h -> DEFAULT_FOV.
+*/
 void	raycasting_door(t_doorlayer *doorlayer)
 {
 	const t_player		*player = doorlayer->player;
@@ -24,7 +28,7 @@ void	raycasting_door(t_doorlayer *doorlayer)
 	wall.ray = &ray;
 	wall.player = doorlayer->player;
 	clean_sheet(doorlayer->image);
-	while (wall.start_x < player->fov * (screen_width() / player->fov))
+	while (wall.start_x < screen_width())
 	{
 		init_ray_variables(player, &ray);
 		wall.ray_distance = ray_distance_door(&ray);
@@ -86,4 +90,16 @@ double	ray_distance_door(t_ray *ray)
 		// if (wall_found(ray->check_pos[X], ray->check_pos[Y]))
 		// 		return (0);
 	}
+}
+
+static void	clean_sheet(mlx_image_t *image)
+{
+	const int	measures[4] = {
+	[RECT_WIDTH] = screen_width(),
+	[RECT_HEIGHT] = screen_height(),
+	[DRAW_POS_X] = 0,
+	[DRAW_POS_Y] = 0
+	};
+
+	draw_rect(image, measures, 0x0);
 }

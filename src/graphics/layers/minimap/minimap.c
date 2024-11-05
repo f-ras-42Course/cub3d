@@ -4,19 +4,20 @@
 void	minimap(t_minimap *minimap)
 {
 	reset_minimap_end_of_map_locator(minimap);
-	draw_walls_on_minimap(minimap);
+	draw_minimap(minimap);
 	draw_player_on_minimap(minimap);
 }
 
-void	draw_walls_on_minimap(t_minimap *minimap)
+void	draw_minimap(t_minimap *minimap)
 {
 	int	x;
 	int	y;
 
-	x = 0;
+
 	y = 0;
 	while (y < MINIMAP_GRID_HEIGHT)
 	{
+		x = 0;
 		while (x < MINIMAP_GRID_WIDTH)
 		{
 			if (minimap_unit_is_out_of_map_scope(minimap))
@@ -34,7 +35,6 @@ void	draw_walls_on_minimap(t_minimap *minimap)
 		}
 		minimap->end_of_map_locator_x = \
 			(int)minimap->player->position[X] - MINIMAP_GRID_WIDTH / 2;
-		x = 0;
 		y++;
 		(minimap->end_of_map_locator_y)++;
 	}

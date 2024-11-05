@@ -1,6 +1,20 @@
 
 #include "graphics.h"
 
+/**
+*	while (wall.start_x < screen_width())
+*	
+*	operates the same as:
+*	
+*	while (wall.start_x < player->fov * (screen_width() / player->fov))
+*	
+*	In other words:
+
+*	It goes exactly through the whole FOV 'x'-times for all the
+*	supported resolutions. As long as workable FOVs are used.
+*	
+*	More info about 'workables' are found at definitions.h -> DEFAULT_FOV.
+*/
 void	raycasting(t_mainlayer *mainlayer)
 {
 	const t_player		*player = mainlayer->player;
@@ -18,7 +32,7 @@ void	raycasting(t_mainlayer *mainlayer)
 	place_full_floor_colored(mainlayer->image, mainlayer->floor_color);
 	wall.ray = &ray;
 	wall.player = mainlayer->player;
-	while (wall.start_x < player->fov * (screen_width() / player->fov))
+	while (wall.start_x < screen_width())
 	{
 		init_ray_variables(player, &ray);
 		wall.ray_distance = ray_distance(&ray);

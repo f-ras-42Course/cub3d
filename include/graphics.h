@@ -62,7 +62,7 @@ void		set_wall_side(t_ray *ray, int side_check);
 
 // - Minimap
 void		minimap(t_minimap *minimap);
-void		draw_walls_on_minimap(t_minimap *minimap);
+void		draw_minimap(t_minimap *minimap);
 void		draw_player_on_minimap(t_minimap *minimap);
 void		draw_end_of_map(t_minimap *minimap, int x, int y);
 void		fill_minimap_unit(t_minimap *minimap, int minimap_pos_x, \
