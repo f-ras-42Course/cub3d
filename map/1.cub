@@ -1,10 +1,12 @@
-NO j
-SO j
-EA j
-WE j
+NO ./textures/pack2-1024/Dark/texture_13.png
+SO ./textures/pack2-1024/Green/texture_01.png
+WE ./textures/pack2-1024/Red/texture_01.png
+EA ./textures/pack2-1024/Orange/texture_01.png
 F 0,0,0
 C 0,0,0
 
-11111
-1ND01
-11111
+111111
+1N0001
+101101
+100001
+111111
