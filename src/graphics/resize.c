@@ -1,9 +1,19 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        ::::::::            */
+/*   resize.c                                           :+:    :+:            */
+/*                                                     +:+                    */
+/*   By: fras <fras@student.codam.nl>                 +#+                     */
+/*                                                   +#+                      */
+/*   Created: 2024/11/08 20:17:14 by fras          #+#    #+#                 */
+/*   Updated: 2024/11/08 20:22:57 by fras          ########   odam.nl         */
+/*                                                                            */
+/* ************************************************************************** */
 
 #include "graphics.h"
 
 void	resize_all(t_gfx_data *graphics)
 {
-
 	mlx_set_window_size(graphics->mlx, screen_width(), screen_height());
 	init_minimap_values(&(graphics->minimap));
 	init_bigmap_values(&(graphics->bigmap));
@@ -11,7 +21,7 @@ void	resize_all(t_gfx_data *graphics)
 	bring_window_to_center(graphics);
 }
 
-void 	resize_images(t_gfx_data *graphics)
+void	resize_images(t_gfx_data *graphics)
 {
 	mlx_resize_image(graphics->mainlayer.image, screen_width(), \
 					screen_height());
@@ -32,6 +42,6 @@ void	bring_window_to_center(t_gfx_data *graphics)
 	int	monitor[2];
 
 	mlx_get_monitor_size(0, &monitor[X], &monitor[Y]);
-	mlx_set_window_pos(graphics->mlx, monitor[X] / 2 - screen_width() / 2,\
-						 monitor[Y] / 2 - screen_height() / 2);
+	mlx_set_window_pos(graphics->mlx, monitor[X] / 2 - screen_width() / 2, \
+						monitor[Y] / 2 - screen_height() / 2);
 }

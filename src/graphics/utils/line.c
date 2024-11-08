@@ -1,7 +1,18 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        ::::::::            */
+/*   line.c                                             :+:    :+:            */
+/*                                                     +:+                    */
+/*   By: fras <fras@student.codam.nl>                 +#+                     */
+/*                                                   +#+                      */
+/*   Created: 2024/11/08 20:16:52 by fras          #+#    #+#                 */
+/*   Updated: 2024/11/08 20:20:41 by fras          ########   odam.nl         */
+/*                                                                            */
+/* ************************************************************************** */
 
 #include "graphics.h"
 
-void draw_line_textured(mlx_image_t *image, t_wall_data *wall, \
+void	draw_line_textured(mlx_image_t *image, t_wall_data *wall, \
 						const mlx_texture_t *texture)
 {
 	double		tex_position;

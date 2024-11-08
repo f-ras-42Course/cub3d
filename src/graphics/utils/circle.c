@@ -1,3 +1,14 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        ::::::::            */
+/*   circle.c                                           :+:    :+:            */
+/*                                                     +:+                    */
+/*   By: fras <fras@student.codam.nl>                 +#+                     */
+/*                                                   +#+                      */
+/*   Created: 2024/11/08 20:16:48 by fras          #+#    #+#                 */
+/*   Updated: 2024/11/08 20:20:50 by fras          ########   odam.nl         */
+/*                                                                            */
+/* ************************************************************************** */
 
 #include "graphics.h"
 
@@ -22,7 +33,6 @@ void	draw_circle(mlx_image_t *image, \
 		i++;
 	}
 }
-
 
 void	draw_filled_circle(mlx_image_t *image, \
 					const int measures[3], unsigned int color)

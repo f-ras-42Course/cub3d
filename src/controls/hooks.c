@@ -1,3 +1,14 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        ::::::::            */
+/*   hooks.c                                            :+:    :+:            */
+/*                                                     +:+                    */
+/*   By: fras <fras@student.codam.nl>                 +#+                     */
+/*                                                   +#+                      */
+/*   Created: 2024/11/08 19:22:09 by fras          #+#    #+#                 */
+/*   Updated: 2024/11/08 19:22:22 by fras          ########   odam.nl         */
+/*                                                                            */
+/* ************************************************************************** */
 
 #include "controls.h"
 
@@ -5,7 +16,7 @@ bool	load_hooks(t_all *data)
 {
 	mlx_key_hook(data->graphics.mlx, key_hooks, data);
 	if (!mlx_loop_hook(data->graphics.mlx, loop_hooks, data))
-		return(error(MLX_HOOKS_CRASH, data), false);
+		return (error(MLX_HOOKS_CRASH, data), false);
 	mlx_cursor_hook(data->graphics.mlx, cursor_hooks, data);
 	return (true);
 }
@@ -42,8 +53,6 @@ void	key_hooks(mlx_key_data_t keydata, void *ptr_to_data)
 			zoom_in(data);
 		if (keydata.key == MLX_KEY_M)
 			bigmap_io_switch(&(data->graphics.bigmap));
-		if (keydata.key == MLX_KEY_T)
-			testmode_io_switch(&(data->graphics));
 		if (keydata.key == MLX_KEY_SPACE)
 			open_close_door(&(data->player));
 		if (keydata.key == MLX_KEY_MINUS)

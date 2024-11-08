@@ -1,7 +1,18 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        ::::::::            */
+/*   bigmap_tools.c                                     :+:    :+:            */
+/*                                                     +:+                    */
+/*   By: fras <fras@student.codam.nl>                 +#+                     */
+/*                                                   +#+                      */
+/*   Created: 2024/11/08 19:47:54 by fras          #+#    #+#                 */
+/*   Updated: 2024/11/08 19:49:59 by fras          ########   odam.nl         */
+/*                                                                            */
+/* ************************************************************************** */
 
 #include "graphics.h"
 
-void		bigmap_single_ray(const t_bigmap *bigmap)
+void	bigmap_single_ray(const t_bigmap *bigmap)
 {
 	draw_walls_on_bigmap(bigmap);
 	bigmap_draw_direction_angle(bigmap, 0xff0000ff);

@@ -1,9 +1,20 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        ::::::::            */
+/*   textures.c                                         :+:    :+:            */
+/*                                                     +:+                    */
+/*   By: fras <fras@student.codam.nl>                 +#+                     */
+/*                                                   +#+                      */
+/*   Created: 2024/11/08 19:29:04 by fras          #+#    #+#                 */
+/*   Updated: 2024/11/08 19:47:14 by fras          ########   odam.nl         */
+/*                                                                            */
+/* ************************************************************************** */
 
 #include "graphics.h"
 
 bool	init_texture_data(t_all *data)
 {
-	t_textures *textures;
+	t_textures	*textures;
 
 	textures = &(data->graphics.mainlayer.textures);
 	if (!is_all_png_files(&(data->map)))
@@ -56,14 +67,14 @@ bool	set_all_textures(t_textures *textures, const t_map *map)
 	if (!textures->east_texture)
 		return ((void)write(STDERR_FILENO, "Couldn't load: ", 16), \
 				ft_putendl_fd(map->east_texture, STDERR_FILENO), false);
-	textures->door_closed_texture = mlx_load_png("./textures/pack2-1024/Light/texture_10.png");
+	textures->door_closed_texture = mlx_load_png(DOOR_TEXTURE_CLOSED);
 	if (!textures->door_closed_texture)
 		return ((void)write(STDERR_FILENO, "\nCouldn't load: ", 16), \
-				ft_putendl_fd(map->west_texture, STDERR_FILENO), false);
-	textures->door_open_texture = mlx_load_png("./textures/pack2-1024/Light/texture_10_open.png");
+				ft_putendl_fd(DOOR_TEXTURE_CLOSED, STDERR_FILENO), false);
+	textures->door_open_texture = mlx_load_png(DOOR_TEXTURE_OPEN);
 	if (!textures->door_open_texture)
 		return ((void)write(STDERR_FILENO, "\nCouldn't load: ", 16), \
-				ft_putendl_fd(map->west_texture, STDERR_FILENO), false);
+				ft_putendl_fd(DOOR_TEXTURE_OPEN, STDERR_FILENO), false);
 	return (true);
 }
 
@@ -72,6 +83,6 @@ bool	ends_with_png(const char *str)
 	int		i;
 
 	i = ft_strlen(str);
-	return(str[i - 4] == '.' \
+	return (str[i - 4] == '.' \
 			&& str[i - 3] == 'p' && str[i - 2] == 'n' && str[i - 1] == 'g' );
 }

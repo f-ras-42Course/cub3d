@@ -1,3 +1,14 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        ::::::::            */
+/*   collect.c                                          :+:    :+:            */
+/*                                                     +:+                    */
+/*   By: fras <fras@student.codam.nl>                 +#+                     */
+/*                                                   +#+                      */
+/*   Created: 2024/11/08 19:28:33 by fras          #+#    #+#                 */
+/*   Updated: 2024/11/08 19:31:54 by fras          ########   odam.nl         */
+/*                                                                            */
+/* ************************************************************************** */
 
 #include "data.h"
 
@@ -40,19 +51,14 @@ void	set_start_direction_player(t_all *data)
 	}
 }
 
-bool	player_found(char c)
-{
-	return (c == 'N' || c == 'E' || c == 'S' || c == 'W');
-}
-
 char	get_player_type(t_all *data)
 {
-	return (data->map.map[data->map.player_location[Y]][data->map.player_location[X]]);
+	return (data->map.map[data->map.player_location[Y]] \
+			[data->map.player_location[X]]);
 }
 
-void 	set_player_field_of_view(t_all *data)
+void	set_player_field_of_view(t_all *data)
 {
 	data->player.fov = DEFAULT_FOV;
-
-	cub3d_float_int_printer(STDOUT_FILENO, "Default FOV: %d\n", (int)data->player.fov);
+	printf("Default FOV: %d\n", (int)data->player.fov);
 }

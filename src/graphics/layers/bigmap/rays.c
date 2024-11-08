@@ -1,3 +1,14 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        ::::::::            */
+/*   rays.c                                             :+:    :+:            */
+/*                                                     +:+                    */
+/*   By: fras <fras@student.codam.nl>                 +#+                     */
+/*                                                   +#+                      */
+/*   Created: 2024/11/08 19:48:07 by fras          #+#    #+#                 */
+/*   Updated: 2024/11/08 19:48:10 by fras          ########   odam.nl         */
+/*                                                                            */
+/* ************************************************************************** */
 
 #include "graphics.h"
 
@@ -37,14 +48,12 @@ void	bigmap_draw_ray_lines(const t_bigmap *bigmap, int color)
 
 void	init_ray_line_variables(const t_player *player, t_ray *ray)
 {
-	printf("player pos[x] = %f, player pos[y] = %f\n", player->position[X], player->position[Y]);
 	ray->delta[X] = \
 		sqrt(1 + (pow(sin(ray->direction) \
 		/ cos(ray->direction), 2)));
 	ray->delta[Y] = \
 		sqrt(1 + (pow(cos(ray->direction) \
 		/ sin(ray->direction), 2)));
-	printf("delta[x] = %f, delta[y] = %f\n", ray->delta[X], ray->delta[Y]);
 	if (cos(ray->direction) < 0)
 		ray->shortest[X] = fmod(player->position[X], 1) * ray->delta[X];
 	else
@@ -53,7 +62,6 @@ void	init_ray_line_variables(const t_player *player, t_ray *ray)
 		ray->shortest[Y] = fmod(player->position[Y], 1) * ray->delta[Y];
 	else
 		ray->shortest[Y] = (1 - fmod(player->position[Y], 1)) * ray->delta[Y];
-	printf("shortest(1)[x] = %f, shortest(1)[y] = %f\n\n\n", ray->shortest[X], ray->shortest[Y]);
 	ray->check_pos[X] = player->position[X];
 	ray->check_pos[Y] = player->position[Y];
 }

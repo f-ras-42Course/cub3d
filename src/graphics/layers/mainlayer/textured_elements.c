@@ -1,3 +1,14 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        ::::::::            */
+/*   textured_elements.c                                :+:    :+:            */
+/*                                                     +:+                    */
+/*   By: fras <fras@student.codam.nl>                 +#+                     */
+/*                                                   +#+                      */
+/*   Created: 2024/11/08 19:48:49 by fras          #+#    #+#                 */
+/*   Updated: 2024/11/08 19:59:06 by fras          ########   odam.nl         */
+/*                                                                            */
+/* ************************************************************************** */
 
 #include "graphics.h"
 
@@ -21,7 +32,8 @@ void	place_object_textured(mlx_image_t *image, t_wall_data *wall, \
 	wall->start_y = screen_height() / 2 - wall->line_height / 2;
 	wall->step[Y] = texture->height / (double)wall->wall_height;
 	if (wall->wall_height > screen_height())
-		wall->tex[Y] = (wall->wall_height - screen_height()) / 2 * wall->step[Y];
+		wall->tex[Y] = \
+			(wall->wall_height - screen_height()) / 2 * wall->step[Y];
 	else
 		wall->tex[Y] = 0;
 	draw_line_textured(image, wall, texture);
@@ -33,13 +45,3 @@ int	wall_height_limiter(int wall_height)
 		return (screen_height());
 	return (wall_height);
 }
-
-// void	test_texture(mlx_image_t *image, const mlx_texture_t *texture)
-// {
-// 	const int	measures[4] = {
-// 	[RECT_WIDTH] = texture->width,
-// 	[RECT_HEIGHT] = texture->height,
-// 	[DRAW_POS_X] = 100,
-// 	[DRAW_POS_Y] = 20
-// 	};
-// }

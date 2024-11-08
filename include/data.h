@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        ::::::::            */
+/*   data.h                                             :+:    :+:            */
+/*                                                     +:+                    */
+/*   By: fras <fras@student.codam.nl>                 +#+                     */
+/*                                                   +#+                      */
+/*   Created: 2024/11/08 18:13:48 by fras          #+#    #+#                 */
+/*   Updated: 2024/11/08 18:15:07 by fras          ########   odam.nl         */
+/*                                                                            */
+/* ************************************************************************** */
+
 #ifndef DATA_H
 # define DATA_H
 
@@ -7,12 +19,10 @@
 # include "utils.h"
 # include "graphics.h"
 
-
 // -- Collect
 bool			set_data(t_all *data);
 void			set_start_position_player(t_all *data);
 void			set_start_direction_player(t_all *data);
-bool			player_found(char c);
 char			get_player_type(t_all *data);
 
 // -- Free
@@ -42,7 +52,7 @@ void			fps_printer(t_fps *fps);
 void			update_fps(t_fps *fps);
 
 // -- FOV
-void 			set_player_field_of_view(t_all *data);
+void			set_player_field_of_view(t_all *data);
 
 // -- Object Collision
 bool			wall_found(int x, int y);

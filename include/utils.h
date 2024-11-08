@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        ::::::::            */
+/*   utils.h                                            :+:    :+:            */
+/*                                                     +:+                    */
+/*   By: fras <fras@student.codam.nl>                 +#+                     */
+/*                                                   +#+                      */
+/*   Created: 2024/11/08 18:14:17 by fras          #+#    #+#                 */
+/*   Updated: 2024/11/08 18:14:18 by fras          ########   odam.nl         */
+/*                                                                            */
+/* ************************************************************************** */
+
 #ifndef UTILS_H
 # define UTILS_H
 
@@ -24,15 +36,5 @@ void	free_double_pointer(char **s);
 bool	isinset(char n, char *set);
 
 void	error(int error_code, t_all *data);
-
-// - Utils_F
-
-void		ft_putchar_fd(char c, int fd);
-void		ft_putnbr_fd(int n, int fd);
-bool		fr_isdigit(int c);
-void		cub3d_float_int_printer(int fd, const char *format, ...);
-void		fip_format_handler(va_list ap, const char *format, int fd);
-const char	*cub3d_putfloat_dflag_fd(va_list ap, const char *format, int fd);
-void		cub3d_putfloat_fd(va_list ap, int decimals, int fd);
 
 #endif

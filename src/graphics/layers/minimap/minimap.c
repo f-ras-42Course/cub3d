@@ -1,35 +1,30 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        ::::::::            */
+/*   minimap.c                                          :+:    :+:            */
+/*                                                     +:+                    */
+/*   By: fras <fras@student.codam.nl>                 +#+                     */
+/*                                                   +#+                      */
+/*   Created: 2024/11/08 19:49:17 by fras          #+#    #+#                 */
+/*   Updated: 2024/11/08 20:15:30 by fras          ########   odam.nl         */
+/*                                                                            */
+/* ************************************************************************** */
 
 #include "graphics.h"
 
 void	minimap(t_minimap *minimap)
 {
-	reset_minimap_end_of_map_locator(minimap);
-	draw_minimap(minimap);
-	draw_player_on_minimap(minimap);
-}
-
-void	draw_minimap(t_minimap *minimap)
-{
 	int	x;
 	int	y;
 
-
 	y = 0;
+	reset_minimap_end_of_map_locator(minimap);
 	while (y < MINIMAP_GRID_HEIGHT)
 	{
 		x = 0;
 		while (x < MINIMAP_GRID_WIDTH)
 		{
-			if (minimap_unit_is_out_of_map_scope(minimap))
-				draw_end_of_map(minimap, x, y);
-			else if (wall_found(minimap->end_of_map_locator_x, \
-						minimap->end_of_map_locator_y))
-				fill_minimap_unit(minimap, x, y, 0xffaa00ff);
-			else if (closed_door_found(minimap->end_of_map_locator_x, \
-						minimap->end_of_map_locator_y))
-				fill_minimap_unit(minimap, x, y, 0xffbb00ff);
-			else
-				fill_minimap_unit(minimap, x, y, 0xffffff4f);
+			draw_minimap(minimap, x, y);
 			x++;
 			(minimap->end_of_map_locator_x)++;
 		}
@@ -38,6 +33,21 @@ void	draw_minimap(t_minimap *minimap)
 		y++;
 		(minimap->end_of_map_locator_y)++;
 	}
+	draw_player_on_minimap(minimap);
+}
+
+void	draw_minimap(t_minimap *minimap, const int x, const int y)
+{
+	if (minimap_unit_is_out_of_map_scope(minimap))
+		draw_end_of_map(minimap, x, y);
+	else if (wall_found(minimap->end_of_map_locator_x, \
+				minimap->end_of_map_locator_y))
+		fill_minimap_unit(minimap, x, y, 0xffaa00ff);
+	else if (closed_door_found(minimap->end_of_map_locator_x, \
+				minimap->end_of_map_locator_y))
+		fill_minimap_unit(minimap, x, y, 0xffbb00ff);
+	else
+		fill_minimap_unit(minimap, x, y, 0xffffff4f);
 }
 
 void	fill_minimap_unit(t_minimap *minimap, int minimap_pos_x, \

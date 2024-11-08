@@ -1,3 +1,14 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        ::::::::            */
+/*   cub.c                                              :+:    :+:            */
+/*                                                     +:+                    */
+/*   By: fras <fras@student.codam.nl>                 +#+                     */
+/*                                                   +#+                      */
+/*   Created: 2024/11/08 19:28:40 by fras          #+#    #+#                 */
+/*   Updated: 2024/11/08 19:38:00 by fras          ########   odam.nl         */
+/*                                                                            */
+/* ************************************************************************** */
 
 #include "data.h"
 #include <stdarg.h>
@@ -36,15 +47,15 @@ char	**map_data(t_mapaccess option, ...)
 	if (option == SET)
 	{
 		va_start(ap, option);
-		map = va_arg(ap, char**);
+		map = va_arg(ap, char **);
 		va_end(ap);
 	}
 	return (0);
 }
 
-size_t		map_height(t_mapaccess option, ...)
+size_t	map_height(t_mapaccess option, ...)
 {
-	static size_t 	height;
+	static size_t	height;
 	va_list			ap;
 
 	if (option == GET)
@@ -58,7 +69,7 @@ size_t		map_height(t_mapaccess option, ...)
 	return (0);
 }
 
-size_t		map_width(t_mapaccess option, ...)
+size_t	map_width(t_mapaccess option, ...)
 {
 	static size_t	width;
 	va_list			ap;

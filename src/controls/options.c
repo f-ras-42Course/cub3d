@@ -1,3 +1,14 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        ::::::::            */
+/*   options.c                                          :+:    :+:            */
+/*                                                     +:+                    */
+/*   By: fras <fras@student.codam.nl>                 +#+                     */
+/*                                                   +#+                      */
+/*   Created: 2024/11/08 19:17:56 by fras          #+#    #+#                 */
+/*   Updated: 2024/11/08 19:19:07 by fras          ########   odam.nl         */
+/*                                                                            */
+/* ************************************************************************** */
 
 #include "data.h"
 
@@ -12,13 +23,13 @@ void	change_fov(t_all *data)
 	else
 		data->player.fov = 66.2068965517;
 	if (data->player.fov == DEFAULT_FOV)
-		cub3d_float_int_printer(STDOUT_FILENO, "(default) ", (int)data->player.fov);
-	cub3d_float_int_printer(STDOUT_FILENO, "FOV set to: %d\n", (int)data->player.fov);
+		printf("(default) ");
+	printf("FOV set to: %d\n", (int)data->player.fov);
 }
 
 void	zoom_in(t_all *data)
 {
-	static double old_fov;
+	static double	old_fov;
 
 	if (data->player.fov != 16)
 	{
@@ -35,14 +46,6 @@ void	bigmap_io_switch(t_bigmap *bigmap)
 		bigmap->image->enabled = false;
 	else
 		bigmap->image->enabled = true;
-}
-
-void	testmode_io_switch(t_gfx_data *graphics)
-{
-	if (graphics->testmode)
-		graphics->testmode = false;
-	else
-		graphics->testmode = true;
 }
 
 void	fps_print_ioswitch(t_fps *fps)

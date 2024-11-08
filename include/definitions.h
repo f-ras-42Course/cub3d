@@ -1,3 +1,14 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        ::::::::            */
+/*   definitions.h                                      :+:    :+:            */
+/*                                                     +:+                    */
+/*   By: fras <fras@student.codam.nl>                 +#+                     */
+/*                                                   +#+                      */
+/*   Created: 2024/11/08 18:13:54 by fras          #+#    #+#                 */
+/*   Updated: 2024/11/08 18:15:54 by fras          ########   odam.nl         */
+/*                                                                            */
+/* ************************************************************************** */
 
 #ifndef DEFINITIONS_H
 # define DEFINITIONS_H
@@ -109,7 +120,7 @@ typedef enum e_minimap_options
 	fill_end_of_map
 }	t_minimap_options;
 
-typedef	enum	e_mapaccess
+typedef enum e_mapaccess
 {
 	GET,
 	SET,

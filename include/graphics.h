@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        ::::::::            */
+/*   graphics.h                                         :+:    :+:            */
+/*                                                     +:+                    */
+/*   By: fras <fras@student.codam.nl>                 +#+                     */
+/*                                                   +#+                      */
+/*   Created: 2024/11/08 18:14:03 by fras          #+#    #+#                 */
+/*   Updated: 2024/11/08 20:12:13 by fras          ########   odam.nl         */
+/*                                                                            */
+/* ************************************************************************** */
+
 #ifndef GRAPHICS_H
 # define GRAPHICS_H
 
@@ -5,7 +17,9 @@
 #  define M_PI 	3.14159265358979323846
 # endif
 
-# define RD		0.01745329251 // = M_PI / 180
+# define RD						0.01745329251 // = M_PI / 180
+# define DOOR_TEXTURE_CLOSED	"./textures/pack2-1024/Light/texture_10.png"
+# define DOOR_TEXTURE_OPEN		"./textures/pack2-1024/Light/texture_10.png"
 
 # include "MLX42/MLX42.h"
 # include "definitions.h"
@@ -62,9 +76,9 @@ void		set_wall_side(t_ray *ray, int side_check);
 
 // - Minimap
 void		minimap(t_minimap *minimap);
-void		draw_minimap(t_minimap *minimap);
+void		draw_minimap(t_minimap *minimap, const int x, const int y);
+void		draw_end_of_map(t_minimap *minimap, int raster_x, int raster_y);
 void		draw_player_on_minimap(t_minimap *minimap);
-void		draw_end_of_map(t_minimap *minimap, int x, int y);
 void		fill_minimap_unit(t_minimap *minimap, int minimap_pos_x, \
 								int minimap_pos_y, int color);
 
@@ -120,7 +134,7 @@ void		update_image(t_gfx_data *graphics);
 // - Resize
 
 void		resize_all(t_gfx_data *graphics);
-void 		resize_images(t_gfx_data *graphics);
+void		resize_images(t_gfx_data *graphics);
 void		bring_window_to_center(t_gfx_data *graphics);
 
 // - FPS to screen

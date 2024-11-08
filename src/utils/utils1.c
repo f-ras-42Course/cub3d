@@ -1,3 +1,14 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        ::::::::            */
+/*   utils1.c                                           :+:    :+:            */
+/*                                                     +:+                    */
+/*   By: fras <fras@student.codam.nl>                 +#+                     */
+/*                                                   +#+                      */
+/*   Created: 2024/11/08 20:18:14 by fras          #+#    #+#                 */
+/*   Updated: 2024/11/08 20:26:39 by fras          ########   odam.nl         */
+/*                                                                            */
+/* ************************************************************************** */
 
 #include "cub3d.h"
 #include <stddef.h>
@@ -65,4 +76,3 @@ int	ft_strncmp(const char *s1, const char *s2, size_t n)
 		i++;
 	return ((unsigned char)s1[i] - (unsigned char)s2[i]);
 }
-

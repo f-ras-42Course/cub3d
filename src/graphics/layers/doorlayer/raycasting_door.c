@@ -1,3 +1,14 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        ::::::::            */
+/*   raycasting_door.c                                  :+:    :+:            */
+/*                                                     +:+                    */
+/*   By: fras <fras@student.codam.nl>                 +#+                     */
+/*                                                   +#+                      */
+/*   Created: 2024/11/08 19:48:20 by fras          #+#    #+#                 */
+/*   Updated: 2024/11/08 19:57:33 by fras          ########   odam.nl         */
+/*                                                                            */
+/* ************************************************************************** */
 
 #include "graphics.h"
 
@@ -47,20 +58,20 @@ void	raycasting_door(t_doorlayer *doorlayer)
 
 double	ray_distance_to_door(t_ray *ray, t_xyz xy)
 {
-		if (open_door_found(ray->check_pos[X], ray->check_pos[Y]))
-			ray->is_door_open = true;
-		if (closed_door_found(ray->check_pos[X], ray->check_pos[Y]))
-			ray->is_door_closed = true;
-		if (xy == X)
-		{
-			set_wall_side(ray, (int)copysign(1, cos(ray->direction)));
-			return (ray->shortest[X]);
-		}
-		else
-		{
-			set_wall_side(ray, (int)copysign(2, sin(ray->direction)));
-			return (ray->shortest[Y]);
-		}
+	if (open_door_found(ray->check_pos[X], ray->check_pos[Y]))
+		ray->is_door_open = true;
+	if (closed_door_found(ray->check_pos[X], ray->check_pos[Y]))
+		ray->is_door_closed = true;
+	if (xy == X)
+	{
+		set_wall_side(ray, (int)copysign(1, cos(ray->direction)));
+		return (ray->shortest[X]);
+	}
+	else
+	{
+		set_wall_side(ray, (int)copysign(2, sin(ray->direction)));
+		return (ray->shortest[Y]);
+	}
 }
 
 double	ray_distance_door(t_ray *ray)
@@ -87,8 +98,6 @@ double	ray_distance_door(t_ray *ray)
 				return (ray_distance_to_door(ray, Y));
 			ray->shortest[Y] += ray->delta[Y];
 		}
-		// if (wall_found(ray->check_pos[X], ray->check_pos[Y]))
-		// 		return (0);
 	}
 }
 

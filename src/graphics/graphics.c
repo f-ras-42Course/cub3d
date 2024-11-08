@@ -1,19 +1,33 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        ::::::::            */
+/*   graphics.c                                         :+:    :+:            */
+/*                                                     +:+                    */
+/*   By: fras <fras@student.codam.nl>                 +#+                     */
+/*                                                   +#+                      */
+/*   Created: 2024/11/08 18:13:25 by fras          #+#    #+#                 */
+/*   Updated: 2024/11/08 20:21:13 by fras          ########   odam.nl         */
+/*                                                                            */
+/* ************************************************************************** */
 
 #include "graphics.h"
 
 bool	init_graphics(t_all *data)
 {
-	data->graphics.mlx = mlx_init(screen_width(), screen_height(), "Cub3d", false);
+	data->graphics.mlx = mlx_init(screen_width(), \
+									screen_height(), "Cub3d", false);
 	if (!data->graphics.mlx)
 		return (error(MLX_GFX_CRASH, data), false);
 	if (!is_within_monitor_limit())
 	{
 		keep_within_monitor_limit(DEFAULT_RESOLUTION);
-		mlx_set_window_size(data->graphics.mlx, screen_width(), screen_height());
-		cub3d_float_int_printer(STDOUT_FILENO, "Screen Resolution set to: %d x %d"\
-							"\n", screen_width(), screen_height());
+		mlx_set_window_size(data->graphics.mlx, \
+							screen_width(), screen_height());
+		printf("Screen Resolution set to: %d x %d\n", \
+							screen_width(), screen_height());
 	}
-	mlx_set_mouse_pos(data->graphics.mlx, screen_width() / 2, screen_height() / 2);
+	mlx_set_mouse_pos(data->graphics.mlx, \
+						screen_width() / 2, screen_height() / 2);
 	mlx_set_cursor_mode(data->graphics.mlx, MLX_MOUSE_DISABLED);
 	set_player_pointers(data);
 	set_floor_and_ceiling_color(data);
@@ -28,4 +42,5 @@ bool	init_graphics(t_all *data)
 void	run_graphics(t_all *data)
 {
 	mlx_loop(data->graphics.mlx);
+	mlx_terminate(data->graphics.mlx);
 }

@@ -1,3 +1,14 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        ::::::::            */
+/*   parse.h                                            :+:    :+:            */
+/*                                                     +:+                    */
+/*   By: fras <fras@student.codam.nl>                 +#+                     */
+/*                                                   +#+                      */
+/*   Created: 2024/11/08 18:14:06 by fras          #+#    #+#                 */
+/*   Updated: 2024/11/08 18:16:15 by fras          ########   odam.nl         */
+/*                                                                            */
+/* ************************************************************************** */
 
 #ifndef PARSE_H
 # define PARSE_H
@@ -6,7 +17,7 @@
 # include <stdbool.h>
 # include "structures.h"
 
-typedef struct		s_str
+typedef struct s_str
 {
 	char			*str;
 	size_t			len;
@@ -29,4 +40,3 @@ bool	parse_map(t_all *data, int argc, char *map_name);
 bool	get_map(t_all *data, int fd, char *line);
 
 #endif
-

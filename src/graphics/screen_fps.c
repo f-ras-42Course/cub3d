@@ -1,3 +1,14 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        ::::::::            */
+/*   screen_fps.c                                       :+:    :+:            */
+/*                                                     +:+                    */
+/*   By: fras <fras@student.codam.nl>                 +#+                     */
+/*                                                   +#+                      */
+/*   Created: 2024/11/08 20:17:23 by fras          #+#    #+#                 */
+/*   Updated: 2024/11/08 20:21:46 by fras          ########   odam.nl         */
+/*                                                                            */
+/* ************************************************************************** */
 
 #include "graphics.h"
 
@@ -12,7 +23,8 @@ bool	init_fps_images(t_gfx_data *graphics)
 	while (i <= MAX_SCREEN_FPS)
 	{
 		fps_to_str(fps_str, i);
-		graphics->fps_on_screen[i] = mlx_put_string(graphics->mlx, fps_str, 5, 5);
+		graphics->fps_on_screen[i] = \
+								mlx_put_string(graphics->mlx, fps_str, 5, 5);
 		if (!graphics->fps_on_screen[i])
 			return (false);
 		graphics->fps_on_screen[i]->enabled = false;
@@ -39,7 +51,7 @@ void	fps_to_screen(t_gfx_data *graphics, t_fps *fps)
 
 static void	fps_to_str(char *str, int num)
 {
-	int i;
+	int	i;
 
 	i = 0;
 	if (num >= 10)

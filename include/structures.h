@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        ::::::::            */
+/*   structures.h                                       :+:    :+:            */
+/*                                                     +:+                    */
+/*   By: fras <fras@student.codam.nl>                 +#+                     */
+/*                                                   +#+                      */
+/*   Created: 2024/11/08 18:14:10 by fras          #+#    #+#                 */
+/*   Updated: 2024/11/08 19:19:21 by fras          ########   odam.nl         */
+/*                                                                            */
+/* ************************************************************************** */
+
 #ifndef STRUCTURES_H
 # define STRUCTURES_H
 
@@ -108,7 +120,6 @@ typedef struct s_gfx_data
 	t_doorlayer		doorlayer;
 	mlx_image_t		*fps_on_screen[MAX_SCREEN_FPS + 1];
 	struct s_all	*data;
-	bool			testmode;
 }					t_gfx_data;
 
 typedef struct s_wall_data
@@ -124,7 +135,6 @@ typedef struct s_wall_data
 	t_ray			*ray;
 	t_player		*player;
 }					t_wall_data;
-
 
 typedef struct s_all
 {

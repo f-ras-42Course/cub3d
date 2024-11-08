@@ -1,3 +1,14 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        ::::::::            */
+/*   parse_map.c                                        :+:    :+:            */
+/*                                                     +:+                    */
+/*   By: fras <fras@student.codam.nl>                 +#+                     */
+/*                                                   +#+                      */
+/*   Created: 2024/11/08 20:17:39 by fras          #+#    #+#                 */
+/*   Updated: 2024/11/08 20:27:07 by fras          ########   odam.nl         */
+/*                                                                            */
+/* ************************************************************************** */
 
 #include "cub3d.h"
 
@@ -6,7 +17,8 @@ bool	is_valid_cell(t_all *data, char **map, size_t x, size_t y)
 {
 	bool	down_left_diagonal;
 
-	if ((x == 0 || y == 0 || x == data->map.size[X] - 1 || y == data->map.size[Y] - 1) \
+	if ((x == 0 || y == 0 || x == data->map.size[X] - 1 \
+		|| y == data->map.size[Y] - 1) \
 		&& isinset(map[y][x], "0NSEWD"))
 		return (false);
 	if (x == 0)
