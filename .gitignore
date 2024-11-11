@@ -7,6 +7,6 @@ a.out
 *.dSYM
 test
 test.c
-cub3d
+cub3D
 en.subject.pdf
 tester/
