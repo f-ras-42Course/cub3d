@@ -6,7 +6,7 @@
 /*   By: fras <fras@student.codam.nl>                 +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2024/11/08 18:14:10 by fras          #+#    #+#                 */
-/*   Updated: 2024/11/11 15:39:43 by fras          ########   odam.nl         */
+/*   Updated: 2024/11/11 19:01:41 by fras          ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -85,15 +85,13 @@ typedef struct s_bigmap
 
 typedef struct s_textures
 {
-	mlx_texture_t	*ceiling_texture;
-	mlx_texture_t	*floor_texture;
 	mlx_texture_t	*north_texture;
 	mlx_texture_t	*south_texture;
 	mlx_texture_t	*east_texture;
 	mlx_texture_t	*west_texture;
 	mlx_texture_t	*door_closed_texture;
 	mlx_texture_t	*door_open_texture;
-}						t_textures;
+}					t_textures;
 
 typedef struct s_mainlayer
 {

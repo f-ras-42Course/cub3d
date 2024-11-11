@@ -6,7 +6,7 @@
 /*   By: fras <fras@student.codam.nl>                 +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2024/11/08 19:29:04 by fras          #+#    #+#                 */
-/*   Updated: 2024/11/08 19:47:14 by fras          ########   odam.nl         */
+/*   Updated: 2024/11/11 19:02:10 by fras          ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,8 +28,6 @@ bool	init_texture_data(t_all *data)
 
 void	all_textures_to_null(t_textures *textures)
 {
-	textures->ceiling_texture = NULL;
-	textures->floor_texture = NULL;
 	textures->north_texture = NULL;
 	textures->south_texture = NULL;
 	textures->east_texture = NULL;
