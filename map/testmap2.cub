@@ -1,7 +1,8 @@
-NO ./path_to_the_north_texture
-SO ./path_to_the_south_texture
-WE ./path_to_the_west_texture
-EA ./path_to_the_east_texture
+NO ./textures/pack2-1024/Dark/texture_13.png
+SO ./textures/pack2-1024/Green/texture_01.png
+WE ./textures/pack2-1024/Red/texture_01.png
+EA ./textures/pack2-1024/Orange/texture_01.png
+
 F 220,100,0
 C 225,30,0
 
