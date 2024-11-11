@@ -6,7 +6,7 @@
 /*   By: fras <fras@student.codam.nl>                 +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2024/11/08 18:13:25 by fras          #+#    #+#                 */
-/*   Updated: 2024/11/08 20:21:13 by fras          ########   odam.nl         */
+/*   Updated: 2024/11/11 16:09:38 by fras          ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,9 +26,6 @@ bool	init_graphics(t_all *data)
 		printf("Screen Resolution set to: %d x %d\n", \
 							screen_width(), screen_height());
 	}
-	mlx_set_mouse_pos(data->graphics.mlx, \
-						screen_width() / 2, screen_height() / 2);
-	mlx_set_cursor_mode(data->graphics.mlx, MLX_MOUSE_DISABLED);
 	set_player_pointers(data);
 	set_floor_and_ceiling_color(data);
 	if (!init_image(&(data->graphics)))
@@ -36,6 +33,7 @@ bool	init_graphics(t_all *data)
 	data->graphics.data = data;
 	init_fps_images(&(data->graphics));
 	bring_window_to_center(&(data->graphics));
+	data->graphics.mouse_rotation_enabled = false;
 	return (true);
 }
 

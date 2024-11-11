@@ -6,7 +6,7 @@
 /*   By: fras <fras@student.codam.nl>                 +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2024/11/08 18:17:29 by fras          #+#    #+#                 */
-/*   Updated: 2024/11/08 19:17:17 by fras          ########   odam.nl         */
+/*   Updated: 2024/11/11 18:21:18 by fras          ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,4 +80,28 @@ void	no_collide(t_player *player, double increment, t_xyz axis)
 			!closed_door_found(player->position[X], wanna_walk[Y]))
 			player->position[Y] += increment;
 	}
+}
+
+void	mouse_rotate(t_all *data, double xpos)
+{
+	const double	rot_speed = (data->fps.time - data->fps.old_time) * 0.05;
+	const int		screen_mid[2] = {
+	[X] = screen_width() / 2,
+	[Y] = screen_height() / 2};
+
+	if (xpos < screen_mid[X])
+	{
+		data->player.direction = (data->player.direction / M_PI - (rot_speed \
+		* (screen_mid[X] - xpos))) * M_PI;
+		if (copysign(1, data->player.direction / M_PI) == -1)
+			data->player.direction = 2 * M_PI;
+	}
+	if (xpos > screen_mid[X])
+	{
+		data->player.direction = (data->player.direction / M_PI + (rot_speed \
+		* (xpos - screen_mid[X]))) * M_PI;
+		if ((int)(data->player.direction / M_PI) == 2)
+			data->player.direction = 0 * M_PI;
+	}
+	mlx_set_mouse_pos(data->graphics.mlx, screen_mid[X], screen_mid[Y]);
 }

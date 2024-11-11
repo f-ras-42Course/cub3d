@@ -6,7 +6,7 @@
 /*   By: fras <fras@student.codam.nl>                 +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2024/11/08 18:13:33 by fras          #+#    #+#                 */
-/*   Updated: 2024/11/08 19:21:27 by fras          ########   odam.nl         */
+/*   Updated: 2024/11/11 16:39:27 by fras          ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,6 +32,7 @@ void	walking(t_all *data);
 void	move(t_all *data, const double speed);
 void	rotate(t_all *data, const double speed);
 void	no_collide(t_player *player, double increment, t_xyz axis);
+void	mouse_rotate(t_all *data, double xpos);
 
 // -- Options
 void	change_fov(t_all *data);
@@ -39,5 +40,7 @@ void	zoom_in(t_all *data);
 void	bigmap_io_switch(t_bigmap *bigmap);
 void	fps_print_ioswitch(t_fps *fps);
 void	fps_screen_ioswitch(t_gfx_data *graphics, t_fps *fps);
+void	fps_ioswitch(t_gfx_data *graphics, t_fps *fps);
+void	mouse_rotation_ioswitch(t_gfx_data *graphics);
 
 #endif
