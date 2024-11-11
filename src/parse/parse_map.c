@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
-/*                                                        ::::::::            */
-/*   parse_map.c                                        :+:    :+:            */
-/*                                                     +:+                    */
-/*   By: fras <fras@student.codam.nl>                 +#+                     */
-/*                                                   +#+                      */
-/*   Created: 2024/11/08 20:17:39 by fras          #+#    #+#                 */
-/*   Updated: 2024/11/08 20:27:07 by fras          ########   odam.nl         */
+/*                                                        :::      ::::::::   */
+/*   parse_map.c                                        :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: cvan-sch <cvan-sch@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2024/11/08 20:17:39 by fras              #+#    #+#             */
+/*   Updated: 2024/11/11 14:48:51 by cvan-sch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,6 +45,8 @@ bool	is_valid_map(t_all *data)
 	size_t	x;
 
 	y = 0;
+	if (data->map.player_location[X] == 0)
+		return (error(NO_PLAYER, data), false);
 	while (y < data->map.size[Y])
 	{
 		x = 0;
