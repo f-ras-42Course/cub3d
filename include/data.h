@@ -6,7 +6,7 @@
 /*   By: fras <fras@student.codam.nl>                 +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2024/11/08 18:13:48 by fras          #+#    #+#                 */
-/*   Updated: 2024/11/08 18:15:07 by fras          ########   odam.nl         */
+/*   Updated: 2024/11/11 19:18:44 by fras          ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,9 @@ void			set_start_direction_player(t_all *data);
 char			get_player_type(t_all *data);
 
 // -- Free
+void			free_data(t_all *data);
 void			free_cub_data(t_map *cub);
+void			delete_loaded_textures(t_textures *textures);
 
 // -- Cub
 void			make_cub_data_widely_available(t_map *cub);
