@@ -6,7 +6,7 @@
 /*   By: fras <fras@student.codam.nl>                 +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2024/11/08 18:14:03 by fras          #+#    #+#                 */
-/*   Updated: 2024/11/08 20:12:13 by fras          ########   odam.nl         */
+/*   Updated: 2024/11/11 14:41:44 by fras          ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@
 
 # define RD						0.01745329251 // = M_PI / 180
 # define DOOR_TEXTURE_CLOSED	"./textures/pack2-1024/Light/texture_10.png"
-# define DOOR_TEXTURE_OPEN		"./textures/pack2-1024/Light/texture_10.png"
+# define DOOR_TEXTURE_OPEN		"./textures/pack2-1024/Light/texture_10_open.png"
 
 # include "MLX42/MLX42.h"
 # include "definitions.h"
