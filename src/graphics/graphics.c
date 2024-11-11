@@ -6,7 +6,7 @@
 /*   By: fras <fras@student.codam.nl>                 +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2024/11/08 18:13:25 by fras          #+#    #+#                 */
-/*   Updated: 2024/11/11 16:09:38 by fras          ########   odam.nl         */
+/*   Updated: 2024/11/11 20:12:47 by fras          ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,8 @@ bool	init_graphics(t_all *data)
 	set_player_pointers(data);
 	set_floor_and_ceiling_color(data);
 	if (!init_image(&(data->graphics)))
-		return (error(MLX_GFX_CRASH, data), false);
+		return (mlx_terminate(data->graphics.mlx), \
+				error(MLX_GFX_CRASH, data), false);
 	data->graphics.data = data;
 	init_fps_images(&(data->graphics));
 	bring_window_to_center(&(data->graphics));

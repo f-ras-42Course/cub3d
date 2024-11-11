@@ -6,7 +6,7 @@
 /*   By: fras <fras@student.codam.nl>                 +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2024/11/08 19:22:09 by fras          #+#    #+#                 */
-/*   Updated: 2024/11/11 18:20:59 by fras          ########   odam.nl         */
+/*   Updated: 2024/11/11 20:13:15 by fras          ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,8 @@ bool	load_hooks(t_all *data)
 	mlx_key_hook(data->graphics.mlx, key_hooks, data);
 	mlx_cursor_hook(data->graphics.mlx, cursor_hooks, data);
 	if (!mlx_loop_hook(data->graphics.mlx, loop_hooks, data))
-		return (error(MLX_HOOKS_CRASH, data), false);
+		return (mlx_terminate(data->graphics.mlx), \
+				error(MLX_HOOKS_CRASH, data), false);
 	return (true);
 }
 
