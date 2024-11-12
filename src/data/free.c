@@ -6,7 +6,7 @@
 /*   By: fras <fras@student.codam.nl>                 +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2024/11/08 19:28:47 by fras          #+#    #+#                 */
-/*   Updated: 2024/11/11 19:22:26 by fras          ########   odam.nl         */
+/*   Updated: 2024/11/12 18:11:44 by fras          ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,12 +23,18 @@ void	free_cub_data(t_map *cub)
 
 void	delete_loaded_textures(t_textures *textures)
 {
-	mlx_delete_texture(textures->north_texture);
-	mlx_delete_texture(textures->east_texture);
-	mlx_delete_texture(textures->south_texture);
-	mlx_delete_texture(textures->west_texture);
-	mlx_delete_texture(textures->door_open_texture);
-	mlx_delete_texture(textures->door_closed_texture);
+	if (textures->north_texture)
+		mlx_delete_texture(textures->north_texture);
+	if (textures->east_texture)
+		mlx_delete_texture(textures->east_texture);
+	if (textures->south_texture)
+		mlx_delete_texture(textures->south_texture);
+	if (textures->west_texture)
+		mlx_delete_texture(textures->west_texture);
+	if (textures->door_open_texture)
+		mlx_delete_texture(textures->door_open_texture);
+	if (textures->door_closed_texture)
+		mlx_delete_texture(textures->door_closed_texture);
 }
 
 void	free_data(t_all *data)

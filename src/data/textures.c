@@ -6,7 +6,7 @@
 /*   By: fras <fras@student.codam.nl>                 +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2024/11/08 19:29:04 by fras          #+#    #+#                 */
-/*   Updated: 2024/11/11 19:02:10 by fras          ########   odam.nl         */
+/*   Updated: 2024/11/12 18:13:17 by fras          ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,9 +17,9 @@ bool	init_texture_data(t_all *data)
 	t_textures	*textures;
 
 	textures = &(data->graphics.mainlayer.textures);
+	all_textures_to_null(textures);
 	if (!is_all_png_files(&(data->map)))
 		return (error(TEXTURE_NO_PNG, data), false);
-	all_textures_to_null(textures);
 	if (!set_all_textures(textures, &(data->map)))
 		return (error(TEXTURE_LOAD_FAILED, data), false);
 	data->graphics.doorlayer.textures = textures;
@@ -32,6 +32,8 @@ void	all_textures_to_null(t_textures *textures)
 	textures->south_texture = NULL;
 	textures->east_texture = NULL;
 	textures->west_texture = NULL;
+	textures->door_closed_texture = NULL;
+	textures->door_open_texture = NULL;
 }
 
 bool	is_all_png_files(const t_map *map)
